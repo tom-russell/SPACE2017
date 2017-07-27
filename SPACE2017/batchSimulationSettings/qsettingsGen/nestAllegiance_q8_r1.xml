@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SimulationSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<ArenaName>Equidistant</ArenaName>
+	<ArenaFilename>D:/Libraries/Documents/Google Drive/Bristol Work/Research Skills/Project Unity Files/My Files/SPACE2017/space/Arenas/Equidistant.xml</ArenaFilename>
+	<ExperimentName>
+		<Value>nestAllegiance_q8_r1</Value>
+	</ExperimentName>
+	<RandomSeed>
+		<Value>1760253905</Value>
+	</RandomSeed>
+	<QuorumThreshold>
+		<Value>8</Value>
+	</QuorumThreshold>
+	<StartingTimeScale>
+		<Value>50</Value>
+	</StartingTimeScale>
+	<MaximumSimulationRunTime>
+		<Value>120</Value>
+	</MaximumSimulationRunTime>
+	<OutputEndSimData>
+		<Value>true</Value>
+	</OutputEndSimData>
+</SimulationSettings>

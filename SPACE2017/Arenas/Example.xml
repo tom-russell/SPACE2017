@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Arena xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Width>50</Width>
+	<Depth>50</Depth>
+  <StartingNest>
+    <Width>5</Width>
+    <Depth>7.5</Depth>
+    <PositionX>40</PositionX>
+    <PositionZ>10</PositionZ>
+    <Quality>0.2</Quality>
+  </StartingNest>
+  <NewNests>
+    <Nest>
+      <Width>5</Width>
+	  <Depth>7.5</Depth>
+      <PositionX>5</PositionX>
+      <PositionZ>10</PositionZ>
+      <Quality>0.3</Quality>
+    </Nest>
+    <Nest>
+      <Width>12</Width>
+      <Depth>5</Depth>
+      <PositionX>10</PositionX>
+      <PositionZ>25</PositionZ>
+      <Quality>0.6</Quality>
+    </Nest>	
+    <Nest>
+      <Width>5</Width>
+      <Depth>7.5</Depth>
+      <PositionX>15</PositionX>
+      <PositionZ>40</PositionZ>
+      <Quality>0.6</Quality>
+    </Nest>
+  </NewNests>
+</Arena>

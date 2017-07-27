@@ -1,0 +1,20 @@
+Found 9 experiments
+Running D:/Libraries/Documents/Google Drive/Bristol Work/Research Skills/Project Unity Files/My Files/SPACE2017/space/batchSimulationSettings/EmigrationCompletionTest\ctest_seed1_q01.xml
+Done
+Running D:/Libraries/Documents/Google Drive/Bristol Work/Research Skills/Project Unity Files/My Files/SPACE2017/space/batchSimulationSettings/EmigrationCompletionTest\ctest_seed1_q03.xml
+Done
+Running D:/Libraries/Documents/Google Drive/Bristol Work/Research Skills/Project Unity Files/My Files/SPACE2017/space/batchSimulationSettings/EmigrationCompletionTest\ctest_seed1_q05.xml
+Done
+Running D:/Libraries/Documents/Google Drive/Bristol Work/Research Skills/Project Unity Files/My Files/SPACE2017/space/batchSimulationSettings/EmigrationCompletionTest\ctest_seed1_q07.xml
+Done
+Running D:/Libraries/Documents/Google Drive/Bristol Work/Research Skills/Project Unity Files/My Files/SPACE2017/space/batchSimulationSettings/EmigrationCompletionTest\ctest_seed1_q11.xml
+Done
+Running D:/Libraries/Documents/Google Drive/Bristol Work/Research Skills/Project Unity Files/My Files/SPACE2017/space/batchSimulationSettings/EmigrationCompletionTest\ctest_seed1_q13.xml
+Done
+Running D:/Libraries/Documents/Google Drive/Bristol Work/Research Skills/Project Unity Files/My Files/SPACE2017/space/batchSimulationSettings/EmigrationCompletionTest\ctest_seed1_q15.xml
+Done
+Running D:/Libraries/Documents/Google Drive/Bristol Work/Research Skills/Project Unity Files/My Files/SPACE2017/space/batchSimulationSettings/EmigrationCompletionTest\ctest_seed1_q18.xml
+Done
+Running D:/Libraries/Documents/Google Drive/Bristol Work/Research Skills/Project Unity Files/My Files/SPACE2017/space/batchSimulationSettings/EmigrationCompletionTest\ctest_seed1_q20.xml
+Done
+Finished batch
