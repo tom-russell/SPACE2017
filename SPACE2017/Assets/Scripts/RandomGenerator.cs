@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 //Available here: http://blog.msevestre.ca/2010/12/how-to-generate-gaussian-random-numbers.html
 
@@ -60,7 +61,7 @@ public class RandomGenerator
     {
         return (max - min) * NextDouble() + min;
     }
-
+    
     // Returns a random number between 0 and 1
     public double NextDouble()
     {

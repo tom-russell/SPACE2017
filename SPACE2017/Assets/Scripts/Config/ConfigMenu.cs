@@ -126,7 +126,7 @@ public class ConfigMenu : MonoBehaviour, IDisposable
         int num = 0;
 
         GetPropertiesContentArea().DetachChildren();
-        foreach (var v in Settings.AllProperties)
+        foreach (SimulationPropertyBase v in Settings.AllProperties)
         {
             CreateInput(v, num);
             num++;
@@ -251,7 +251,7 @@ public class ConfigMenu : MonoBehaviour, IDisposable
         a.transform.SetParent(content.transform);
 
         //a.transform.position = new Vector3(-240, 45 + -(0 + (num * 35)), 0);
-        //a.transform.position = new Vector3(-240, 45 + (0 + (num * 35)), 0);
+        a.transform.position = new Vector3(-240, 45 + (0 + (num * 35)), 0);
         a.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -((num + 1) * 35) + 13);
         a.GetComponent<RectTransform>().pivot = new Vector2(0, .5f);
 

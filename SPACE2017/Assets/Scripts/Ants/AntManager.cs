@@ -118,6 +118,9 @@ public class AntManager : MonoBehaviour, ITickable
     public void Tick(float elapsedSimulationMS)
     {
         PerceivedTicks++;
+        float simtime = simulation.TickManager.TotalElapsedSimulatedSeconds;
+        if (AntId == 5 && simtime % 5 == 0 && simtime <= 500)
+            Debug.Log("ID=" + AntId + " pos=" + transform.position);
 
         // If 1 second of simulated time has elapsed
         if (Ticker.Should(elapsedSimulationMS, ref _elapsed, 1000))

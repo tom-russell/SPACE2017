@@ -342,6 +342,9 @@ public class AntMovement : MonoBehaviour, ITickable
             float distanceToMove = Time.fixedDeltaTime * speed;
             transform.position += transform.forward * distanceToMove;
         }
+
+        // Round the x/y/z position values (required for deterministic simulations)
+        roundPosition();
     }
     
     // If there is an obstruction of the given type ahead of the ant attempt to turn to avoid, return true if successful.
@@ -765,6 +768,16 @@ public class AntMovement : MonoBehaviour, ITickable
     private float stoppingDistance()
     {
         return AntScales.Distances.AntennaeLength + AntScales.Distances.BodyLength;
+    }
+
+    // Rounds the current ant position to 5 decimal places
+    // This is required to keep the simulations deterministic across different platforms/builds
+    private void roundPosition()
+    {
+        int digits = 4;
+        Vector3 pos = transform.position;
+        Vector3 posRounded = new Vector3((float)Math.Round(pos.x, digits), (float)Math.Round(pos.y, digits), (float)Math.Round(pos.z, digits));
+        transform.position = posRounded;
     }
 
     //? required to get ITickable to work, remove later

@@ -75,9 +75,9 @@ namespace Assets.Scripts.Config
 
     public class RandomiseTimeScale : SimulationBoolProperty
     {
-        public override string Name { get { return "Randomly fluctuationg TimeScale"; } }
+        public override string Name { get { return "Randomly fluctuating TimeScale"; } }
 
-        public override string Description { get { return "If true, the TimeScale will be changed randomly throughout the simulation. (determinism testing)"; } }
+        public override string Description { get { return "If true, the TimeScale will be changed randomly throughout the simulation. (used for testing determinism)"; } }
 
         public RandomiseTimeScale()
         {
