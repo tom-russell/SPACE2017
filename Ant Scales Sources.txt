@@ -1,0 +1,24 @@
+Speeds (mm/s)(rounded to 2 s.f.)
+
+	Scouting 		= 8.4mm/s. Paragraph 4. Teaching in Tandem-Running Ants (N.R. Franks, T. Richardson)
+	TandemRunLead 		= 7.5mm/s. Paragraph 4. Teaching in Tandem-Running Ants (N.R. Franks, T. Richardson)
+	TandemRunFollow 	= 5.0mm/s. (arbitrarily set slower than Tandem leader to allow a gap to form. Simulates the followers tendency to 'scan' the surrounding area)
+	Carrying		= 5.4mm/s. Paragraph 8. Teaching in Tandem-Running Ants (N.R. Franks, T. Richardson)
+	Inactive		= 2.0mm/s. (abitrarily set to create slow movement within the nests)
+	AssessingFirstVisit 	= 3.4mm/s. Results & Discussion Paragraph 12 (pg.768). Ants Estimate Area Using Buffon's Needle. (E. B. Mallon, N. R. Franks)
+	AssessingSecondVisit	= 4.1mm/s. Results & Discussion Paragraph 12 (pg.768). Ants Estimate Area Using Buffon's Needle. (E. B. Mallon, N. R. Franks)
+	ReverseWaiting		= 8.4mm/s. (arbitrarily set to scouting speed)
+
+Times (s) (rounded to 3 s.f.)
+	averageAssessTimeFirstVisit  	= 141s.  Taken from Greg Southgate's thesis. Not 100% sure the numbers match the references.
+	averageAssessTimeSecondVisit 	= 80.7s. Taken from Greg Southgate's thesis. Not 100% sure the numbers match the references.
+	halfIQRangeAssessTime 	     	= 40s.   Taken from Greg Southgate's thesis. Not 100% sure the numbers match the references.
+
+	startingLeaderGiveUpTime	= 10s.   Not taken from science - hasn't been fully researched. These can be tweaked to affect the tandem run failure rate.
+	maxLeaderGiveUpTime		= 20s.
+	leaderGiveUpTimeIncrement	= 0.1s.
+	
+Distances (mm)
+	DoorSenseRange			= 1.5mm. Slightly Larger than the doors 'radius'.
+	AverageAntenna			= 1.0mm. Taken relative the the body length (2mm) from footage of tandem running ants and images of temnothorax albipennis. Trail laying during tandem-running recruitment in the ant Temnothorax albipennis. (Also mentioned as 1mm in Teaching in Tandem Running Ants (Figure1 paragraph)
+	LeaderStopping			= 2.0mm. Figure 1 describes the stopping distance as twice the antennal reach. Teaching in Tandem Running Ants (n.R. Franks, T. Richardson)
