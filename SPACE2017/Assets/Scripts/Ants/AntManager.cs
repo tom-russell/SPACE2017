@@ -119,13 +119,10 @@ public class AntManager : MonoBehaviour, ITickable
     {
         PerceivedTicks++;
         float simtime = simulation.TickManager.TotalElapsedSimulatedSeconds;
-        if (AntId == 5 && simtime % 5 == 0 && simtime <= 500)
-            Debug.Log("ID=" + AntId + " pos=" + transform.position);
 
         // If 1 second of simulated time has elapsed
         if (Ticker.Should(elapsedSimulationMS, ref _elapsed, 1000))
         {
-            WriteHistory(); //? Probably doesn't need its own function any more, only one line
             DecrementCounters();    //? May be better to call every tick instead, but decrement 50ms instead of 1s (current method lines up everything to 1s intervals)
         }
         /* //? This part has been added new. Some may be useful (recruitmentStage)
@@ -228,12 +225,6 @@ public class AntManager : MonoBehaviour, ITickable
             NestAssessmentVisit();
         }
 
-    }
-
-    private void WriteHistory() //? Most of this function is removed, should be fine. but can probably be deleted
-    {
-        //Update timestep
-        timeStep++;
     }
 
     // Assigns the ant to the correct parent gameobject, based on state and current nest allegiance
@@ -599,6 +590,7 @@ public class AntManager : MonoBehaviour, ITickable
             {
                 ChangeState(BehaviourState.Inactive);
                 finishedRecruiting = false;
+                droppedRecently = 0;    // Allows this ant to be reverse lead if the emigration is still continuing (this ant was recruited from the other potential nest)
                 return;
             }
             else

@@ -15,6 +15,7 @@ public class TimeControl : MonoBehaviour
 
     private int _currentSpeed = 1;
     private bool _drawTime = true;
+    private float previousTimeScale;
 
     void Start()
     {
@@ -43,12 +44,22 @@ public class TimeControl : MonoBehaviour
 
     private void btnPause_Click()
     {
-        SimulationManager.Instance.TickManager.IsPaused = !SimulationManager.Instance.TickManager.IsPaused;
+        if (Time.timeScale != 0)
+        {
+            previousTimeScale = Time.timeScale;
+            Time.timeScale = 0f;
+            UpdatePause(true);
+        }
+        else
+        {
+            Time.timeScale = previousTimeScale;
+            UpdatePause(false);
+        }
     }
 
     private void UpdatePause(bool paused)
     {
-        btnPause.SetText(!paused ? "||" : "|>");
+        btnPause.SetText(paused ? "|>" : "||");
     }
 
     private void btnTime_Click()
@@ -82,7 +93,8 @@ public class TimeControl : MonoBehaviour
 
         txtSpeed.text = _currentSpeed + "x";
 
-        SimulationManager.Instance.TickManager.TicksPerFrame = _currentSpeed;
+        Time.timeScale = _currentSpeed;
+        //SimulationManager.Instance.TickManager.TicksPerFrame = _currentSpeed;
     }
 
     void Update()

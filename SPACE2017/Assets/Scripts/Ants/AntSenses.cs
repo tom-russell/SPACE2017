@@ -19,10 +19,7 @@ public class AntSenses : MonoBehaviour
             return;
         }
 
-        
-
         AntManager otherAnt = other.transform.GetComponent<AntManager>();
-        if (ant.DEBUG_ANT == true && otherAnt.state == BehaviourState.Scouting) Debug.Log("Found a scout");
 
         if (ant.state == BehaviourState.Reversing && !ant.IsTandemRunning())
         {

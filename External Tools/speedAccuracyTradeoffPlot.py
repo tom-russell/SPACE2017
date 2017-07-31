@@ -2,8 +2,8 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
     
-#batchPath = "D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\SPACE2017\space\Results\qsettingsGen"
-batchPath = r"C:\Users\tom_j\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\SPACE2017\space\Results\qsettingsGen"
+batchPath = "D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\SPACE2017\Results\qsettingsGen"
+#batchPath = r"C:\Users\tom_j\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\SPACE2017\space\Results\qsettingsGen"
 
 dirs = [d for d in os.listdir(batchPath) if os.path.isdir(os.path.join(batchPath, d))]
 
@@ -86,7 +86,7 @@ plt.plot(presentQuorums, accuracyAverageValues, marker = 'o', color='b')
 plt.errorbar(presentQuorums, accuracyAverageValues, yerr=accuracyStdValues, linestyle='None', color='r', capsize=5)
 plt.ylabel('Accuracy')
 plt.xlabel('Quorum Threshold')
-plt.axis([0,20,0.7,1.0])
+#plt.axis([0,20,0.7,1.0])
 #plt.axis([0, 20, 0.8, 1.0])
 
 # plotting the speed graph

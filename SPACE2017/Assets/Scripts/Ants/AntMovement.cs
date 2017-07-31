@@ -6,6 +6,7 @@ using Assets.Scripts;
 using Assets.Scripts.Ticking;
 using Assets.Scripts.Ants;
 using System;
+using UnityEditor;
 
 public class AntMovement : MonoBehaviour, ITickable
 {
@@ -50,6 +51,8 @@ public class AntMovement : MonoBehaviour, ITickable
     //  This is called from simulationManager to ensure movement & state updating happens in a consistent order
     public void Tick(float placeholder)
 	{
+        checkIfInArenaBounds();
+
         // Ants that are being socially carried cannot move
         if (isBeingCarried == true) return;
         
@@ -237,8 +240,7 @@ public class AntMovement : MonoBehaviour, ITickable
         // Move forward at the speed based on the ant's current behaviour/activity
         if (ant.IsTandemRunning())
         {
-            // If leading a tandem run move at standard speed but ignore collisions with other ants //? collisions confuse followers too much
-            moveForward(AntScales.Speeds.TandemRunLead, true);//? 
+            moveForward(AntScales.Speeds.TandemRunLead, true);
         }
         else if (ant.IsTransporting())
         {
@@ -286,7 +288,7 @@ public class AntMovement : MonoBehaviour, ITickable
         // Move forward at the required speed based on the reverser's current state
         if (ant.IsTandemRunning() == true)
         {
-            moveForward(AntScales.Speeds.TandemRunLead, false);//?
+            moveForward(AntScales.Speeds.TandemRunLead, true);
         }
         else
         {
@@ -774,6 +776,7 @@ public class AntMovement : MonoBehaviour, ITickable
     // This is required to keep the simulations deterministic across different platforms/builds
     private void roundPosition()
     {
+        return;
         int digits = 4;
         Vector3 pos = transform.position;
         Vector3 posRounded = new Vector3((float)Math.Round(pos.x, digits), (float)Math.Round(pos.y, digits), (float)Math.Round(pos.z, digits));
@@ -784,4 +787,20 @@ public class AntMovement : MonoBehaviour, ITickable
     public bool ShouldBeRemoved { get { return false; } }
     public void SimulationStarted() { }
     public void SimulationStopped() { }
+
+    // Bug test to see if ants leave the arena at any point
+    private Transform wall;
+    private void checkIfInArenaBounds()
+    {
+        if (wall == null) wall = GameObject.Find("Wall(Clone)").transform;
+
+        float arenaSize = (wall.localScale.x > wall.localScale.y) ? wall.localScale.x : wall.localScale.y;
+
+        if (transform.position.x < 0 || transform.position.x > arenaSize ||
+            transform.position.y < 0 || transform.position.y > arenaSize)
+        {
+            Debug.Log("Ant " + ant.AntId + " has left the arena area.");
+            EditorApplication.isPaused = true;
+        }
+    }
 }
