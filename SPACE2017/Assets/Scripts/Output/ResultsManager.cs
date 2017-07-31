@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts.Config;
 using Assets.Scripts.Output;
-using Assets.Scripts.Ticking;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,7 +7,7 @@ using System.Xml.Serialization;
 
 namespace Assets
 {
-    public class ResultsManager : IDisposable, ITickable
+    public class ResultsManager : IDisposable
     {
         public SimulationManager Simulation { get; private set; }
 
@@ -82,10 +81,10 @@ namespace Assets
                 res.Dispose();
         }
 
-        public void Tick(float elapsedSimulationMS)
+        public void Tick()
         {
             foreach (var res in _results)
-                res.Step(Simulation.TickManager.CurrentTick);
+                res.Step(Simulation.currentTick);
         }
 
         public void SimulationStarted()

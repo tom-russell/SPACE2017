@@ -1,4 +1,4 @@
-using Assets.Scripts.Ants;
+/*using Assets.Scripts.Ants;
 using Assets.Scripts.Ticking;
 using UnityEngine;
 

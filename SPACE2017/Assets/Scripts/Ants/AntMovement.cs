@@ -3,12 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts;
-using Assets.Scripts.Ticking;
 using Assets.Scripts.Ants;
 using System;
-using UnityEditor;
 
-public class AntMovement : MonoBehaviour, ITickable
+public class AntMovement : MonoBehaviour
 {
     // Unity Components/Objects/Scripts
     public AntManager ant;
@@ -44,12 +42,12 @@ public class AntMovement : MonoBehaviour, ITickable
         ant = transform.GetComponent<AntManager>();
 
         turnAnt(RandomGenerator.Instance.Range(0, 360));
-        nextTurnTime = simulation.TickManager.TotalElapsedSimulatedSeconds + maxTimeBetweenTurns;
+        nextTurnTime = simulation.totalElapsedSimulatedTime("s") + maxTimeBetweenTurns;
         lastTurn = transform.position;
     }
 
     //  This is called from simulationManager to ensure movement & state updating happens in a consistent order
-    public void Tick(float placeholder)
+    public void Tick()
 	{
         checkIfInArenaBounds();
 
@@ -93,7 +91,7 @@ public class AntMovement : MonoBehaviour, ITickable
         }
 
         // Update direction if the required time has elapsed
-        if (simulation.TickManager.TotalElapsedSimulatedSeconds >= nextTurnTime)
+        if (simulation.totalElapsedSimulatedTime("s") >= nextTurnTime)
         {
             // Inactive ants walk randomly around inside their home nest
             randomWalk(maxVarBase);
@@ -107,7 +105,7 @@ public class AntMovement : MonoBehaviour, ITickable
     private void scoutingMovement()
     {
         // Update direction only if the required time has elapsed 
-        if (simulation.TickManager.TotalElapsedSimulatedSeconds >= nextTurnTime)
+        if (simulation.totalElapsedSimulatedTime("s") >= nextTurnTime)
         {
             // If a scouts senses a nest door they will walk through it (in/out the nest)
             GameObject door = doorSearch(AntScales.Distances.DoorSenseRange);
@@ -139,7 +137,7 @@ public class AntMovement : MonoBehaviour, ITickable
         }
 
         // Update direction only if the required time has elapsed 
-        if (simulation.TickManager.TotalElapsedSimulatedSeconds >= nextTurnTime)
+        if (simulation.totalElapsedSimulatedTime("s") >= nextTurnTime)
         {
             // if this is a reassessment (of previously accepted nest) then the nest to return to is the old nest, else the return nest is the ant's current nest
             //? To make this neater scout's mynest could be set to null - then the return nest is always oldNest
@@ -206,7 +204,7 @@ public class AntMovement : MonoBehaviour, ITickable
         }
 
         // Update direction only if the required time has elapsed
-        if (simulation.TickManager.TotalElapsedSimulatedSeconds >= nextTurnTime)
+        if (simulation.totalElapsedSimulatedTime("s") >= nextTurnTime)
         {
             // Recruiters leading a tandem run or transporting (social carry) will need to return to their new nest.
             if (ant.IsTandemRunning() || ant.IsTransporting())
@@ -270,7 +268,7 @@ public class AntMovement : MonoBehaviour, ITickable
         }
 
         // Update direction only if the required time has elapsed
-        if (simulation.TickManager.TotalElapsedSimulatedSeconds >= nextTurnTime)
+        if (simulation.totalElapsedSimulatedTime("s") >= nextTurnTime)
         {
             // If the ant is leader a reverse tandem run, walk towards the old nest
             if (ant.IsTandemRunning())
@@ -311,7 +309,7 @@ public class AntMovement : MonoBehaviour, ITickable
         }
 
         // Update direction only if the required time has elapsed
-        if (simulation.TickManager.TotalElapsedSimulatedSeconds >= nextTurnTime)
+        if (simulation.totalElapsedSimulatedTime("s") >= nextTurnTime)
         {
             
             // If this is the first follower movement estimated leader position is not yet set, move ant towards leader
@@ -638,7 +636,7 @@ public class AntMovement : MonoBehaviour, ITickable
         }
         
         //? originally assessing turn frequency was halved - Andy removed, seems sensible (assessing state was changed to encompass more behaviours, return trips etc.
-        nextTurnTime = simulation.TickManager.TotalElapsedSimulatedSeconds + (RandomGenerator.Instance.Range(0, 1f) * maxTime);
+        nextTurnTime = simulation.totalElapsedSimulatedTime("s") + (RandomGenerator.Instance.Range(0, 1f) * maxTime);
         lastTurn = transform.position;
     }
 
@@ -776,17 +774,11 @@ public class AntMovement : MonoBehaviour, ITickable
     // This is required to keep the simulations deterministic across different platforms/builds
     private void roundPosition()
     {
-        return;
         int digits = 4;
         Vector3 pos = transform.position;
         Vector3 posRounded = new Vector3((float)Math.Round(pos.x, digits), (float)Math.Round(pos.y, digits), (float)Math.Round(pos.z, digits));
         transform.position = posRounded;
     }
-
-    //? required to get ITickable to work, remove later
-    public bool ShouldBeRemoved { get { return false; } }
-    public void SimulationStarted() { }
-    public void SimulationStopped() { }
 
     // Bug test to see if ants leave the arena at any point
     private Transform wall;
@@ -800,7 +792,7 @@ public class AntMovement : MonoBehaviour, ITickable
             transform.position.y < 0 || transform.position.y > arenaSize)
         {
             Debug.Log("Ant " + ant.AntId + " has left the arena area.");
-            EditorApplication.isPaused = true;
+            Time.timeScale = 0;
         }
     }
 }

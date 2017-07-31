@@ -1,14 +1,11 @@
 ﻿using Assets.Common;
-using Assets.Scripts.Ticking;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Assets.Scripts.Ants
 {
-    public class EmigrationInformation : ITickable
+    public class EmigrationInformation
     {
-        public bool ShouldBeRemoved { get { return false; } }
-
         public SimulationManager Simulation { get; private set; }
 
         public EmigrationData Data { get { return _data.Value; } }
@@ -57,14 +54,6 @@ namespace Assets.Scripts.Ants
         public void Tick(float elapsedSimulationMS)
         {
             _data.ReloadValue = true;
-        }
-
-        public void SimulationStarted()
-        {
-        }
-
-        public void SimulationStopped()
-        {
         }
 
         public class EmigrationData

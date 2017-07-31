@@ -1,13 +1,12 @@
 using UnityEngine;
 using Assets.Scripts;
 using Assets.Scripts.Extensions;
-using Assets.Scripts.Ticking;
 using Assets.Scripts.Ants;
 using System;
 
 // Selection Base means clicking on an ant in the Unity scene view selects the Ant parent object rather than the child mesh
 [SelectionBase]
-public class AntManager : MonoBehaviour, ITickable
+public class AntManager : MonoBehaviour
 {
     public int AntId { get; set; }
 
@@ -74,15 +73,11 @@ public class AntManager : MonoBehaviour, ITickable
     public float carryRecSwitchProb = 0.1f;     //the probability that an ant that is recruiting via transports (though not at this time) can be recruited by another ant
     private float pRecAssessOld = 0.05f;         //the probability that a recruiter assesses its old nest when it enters it
     private float pRecAssessNew = 0.2f;         //? was 0.5 in greg's but probably for testing? //the probability that a recruiter assesses its new nest when it enters it
-    private int timeStep = 0;                   //Stores time through emigration    //? seems to be redundant
     private int revTryTime = 5;                 //No. of seconds an ant spends trying to RTR.
 
     public int droppedRecently;                 //Flag to show if an ant has been recently dropped or not. //? i changed this to -1 to prevent reversers leading ants currently carried
     private int droppedWait = 5;
     private int recTryTime = 40;                //No. of collisions with passive ants before a recruiter gives up. //? not sure if this is the best method, makes waiting time dependent on total colony size
-
-    //Other	
-    public bool ShouldBeRemoved { get { return false; } }
 
     public int PerceivedTicks { get; set; }
 
@@ -115,16 +110,18 @@ public class AntManager : MonoBehaviour, ITickable
             nestThreshold = 0;
     }
 
-    public void Tick(float elapsedSimulationMS)
+    public void Tick()
     {
         PerceivedTicks++;
-        float simtime = simulation.TickManager.TotalElapsedSimulatedSeconds;
 
-        // If 1 second of simulated time has elapsed
-        if (Ticker.Should(elapsedSimulationMS, ref _elapsed, 1000))
+        _elapsed += Time.fixedDeltaTime;
+        // Decrement Counters only if 1 second of simulated time has elapsed
+        if (_elapsed >= 1)
         {
+            _elapsed = 0;
             DecrementCounters();    //? May be better to call every tick instead, but decrement 50ms instead of 1s (current method lines up everything to 1s intervals)
         }
+
         /* //? This part has been added new. Some may be useful (recruitmentStage)
         if (state == BehaviourState.Recruiting && recruitmentStage == RecruitmentStage.WaitingInNewNest)
         {
@@ -150,10 +147,10 @@ public class AntManager : MonoBehaviour, ITickable
             EnteredNest(LeadersNest().NestManager());
 
         //makes Inactive and !passive ants assess nest that they are in every so often
-        if (!passive && state == BehaviourState.Inactive && nextAssessment > 0 && simulation.TickManager.TotalElapsedSimulatedSeconds >= nextAssessment)
+        if (!passive && state == BehaviourState.Inactive && nextAssessment > 0 && simulation.totalElapsedSimulatedTime("s") >= nextAssessment)
         {
             AssessNest(myNest);
-            nextAssessment = simulation.TickManager.TotalElapsedSimulatedSeconds + RandomGenerator.Instance.Range(0.5f, 1f) * maxAssessmentWait;
+            nextAssessment = simulation.totalElapsedSimulatedTime("s") + RandomGenerator.Instance.Range(0.5f, 1f) * maxAssessmentWait;
         }
 
         //if an ant is carrying another and is within x distance of their nest's centre then drop the ant
@@ -193,7 +190,7 @@ public class AntManager : MonoBehaviour, ITickable
             newToOld = false;
         }
 
-        move.Tick(elapsedSimulationMS); //? Moved this to the end
+        move.Tick(); //? Moved this to the end
     }
 
     private void DecrementCounters()
@@ -313,7 +310,7 @@ public class AntManager : MonoBehaviour, ITickable
         }*/
 
         // set variables for start of forward tandem run (log start position and timestep)
-        startTandemRunSeconds = simulation.TickManager.TotalElapsedSimulatedSeconds;
+        startTandemRunSeconds = simulation.totalElapsedSimulatedTime("s");
 
         // Reset the leader giving up time
         leaderGiveUpTime = AntScales.Times.startingLeaderGiveUpTime;
@@ -338,7 +335,7 @@ public class AntManager : MonoBehaviour, ITickable
     public void ReverseLead(AntManager follower)
     {
         // set start of reverse tandem run (log start position and timestep)
-        startTandemRunSeconds = simulation.TickManager.TotalElapsedSimulatedSeconds;
+        startTandemRunSeconds = simulation.totalElapsedSimulatedTime("s");
 
         // Reset the leader giving up time
         leaderGiveUpTime = AntScales.Times.startingLeaderGiveUpTime;
@@ -419,7 +416,7 @@ public class AntManager : MonoBehaviour, ITickable
     //follow the leader ant 
     public void Follow(AntManager leader)
     {
-        startTandemRunSeconds = simulation.TickManager.TotalElapsedSimulatedSeconds;
+        startTandemRunSeconds = simulation.totalElapsedSimulatedTime("s");
 
         //start following leader towards nest
         ChangeState(BehaviourState.Following);
@@ -489,7 +486,7 @@ public class AntManager : MonoBehaviour, ITickable
         myNest = nest;
         droppedRecently = droppedWait;
         //? commented out in both versions?
-        nextAssessment = simulation.TickManager.TotalElapsedSimulatedSeconds + RandomGenerator.Instance.Range(0.5f, 1f) * maxAssessmentWait;
+        nextAssessment = simulation.totalElapsedSimulatedTime("s") + RandomGenerator.Instance.Range(0.5f, 1f) * maxAssessmentWait;
         ChangeState(BehaviourState.Inactive);
 
         //turns senses on if non passive ant
@@ -935,7 +932,7 @@ public class AntManager : MonoBehaviour, ITickable
         }
 
         // log the time that the tandem run was lost
-        timeWhenTandemLostContact = simulation.TickManager.TotalElapsedSimulatedSeconds;
+        timeWhenTandemLostContact = simulation.totalElapsedSimulatedTime("s");
         // calculate the Leader Give-Up Time (LGUT)
         CalculateLGUT();
     }
@@ -974,7 +971,7 @@ public class AntManager : MonoBehaviour, ITickable
     {
         if (leaderGiveUpTime == 0.0 || timeWhenTandemLostContact == 0) return false;
 
-        float durationLostContact = (simulation.TickManager.TotalElapsedSimulatedSeconds - timeWhenTandemLostContact);
+        float durationLostContact = (simulation.totalElapsedSimulatedTime("s") - timeWhenTandemLostContact);
 
         // if duration since lost contact is longer than LGUT then tandem run has failed  
         return durationLostContact > leaderGiveUpTime;
@@ -1080,16 +1077,6 @@ public class AntManager : MonoBehaviour, ITickable
         //?_wasColourOn = false;
         //?_colourFlashTime = 0;
         this.ChangeColour(_temporaryColour.Value);
-    }
-
-    public void SimulationStarted()
-    {
-
-    }
-
-    public void SimulationStopped()
-    {
-
     }
 }
 

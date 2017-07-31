@@ -6,19 +6,25 @@ public class TimeControl : MonoBehaviour
 {
     private Text txtFPS, txtSpeed;
 
-    private Button btnUp, btnDown, btnTick, btnTime, btnPause;
+    private Button btnUp, btnDown, btnTime, btnPause;
 
     int _frameCounter = 0;
     float _timeCounter = 0.0f;
     //?float _lastFramerate = 0.0f;
     public float _refreshTime = 0.5f; //Refresh FPS every .5 seconds
-
-    private int _currentSpeed = 1;
+    
     private bool _drawTime = true;
     private float previousTimeScale;
+    private float[] timeScaleOptions;
+    private int currentOption;
 
     void Start()
     {
+        timeScaleOptions = new float[] {
+            0.02f, 0.1f, 0.3f, 0.5f, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 40, 50
+        };
+        currentOption = 4;
+
         txtFPS = this.TextByName("txtFPS");
         txtSpeed = this.TextByName("txtSpeed");
 
@@ -31,14 +37,11 @@ public class TimeControl : MonoBehaviour
         btnUp.onClick.AddListener(btnUp_Click);
         btnDown.onClick.AddListener(btnDown_Click);
 
-        btnTick = this.ButtonByName("btnTick");
-        btnTick.SetText("Tick");
-        btnTick.onClick.AddListener(btnTick_Click);
-
         btnTime = this.ButtonByName("btnTime");
         btnTime.onClick.AddListener(btnTime_Click);
 
         btnPause = this.ButtonByName("btnPause");
+        btnPause.SetText("||");
         btnPause.onClick.AddListener(btnPause_Click);
     }
 
@@ -48,28 +51,19 @@ public class TimeControl : MonoBehaviour
         {
             previousTimeScale = Time.timeScale;
             Time.timeScale = 0f;
-            UpdatePause(true);
+            btnPause.SetText("|>");
         }
         else
         {
             Time.timeScale = previousTimeScale;
-            UpdatePause(false);
+            btnPause.SetText("||");
         }
-    }
-
-    private void UpdatePause(bool paused)
-    {
-        btnPause.SetText(paused ? "|>" : "||");
     }
 
     private void btnTime_Click()
     {
+        Debug.Log("Time clicked");
         _drawTime = !_drawTime;
-    }
-
-    private void btnTick_Click()
-    {
-        SimulationManager.Instance.TickManager.TickOnce = true;
     }
 
     private void btnDown_Click()
@@ -82,19 +76,15 @@ public class TimeControl : MonoBehaviour
         ModifySpeed(1);
     }
 
-    private void ModifySpeed(int by)
+    private void ModifySpeed(int change)
     {
-        int newSpeed = _currentSpeed += by;
+        currentOption += change;
+        currentOption = Mathf.Clamp(currentOption, 0, timeScaleOptions.Length);
 
-        if (newSpeed < 0)
-            newSpeed = 0;
+        float newSpeed = timeScaleOptions[currentOption];
 
-        _currentSpeed = newSpeed;
-
-        txtSpeed.text = _currentSpeed + "x";
-
-        Time.timeScale = _currentSpeed;
-        //SimulationManager.Instance.TickManager.TicksPerFrame = _currentSpeed;
+        txtSpeed.text = newSpeed + "x";
+        Time.timeScale = newSpeed;
     }
 
     void Update()
@@ -102,7 +92,6 @@ public class TimeControl : MonoBehaviour
         if (SimulationManager.Instance != null)
         {
             UpdateFPS();
-            UpdatePause(SimulationManager.Instance.TickManager.IsPaused);
         }
     }
 
@@ -116,13 +105,12 @@ public class TimeControl : MonoBehaviour
     {
         if (_drawTime)
         {
-            var time = SimulationManager.Instance.TickManager.TotalElapsedSimulatedTime;
-
-            btnTime.SetText(time.ToOutputString());
+            var time = SimulationManager.Instance.totalElapsedSimulatedTime("s");
+            btnTime.SetText(System.TimeSpan.FromSeconds(time).ToOutputString());
         }
         else
         {
-            btnTime.SetText(SimulationManager.Instance.TickManager.CurrentTick.ToString());
+            btnTime.SetText(SimulationManager.Instance.currentTick.ToString());
         }
     }
 
@@ -135,7 +123,7 @@ public class TimeControl : MonoBehaviour
         }
         else
         {
-            txtSpeed.text = SimulationManager.Instance.TickManager.TicksPerFrame.ToString() + "x";
+            txtSpeed.text = Time.timeScale + "x";
             txtFPS.text = string.Format("FPS: {0}", _frameCounter);
             //?_lastFramerate = (float)_frameCounter / _timeCounter;
             _frameCounter = 0;

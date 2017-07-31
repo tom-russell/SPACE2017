@@ -5,7 +5,7 @@ public class FreeCamera : MonoBehaviour
     private Camera _camera;
     private bool _readInput;
 
-    float flySpeed = 0.5f;
+    float flySpeed = 0.1f;
     
     float accelerationRatio = 3;
     float slowDownRatio = 0.2f;

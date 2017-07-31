@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Ticking
+﻿/*namespace Assets.Scripts.Ticking
 {
     public static class Ticker
     {
@@ -14,4 +14,4 @@
             return false;
         }
     }
-}
+}*/

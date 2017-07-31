@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,17 +21,13 @@ namespace Assets.Scripts.Ticking
 
         public TimeSpan TotalElapsedSimulatedTime { get { return TimeSpan.FromMilliseconds(TotalElapsedSimulatedMilliseconds); } }
 
-        public bool IsPaused { get; set; }
-
-        private List<ITickable> _entities = new List<ITickable>();
-
         public TickManager(SimulationManager simulation)
         {
-            // We will run at fixed update so use that time to calculate how often we should tick
-            SetTicksPerSimulatedSecond((int)(1f / Time.fixedDeltaTime));
             TicksPerFrame = 1;
         }
 
+
+        
         private void SetTicksPerSimulatedSecond(int ticks)
         {
             SimulatedMillisecondsPerTick = 1000f / (float)ticks;
@@ -83,21 +79,6 @@ namespace Assets.Scripts.Ticking
             TotalElapsedSimulatedMilliseconds += elapsed;
             CurrentTick++;
         }
-
-        public virtual void SimulationStarted()
-        {
-            for (int i = 0; i < _entities.Count; i++)
-            {
-                _entities[i].SimulationStarted();
-            }
-        }
-
-        public virtual void SimulationStopped()
-        {
-            for (int i = 0; i < _entities.Count; i++)
-            {
-                _entities[i].SimulationStopped();
-            }
-        }
     }
 }
+*/

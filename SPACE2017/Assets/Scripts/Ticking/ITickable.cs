@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Ticking
+﻿/*namespace Assets.Scripts.Ticking
 {
     public interface ITickable
     {
@@ -11,3 +11,4 @@
         void SimulationStopped();
     }
 }
+*/

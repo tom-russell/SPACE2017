@@ -5,40 +5,27 @@ using Assets.Scripts.Extensions;
 using Assets.Scripts.Config;
 using System.Linq;
 using Assets;
-using Assets.Scripts.Ticking;
 using Assets.Scripts.Nests;
 using Assets.Scripts.Ants;
 
 public class SimulationManager : MonoBehaviour
 {
     public static SimulationManager Instance { get; private set; }
-
     public bool SimulationRunning { get; private set; }
-
     public List<Transform> nests = new List<Transform>();
     public List<NestInfo> NestInfo { get; private set; }
     public GameObject[] doors;
-
     public SimulationData simData; //?
-
-    public TickManager TickManager { get; private set; }
     public ResultsManager ResultsManager { get; private set; }
-
     public List<AntManager> Ants { get; private set; }
-
     public SimulationSettings Settings { get; private set; }
-
     public EmigrationInformation EmigrationInformation { get; private set; }
-
     int _sinceEmigrationCheck = 5;
+    public int currentTick { get; private set; }
 
     //Parameters
-    public bool DEBUG_PAUSED = false;
-
     private GameObject initialNest;
-
     public float InitialScouts { get { return (Settings.ProportionActive.Value * Settings.ColonySize.Value) - 1 * Settings.QuorumThreshold.Value; } }
-
     private bool _spawnOnlyScouts = false;
 
     public void Begin(SimulationSettings settings)
@@ -55,7 +42,8 @@ public class SimulationManager : MonoBehaviour
 
         RandomGenerator.Init(Settings.RandomSeed.Value);
 
-        timeScale = Time.timeScale = settings.StartingTimeScale.Value;
+
+        Time.timeScale = settings.StartingTimeScale.Value;
         
 
         doors = GameObject.FindGameObjectsWithTag(Naming.World.Doors);
@@ -102,13 +90,7 @@ public class SimulationManager : MonoBehaviour
 
         ResultsManager = new ResultsManager(this);
         EmigrationInformation = new EmigrationInformation(this);
-
-        TickManager = new TickManager(this);
-        TickManager.AddEntities(Ants.Cast<ITickable>());
-        TickManager.AddEntity(EmigrationInformation);
-        TickManager.AddEntity(ResultsManager);
-
-        TickManager.SimulationStarted();
+        ResultsManager.SimulationStarted();
 
         SimulationRunning = true;
     }
@@ -206,19 +188,25 @@ public class SimulationManager : MonoBehaviour
     {
         if (SimulationRunning)
         {
+            currentTick++;
+
             // (this is used for testing determinism)
-            if (Settings.RandomiseTimeScale.Value == true && TickManager.CurrentTick % 500 == 0)
+            if (Settings.RandomiseTimeScale.Value == true && currentTick % 500 == 0)
             {
                 Time.timeScale = UnityEngine.Random.Range(1, 10);
             }
 
-            TickManager.Process();
+            foreach (AntManager ant in Ants)
+            {
+                ant.Tick();
+            }
+            ResultsManager.Tick();
         }
         else
             return;
 
         // Check if time is expired
-        if (Settings.MaximumSimulationRunTime.Value > 0 && TickManager.TotalElapsedSimulatedTime.TotalMinutes >= Settings.MaximumSimulationRunTime.Value)
+        if (Settings.MaximumSimulationRunTime.Value > 0 && totalElapsedSimulatedTime("m") >= Settings.MaximumSimulationRunTime.Value)
         {
             SimulationRunning = false;
         }
@@ -234,13 +222,9 @@ public class SimulationManager : MonoBehaviour
         }
 
         // If we are no longer running this update then notify the simulation has stopped
-        if (!SimulationRunning)
-            TickManager.SimulationStopped();
-
         if (SimulationRunning == false)
         {
-            Debug.Log("Forward Runs: " + simData.successFTR + " / " + (simData.failFTR + simData.successFTR));  //? temp output
-            Debug.Log("Reverse Runs: " + simData.successRTR + " / " + (simData.failRTR + simData.successRTR));
+            ResultsManager.SimulationStopped();
         }
     }
 
@@ -258,16 +242,25 @@ public class SimulationManager : MonoBehaviour
         return nests.IndexOf(nest.transform);
     }
 
+    public float totalElapsedSimulatedTime(string unit)
+    {
+        if (unit == "s")
+        {
+            return currentTick * Time.fixedDeltaTime;
+        }
+        else if (unit == "m")
+        {
+            return (currentTick * Time.fixedDeltaTime) / 60;
+        }
+        else if (unit == "ms")
+        {
+            return (currentTick * Time.fixedDeltaTime) * 1000;
+        }
+        else throw new System.Exception("Invalid function input: " + unit + ", s/m/ms expected.");
+    }
 
     void OnDestroy()
     {
         ResultsManager.Dispose();
-    }
-
-    
-    public float timeScale;
-    void Update()
-    {
-        Time.timeScale = timeScale;
     }
 }

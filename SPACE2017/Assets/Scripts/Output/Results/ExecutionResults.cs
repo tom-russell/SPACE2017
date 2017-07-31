@@ -32,8 +32,8 @@ namespace Assets.Scripts.Output
 
             var end = DateTime.Now;
             var duration = end - _start;
-            var simDuration = Simulation.TickManager.TotalElapsedSimulatedTime;
-
+            
+            TimeSpan simDuration = System.TimeSpan.FromSeconds(Simulation.totalElapsedSimulatedTime("s"));
             WriteLine("End: " + end.ToString("dd/MM/yyyy HH:mm:ss"));
             WriteLine("Execution Duration: " + duration.ToOutputString());
             WriteLine("Simulation Duration: " + simDuration.ToOutputString());
