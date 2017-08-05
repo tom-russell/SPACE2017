@@ -73,11 +73,6 @@
                 "First Recruiter" ,
                 "First Social Carry"
             };
-
-            public static int MaxArrayIndex()
-            {
-                return points.Length - 1;
-            }
         }
     }
 }

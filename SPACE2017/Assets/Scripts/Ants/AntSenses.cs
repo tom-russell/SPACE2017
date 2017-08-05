@@ -1,134 +1,122 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts;
 using Assets.Scripts.Ants;
+using Assets.Scripts.Extensions;
 
+/* When a recruiting/reversing ant discovers another ant, this script is used to determine if the other ant can be 
+ * recruited, and if so by what means (forward tandem run, reverse tandem run, social carry).
+ */
 public class AntSenses : MonoBehaviour
 {
+
     AntManager ant;
+    AntManager otherAnt;
 
     void Start()
     {
         ant = transform.parent.GetComponent<AntManager>();
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        // We only care about interactions between ants
+        // We are only interested in interactions between ants
         if (other.tag != Naming.Ants.Tag)
         {
             return;
         }
 
-        AntManager otherAnt = other.transform.GetComponent<AntManager>();
+        otherAnt = other.gameObject.GetComponent<AntManager>();
 
-        if (ant.state == BehaviourState.Reversing && !ant.IsTandemRunning())
+        // Recruitment cannot take place if either ant is already part of a tandem run or social carry
+        if (ant.IsTandemRunning() || ant.IsTransporting() || otherAnt.IsTandemRunning() || otherAnt.IsTransporting())
         {
-            //only inactive scouts can be reverse tandem run
-            if (otherAnt.state == BehaviourState.Inactive && otherAnt.passive == false && otherAnt.droppedRecently == 0 && otherAnt.leader == null) //? I added otherAnt.leader == null to prevent multiple leaders per follower
-            {
-                ant.ReverseLead(otherAnt);
+            return;
+        }
 
+        // This script is from the perspective of the recruiter, so only recruiting or reversing ants continue
+        if (ant.state == BehaviourState.Reversing)
+        {
+            ReversingSenses();
+        }
+        else if (ant.state == BehaviourState.Recruiting)
+        {
+            RecruiterSenses();
+        }
+    }
+
+    private void ReversingSenses()
+    {
+        // Reverse tandem runs can only be started with:
+        //  - Inactive ants with the same nest allegiance
+        //  - Non-passive ants
+        //  - Ants that haven't been dropped recently
+        if (otherAnt.state == BehaviourState.Inactive &&
+            otherAnt.passive == false &&
+            otherAnt.droppedRecently == 0)
+        {
+            ant.ReverseLead(otherAnt);
+        }
+    }
+
+    private void RecruiterSenses()
+    {
+        // If the other ant is eligible for recruitment, then carry them if the quorum is reached, else attempt a tandem run
+        if (CanOtherAntBeRecruited() == true)
+        {
+            if (ant.IsQuorumReached())
+            {
+                ant.PickUp(otherAnt);
                 return;
             }
-            /*//?
-			if(otherAnt.state == AntManager.State.Scouting)
-			{
-				ant.ReverseLead(otherAnt);
-				return;
-			}
-			*/
-        }
-
-        //? This bit was slightly different
-        /*//only continue if this ant is recruiting or reversing, the collision was with an ant and this ant isn't currently leading or carrying
-        if (!(ant.state == BehaviourState.Recruiting || ant.state == BehaviourState.Reversing || ant.state == BehaviourState.ReversingLeading) || ant.IsTransporting() || ant.IsTandemRunning())
-            return;*/
-        // Only continue if this ant is recruiting and isn't currently part of a tandem run or social carry
-        if (ant.state != BehaviourState.Recruiting || ant.IsTransporting() || ant.IsTandemRunning())
-        {
-            return;
-        }
-
-        //assessing and following ants can't be recruited
-        if (otherAnt.state == BehaviourState.Assessing || otherAnt.state == BehaviourState.Following)
-        {
-            return;
-        }
-
-        //if ant already has allegiance to the same nest, or the other ant is currently transporting or tandem running or we can't see the other ant then ignore
-        if (otherAnt.myNest == ant.myNest || otherAnt.IsTransporting() || otherAnt.IsTandemRunning() || !ant.LineOfSight(otherAnt))
-        {
-            if (ant.inNest && ant.NearerOld())
+            else if (otherAnt.passive == false) // Only non-passive ants can follow a tandem run
             {
-                if (ant.recruitTime > 0)
-                {
-                    ant.recruitTime -= 1;
-                }
-                else
-                {
-                    ant.newToOld = false;
-                }
+                ant.Lead(otherAnt);
+                return;
             }
-            return;
         }
 
-        //if the ant is recruiting then use probabilities to decide wether they can be recruited
-        if (otherAnt.state == BehaviourState.Recruiting)
+        // Else the other ant was not able to be recruited
+    }
+
+    private bool CanOtherAntBeRecruited()
+    {
+        // Assessing and following ants can't be recruited
+        // The other ant cannot be recruited if:
+        //  - It is in the assessing or following state
+        //  - It already has the same nest allegiance as this ant
+        //  - Cannot be seen by this ant
+        if (otherAnt.state == BehaviourState.Assessing ||
+            otherAnt.state == BehaviourState.Following ||
+            otherAnt.myNest == ant.myNest ||
+            ant.LineOfSight(otherAnt) == false)
+        {
+            return false;
+        }
+
+        // If the other ant is a recruiter, use the probability parameters to test if it can be recruited.
+        if (otherAnt.state == BehaviourState.Recruiting || otherAnt.state == BehaviourState.Reversing)
         {
             float r = RandomGenerator.Instance.Range(0f, 1f);
+            float probability = AntScales.Other.tandRecSwitchProb;
+
             if (otherAnt.IsQuorumReached())
             {
-                if (r > AntScales.Other.carryRecSwitchProb)
-                {
-                    if (ant.recruitTime > 0)
-                    {
-                        ant.recruitTime -= 1;
-                    }
-                    else
-                    {
-                        ant.newToOld = false;
-                    }
-                }
+                probability = AntScales.Other.carryRecSwitchProb;
+            }
 
-                return;
+            if (r < probability)
+            {
+                return true;
             }
             else
             {
-                if (r > AntScales.Other.tandRecSwitchProb)
-                {
-                    if (ant.recruitTime > 0)
-                    {
-                        ant.recruitTime -= 1;
-                    }
-                    else
-                    {
-                        ant.newToOld = false;
-                    }
-                    return;
-                }
-
+                return false;
             }
         }
 
-        //if quorum reached then carry the other ant, otherwise lead them
-        if (ant.IsQuorumReached())
-        {
-            ant.PickUp(otherAnt);
-        }
-        else if (otherAnt.passive == false)
-        {
-            ant.Lead(otherAnt);
-        }
-        else
-        {
-            if (ant.recruitTime > 0)
-            {
-                ant.recruitTime -= 1;
-            }
-            else
-            {
-                ant.newToOld = false;
-            }
-        }
+        // All remaining cases are eligible for recruitment, but passive ants can only be carried
+        return true;
     }
 }

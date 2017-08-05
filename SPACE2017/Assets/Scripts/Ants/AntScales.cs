@@ -43,7 +43,7 @@
             public const int reverseTryTime = 5;            // No. of seconds a recruiter spends in their new nest trying to start a reverse tandem run.
             public const int recruitTryTime = 10;           // No. of seconds a recruiter spends in their old nest trying to start a forward tandem run.
             public const int droppedWait = 5;               // The time after which a dropped social carry can follow a reverse tandem run.
-            public const int recTryTime = 40;               // No. of collisions with passive ants before a recruiter gives up. //? not sure if this is the best method, makes waiting time dependent on total colony size
+            public const int recTryTime = 30;               // The maximum time a recruiter will spend waiting in their old nest trying to start a forward tandem run.
         }
 
         // All distances must be in centimetres (cm),  10mm = 1cm = 1 unityunit

@@ -139,10 +139,14 @@ public class AntManager : MonoBehaviour
                 socialCarrying = false;
             }*/
 
-            // If RTRs are enabled attempt to find an ant to lead
+            // If RTRs are enabled attempt to find an ant to lead, else just continue to recruit as normal
             if (simulation.Settings.AntsReverseTandemRun.Value)
             {
                 Reverse(myNest);
+            }
+            else
+            {
+                RecruitToNest(myNest);
             }
                 
         }
@@ -158,6 +162,18 @@ public class AntManager : MonoBehaviour
 
     private void DecrementCounters()
     {
+        if (state == BehaviourState.Recruiting && currentNest == oldNest && newToOld == true)
+        {
+            if (recruitTime > 0)
+            {
+                recruitTime -= 1;
+            }
+            else
+            {
+                newToOld = false;
+            }
+        }
+
         //Only try reverse tandem runs for a certain amount of time
         if (state == BehaviourState.Reversing && inNest && !NearerOld() && follower == null)
         {
