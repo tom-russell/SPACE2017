@@ -8,32 +8,23 @@ using System;
 
 public class AntMovement : MonoBehaviour
 {
-    // Unity Components/Objects/Scripts
+    // Unity object and script references
     public AntManager ant;
     public SimulationManager simulation;
 
-    // Ant parameters //? Some of these may be able to move to AntScales
-    public float nextTurnTime;                      // The time of the next direction change
-    private float maxTimeBetweenTurns = 1f;//5f       // The maximum time allowed between direction changes
-    private float maxVarBase = 20f;                 // The maximum angle (degrees) an ant can turn at one time
-    private float maxVarAssessing = 20f;            // The maxVar value while assessing a new nest
-    private float maxVarFollower = 20f;
-    private float maxVarCollision = 90f;           // The maxVar value when turning to avoid a collision with another ant
+    // Ant movement variables //? Some of these may be able to move to AntScales
+    private float nextTurnTime;                     // The time of the next direction change
     private Vector3 lastTurn;                       // The position of the ant at the previous direction change
     public bool isBeingCarried = false;             // If true, this ant is being carried by another ant and therefore cannot move 
     public bool followingWall = false;              // When the ant is following/aligned with a wall this boolean is true.  
+    private bool passiveMove = false;               // If true passive ants will be able to move within their home nest.
+
+    private float maxTimeBetweenTurns = 1f;         // The maximum time allowed between direction changes
+    private float maxVarBase = 20f;                 // The maximum angle (degrees) an ant can turn at one time
+    private float maxVarAssessing = 20f;            // The maxVar value while assessing a new nest
+    private float maxVarFollower = 20f;
+    private float maxVarCollision = 90f;            // The maxVar value when turning to avoid a collision with another ant
     private float wallFollowBias = 0.5f;
-
-    // Tom's parameters
-    private bool passiveMove = false;
-
-    //? redundant parameters (to get antmanager working)
-    public bool usePheromones;
-    public Vector3 lastPosition;
-    public float intersectionNumber;
-    public float assessingDistance;
-    public static float gasterHeadDistance = 0f;
-    public static float gasterHeadDistanceCount = 0f;
 
     // Initialisation of parameters 
     void Start () 
@@ -41,15 +32,15 @@ public class AntMovement : MonoBehaviour
         //Time.timeScale = 10f;
         ant = transform.GetComponent<AntManager>();
 
-        turnAnt(RandomGenerator.Instance.Range(0, 360));
-        nextTurnTime = simulation.totalElapsedSimulatedTime("s") + maxTimeBetweenTurns;
+        TurnAnt(RandomGenerator.Instance.Range(0, 360));
+        nextTurnTime = simulation.TotalElapsedSimulatedTime("s") + maxTimeBetweenTurns;
         lastTurn = transform.position;
     }
 
     //  This is called from simulationManager to ensure movement & state updating happens in a consistent order
     public void Tick()
 	{
-        checkIfInArenaBounds();
+        CheckIfInArenaBounds(); //? temp bugcheck
 
         // Ants that are being socially carried cannot move
         if (isBeingCarried == true) return;
@@ -61,83 +52,83 @@ public class AntMovement : MonoBehaviour
         switch (ant.state)
         {
             case BehaviourState.Inactive:
-                inactiveMovement();
+                InactiveMovement();
                 break;
             case BehaviourState.Scouting:
-                scoutingMovement();
+                ScoutingMovement();
                 break;
             case BehaviourState.Assessing:
-                assessingMovement();
+                AssessingMovement();
                 break;
             case BehaviourState.Recruiting:
-                recruitingMovement();
+                RecruitingMovement();
                 break;
             case BehaviourState.Reversing:
-                reversingMovement();
+                ReversingMovement();
                 break;
             case BehaviourState.Following:
-                followingMovement();
+                FollowingMovement();
                 break;
         }
     }
 
-    private void inactiveMovement()
+    private void InactiveMovement()
     {
         // Inactive ants must stay within their own nest - if they leave turn them to face their nest centre
         if (ant.currentNest != ant.myNest)
         {
-            walkToNest(ant.myNest);
-            resetTurnParameters(false);
+            WalkToNest(ant.myNest);
+            ResetTurnParameters(false);
         }
 
         // Update direction if the required time has elapsed
-        if (simulation.totalElapsedSimulatedTime("s") >= nextTurnTime)
+        if (simulation.TotalElapsedSimulatedTime("s") >= nextTurnTime)
         {
             // Inactive ants walk randomly around inside their home nest
-            randomWalk(maxVarBase);
-            resetTurnParameters(false);
+            RandomWalk(maxVarBase);
+            ResetTurnParameters(false);
         }
 
         // Move the ant forward at the required speed (if there are no obstructions)
-        moveForward(AntScales.Speeds.Inactive, true);
+        MoveForward(AntScales.Speeds.Inactive, true);
     }
 
-    private void scoutingMovement()
+    private void ScoutingMovement()
     {
         // Update direction only if the required time has elapsed 
-        if (simulation.totalElapsedSimulatedTime("s") >= nextTurnTime)
+        if (simulation.TotalElapsedSimulatedTime("s") >= nextTurnTime)
         {
             // If a scouts senses a nest door they will walk through it (in/out the nest)
-            GameObject door = doorSearch(AntScales.Distances.DoorSenseRange);
+            GameObject door = DoorSearch(AntScales.Distances.DoorSenseRange);
             if (door != null)
             {
                 Debug.DrawLine(transform.position, door.transform.position, Color.red);
-                walkToGameObject(door, false);
-                resetTurnParameters(false);
+                WalkToGameObject(door, false);
+                ResetTurnParameters(false);
             }
             else
             {
-                randomWalk(maxVarBase);
-                resetTurnParameters(false);
+                RandomWalk(maxVarBase);
+                ResetTurnParameters(false);
             }
         }
 
         // Move the ant forward at the required speed (if there are no obstructions)
-        moveForward(AntScales.Speeds.Scouting, true);
+        MoveForward(AntScales.Speeds.Scouting, true);
     }
 
-    private void assessingMovement()
+    private void AssessingMovement()
     {
         // Ensures ants in the assessment process stay within the nest - if they leave they are turned to face the nest center
         //? Greg had a more complex system here, where direction changes are made much more frequently. Is this needed?
         if (ant.assessmentStage == NestAssessmentStage.Assessing && ant.inNest == false)
         {
-            faceObject(ant.nestToAssess.gameObject);
-            resetTurnParameters(moreFrequentTurns : true);
+            FaceObject(ant.nestToAssess.gameObject);
+            ResetTurnParameters(moreFrequentTurns : true);
         }
 
         // Update direction only if the required time has elapsed 
-        if (simulation.totalElapsedSimulatedTime("s") >= nextTurnTime)
+        if (simulation.TotalElapsedSimulatedTime("s") >= nextTurnTime)
         {
             // if this is a reassessment (of previously accepted nest) then the nest to return to is the old nest, else the return nest is the ant's current nest
             //? To make this neater scout's mynest could be set to null - then the return nest is always oldNest
@@ -148,11 +139,11 @@ public class AntMovement : MonoBehaviour
 
             if (ant.assessmentStage == NestAssessmentStage.Assessing)
             {
-                randomWalk(maxVarAssessing);
+                RandomWalk(maxVarAssessing);
             }
             else if (ant.assessmentStage == NestAssessmentStage.ReturningToHomeNest)
             {
-                walkToNest(returnNest);
+                WalkToNest(returnNest);
 
                 // If the ant has reached the centre of the home nest, return to the nest being assessed
                 if (Vector3.Distance(transform.position, returnNest.transform.position) < AntScales.Distances.AssessingNestMiddle)
@@ -163,7 +154,7 @@ public class AntMovement : MonoBehaviour
             }
             else if (ant.assessmentStage == NestAssessmentStage.ReturningToPotentialNest)
             {
-                walkToNest(ant.nestToAssess);
+                WalkToNest(ant.nestToAssess);
 
                 // If the ant has reached the centre of the assessment nest, begin the second assessment
                 if (Vector3.Distance(transform.position, ant.nestToAssess.transform.position) < AntScales.Distances.AssessingNestMiddle)
@@ -172,44 +163,44 @@ public class AntMovement : MonoBehaviour
                 }
             }
 
-            if (ant.assessmentStage == NestAssessmentStage.Assessing) resetTurnParameters(moreFrequentTurns : true);
-            else resetTurnParameters(moreFrequentTurns : false);    //? Not sure if morefrequentturns actually achieves anything here
+            if (ant.assessmentStage == NestAssessmentStage.Assessing) ResetTurnParameters(moreFrequentTurns : true);
+            else ResetTurnParameters(moreFrequentTurns : false);    //? Not sure if morefrequentturns actually achieves anything here
         }
 
         // Move the ant forward at the required speed (if there are no obstructions)
         // If the assessor is moving between the new and old nests, so moves at standard speed
         if (ant.assessmentStage != NestAssessmentStage.Assessing)
         {
-            moveForward(AntScales.Speeds.Scouting, true);
+            MoveForward(AntScales.Speeds.Scouting, true);
         }
         // If this is the first assessment of a new nest, move at the first visit speed
         else if (ant.nestAssessmentVisitNumber == 1)
         {
-            moveForward(AntScales.Speeds.AssessingFirstVisit, true);
+            MoveForward(AntScales.Speeds.AssessingFirstVisit, true);
         }
         // Else this is the second assessment of a new nest, move at the second visit speed 
         else
         {
-            moveForward(AntScales.Speeds.AssessingSecondVisit, true);
+            MoveForward(AntScales.Speeds.AssessingSecondVisit, true);
         }
     }
 
-    private void recruitingMovement()
+    private void RecruitingMovement()
     {
         // If recruiter needs to wait for the follower, ant should not move (next turn time is increased so the tandem leader doesn't turn immediately after regaining contact)
-        if (ant.IsTandemRunning() && shouldTandemLeaderWait() == true)
+        if (ant.IsTandemRunning() && ShouldTandemLeaderWait() == true)
         {
             nextTurnTime += Time.fixedDeltaTime;
             return;
         }
 
         // Update direction only if the required time has elapsed
-        if (simulation.totalElapsedSimulatedTime("s") >= nextTurnTime)
+        if (simulation.TotalElapsedSimulatedTime("s") >= nextTurnTime)
         {
             // Recruiters leading a tandem run or transporting (social carry) will need to return to their new nest.
             if (ant.IsTandemRunning() || ant.IsTransporting())
             {
-                walkToNest(ant.myNest);
+                WalkToNest(ant.myNest);
             }
             // Recruiters not tandem running or carrying move back and forth between the new and old nests.
             else
@@ -219,42 +210,42 @@ public class AntMovement : MonoBehaviour
                     // If the ant is inside the old nest then walk randomly inside to search for recruits
                     if (ant.currentNest == ant.oldNest)
                     {
-                        randomWalk(maxVarBase);
+                        RandomWalk(maxVarBase);
                     }
                     else // Else return to the old nest to search for a recruit
                     {
-                        walkToNest(ant.oldNest);
+                        WalkToNest(ant.oldNest);
                     }
                 }
                 else
                 {
-                    walkToNest(ant.myNest);
+                    WalkToNest(ant.myNest);
                 }
             }
 
-            resetTurnParameters(false);
+            ResetTurnParameters(false);
         }
 
         // Move forward at the speed based on the ant's current behaviour/activity
         if (ant.IsTandemRunning())
         {
-            moveForward(AntScales.Speeds.TandemRunLead, true);
+            MoveForward(AntScales.Speeds.TandemRunLead, true);
         }
         else if (ant.IsTransporting())
         {
-            moveForward(AntScales.Speeds.Carrying, true);
+            MoveForward(AntScales.Speeds.Carrying, true);
         }
         else // If waiting or moving between nests then move at standard speed
         {
-            moveForward(AntScales.Speeds.Scouting, true);
+            MoveForward(AntScales.Speeds.Scouting, true);
         }
     }
 
     //? Need to clarify the exact behaviour of the reversing state
-    private void reversingMovement()
+    private void ReversingMovement()
     {
         // If (reverse)tandem leader needs to wait for the follower, ant should not move (next turn time is increased so the tandem leader doesn't turn immediately after regaining contact)
-        if (ant.IsTandemRunning() && shouldTandemLeaderWait() == true)
+        if (ant.IsTandemRunning() && ShouldTandemLeaderWait() == true)
         {
             nextTurnTime += Time.fixedDeltaTime;
             return;
@@ -263,53 +254,53 @@ public class AntMovement : MonoBehaviour
         // Reversing ants still searching for a tandem follower must stay within their nest
         else if (ant.IsTandemRunning() == false && ant.currentNest != ant.myNest)
         {
-            walkToNest(ant.myNest); //? is this ok
-            resetTurnParameters(false);
+            WalkToNest(ant.myNest); //? is this ok
+            ResetTurnParameters(false);
         }
 
         // Update direction only if the required time has elapsed
-        if (simulation.totalElapsedSimulatedTime("s") >= nextTurnTime)
+        if (simulation.TotalElapsedSimulatedTime("s") >= nextTurnTime)
         {
             // If the ant is leader a reverse tandem run, walk towards the old nest
             if (ant.IsTandemRunning())
             {
-                walkToNest(ant.oldNest);
+                WalkToNest(ant.oldNest);
             }
             else // Else the ant is waiting in the new nest for a potential follower, so randomly walk around nest
             {
-                randomWalk(maxVarBase);
+                RandomWalk(maxVarBase);
             }
 
-            resetTurnParameters(false);
+            ResetTurnParameters(false);
         }
 
         // Move forward at the required speed based on the reverser's current state
         if (ant.IsTandemRunning() == true)
         {
-            moveForward(AntScales.Speeds.TandemRunLead, true);
+            MoveForward(AntScales.Speeds.TandemRunLead, true);
         }
         else
         {
-            moveForward(AntScales.Speeds.ReverseWaiting, true);
+            MoveForward(AntScales.Speeds.ReverseWaiting, true);
         }
     }
 
-    private void followingMovement()
+    private void FollowingMovement()
     {
         // If follower is waiting (tactile contact with tandem leader) do not update movement
-        if (shouldTandemFollowerWait() == true) return;
+        if (ShouldTandemFollowerWait() == true) return;
 
         Debug.DrawLine(transform.position, ant.estimateNewLeaderPos, Color.red);
 
         // If the follower has line of sight of the leader (within antennal contact range) then turn to face them
         if (ant.LineOfSight(ant.leader) == true)
         {
-            walkToGameObject(ant.leader.gameObject, false);
-            resetTurnParameters(moreFrequentTurns: true);
+            WalkToGameObject(ant.leader.gameObject, false);
+            ResetTurnParameters(moreFrequentTurns: true);
         }
 
         // Update direction only if the required time has elapsed
-        if (simulation.totalElapsedSimulatedTime("s") >= nextTurnTime)
+        if (simulation.TotalElapsedSimulatedTime("s") >= nextTurnTime)
         {
             
             // If this is the first follower movement estimated leader position is not yet set, move ant towards leader
@@ -319,22 +310,22 @@ public class AntMovement : MonoBehaviour
             }
 
             // The follower must walk towards where they predict the leader is
-            float predictedLeaderAngle = angleToFacePosition(ant.estimateNewLeaderPos);
+            float predictedLeaderAngle = AngleToFacePosition(ant.estimateNewLeaderPos);
             float newDirection = RandomGenerator.Instance.NormalRandom(predictedLeaderAngle, maxVarFollower);
-            turnAnt(newDirection);
+            TurnAnt(newDirection);
 
-            resetTurnParameters(moreFrequentTurns: true);
+            ResetTurnParameters(moreFrequentTurns: true);
         }
 
         // Move forward at the required speed (if there are no obstructions)
-        moveForward(AntScales.Speeds.TandemRunFollow, false);//?
+        MoveForward(AntScales.Speeds.TandemRunFollow, false);//?
     }
 
     // If no obstructions are detected ahead of the ant, move forward at the required speed
-    private void moveForward(float speed, bool antCollisions) 
+    private void MoveForward(float speed, bool antCollisions) 
     {
         // Only move forward if there are no obstructions in front of the ant
-        bool moveAllowed = obstructionCheck(antCollisions);
+        bool moveAllowed = ObstructionCheck(antCollisions);
         if (moveAllowed == true)
         {
             //?speed = speed * 6;
@@ -344,12 +335,12 @@ public class AntMovement : MonoBehaviour
         }
 
         // Round the x/y/z position values (required for deterministic simulations)
-        roundPosition();
+        RoundPosition();
     }
     
     // If there is an obstruction of the given type ahead of the ant attempt to turn to avoid, return true if successful.
     // if avoidAntCollisions is true, the ant will turn to avoid both walls & other ants. 
-    private bool obstructionCheck(bool avoidAntCollisions) 
+    private bool ObstructionCheck(bool avoidAntCollisions) 
     {
         // if avoidAntCollisions is false, don't check for collisions with other ants.
         int layerMask = PhysicsLayers.AntsAndWalls;
@@ -360,7 +351,7 @@ public class AntMovement : MonoBehaviour
 
         RaycastHit hitInfo = new RaycastHit();
 
-        if (Physics.Raycast(transform.position, transform.forward, out hitInfo, antennaeRayLength(), layerMask) == true)
+        if (Physics.Raycast(transform.position, transform.forward, out hitInfo, AntennaeRayLength(), layerMask) == true)
         {
             // If the obstruction is another ant
             if (hitInfo.transform.CompareTag(Naming.Ants.Tag) == true)
@@ -372,18 +363,18 @@ public class AntMovement : MonoBehaviour
                 }
                 
                 // To avoid the other ant turn to a random direction within a wide cone
-                float newDirection = RandomGenerator.Instance.NormalRandom(currentRotation(), maxVarCollision);
-                turnAnt(newDirection);
+                float newDirection = RandomGenerator.Instance.NormalRandom(CurrentRotation(), maxVarCollision);
+                TurnAnt(newDirection);
             }
             // If the obstruction is a wall, turn to move parallel to the wall
             else
             {
-                alignWithWall();
+                AlignWithWall();
             }
         }
 
         // retry the obstruction check - if an obstruction still exists return false (ant cannot move)
-        if (Physics.Raycast(transform.position, transform.forward, antennaeRayLength(), layerMask))
+        if (Physics.Raycast(transform.position, transform.forward, AntennaeRayLength(), layerMask))
         {
             return false;
         }
@@ -391,14 +382,14 @@ public class AntMovement : MonoBehaviour
     }
 
     // When an ant collides with a wall they begin to follow along it. This function aligns the ant with the wall
-    private void alignWithWall()
+    private void AlignWithWall()
     {
         //find the direction of the wall the ant must align with
         bool[] rays = new bool[4];
-        rays[0] = Physics.Raycast(transform.position, Vector3.forward, antennaeRayLength(), PhysicsLayers.Walls);
-        rays[1] = Physics.Raycast(transform.position, Vector3.right, antennaeRayLength(), PhysicsLayers.Walls);
-        rays[2] = Physics.Raycast(transform.position, -Vector3.forward, antennaeRayLength(), PhysicsLayers.Walls);
-        rays[3] = Physics.Raycast(transform.position, -Vector3.right, antennaeRayLength(), PhysicsLayers.Walls);
+        rays[0] = Physics.Raycast(transform.position, Vector3.forward, AntennaeRayLength(), PhysicsLayers.Walls);
+        rays[1] = Physics.Raycast(transform.position, Vector3.right, AntennaeRayLength(), PhysicsLayers.Walls);
+        rays[2] = Physics.Raycast(transform.position, -Vector3.forward, AntennaeRayLength(), PhysicsLayers.Walls);
+        rays[3] = Physics.Raycast(transform.position, -Vector3.right, AntennaeRayLength(), PhysicsLayers.Walls);
 
         float[] dirWeights = { 1f, 1f, 1f, 1f};
         int possibleDirections = 4;
@@ -425,7 +416,7 @@ public class AntMovement : MonoBehaviour
         }
         else // There is only one wall in range so set the forward/side/back weights appropriately
         {
-            int closestDirection = findClosest90DegreeAngle(wallDirection);
+            int closestDirection = FindClosest90DegreeAngle(wallDirection);
             dirWeights[closestDirection] = 0.9f;
             dirWeights[(closestDirection + 1) % 4] = 0f;
             dirWeights[(closestDirection + 2) % 4] = 0.1f;
@@ -441,7 +432,7 @@ public class AntMovement : MonoBehaviour
             total += dirWeights[i];
             if (roulette < total)
             {
-                turnAnt(i * 90);
+                TurnAnt(i * 90);
                 break;
             }
         }
@@ -450,14 +441,14 @@ public class AntMovement : MonoBehaviour
     }
 
     // returns the angle1 or angle2 which is closest to the ant's current direction
-    private int findClosest90DegreeAngle(int direction)
+    private int FindClosest90DegreeAngle(int direction)
     {
         float angle1 = (direction * 90) + 90f;
         float angle2 = (direction * 90) - 90f;
 
         // Calcuate the smallest difference between the two option angles and the ant's current rotation
-        float angle1Difference = Mathf.Abs((currentRotation() - angle1)) % 360;
-        float angle2Difference = Mathf.Abs((currentRotation() - angle2)) % 360;
+        float angle1Difference = Mathf.Abs((CurrentRotation() - angle1)) % 360;
+        float angle2Difference = Mathf.Abs((CurrentRotation() - angle2)) % 360;
         if (angle1Difference > 180) angle1Difference -= 180;    // If the rotation is > 180 there is an equivalent rotation in the opposite direction
         if (angle2Difference > 180) angle2Difference -= 180;
 
@@ -479,7 +470,7 @@ public class AntMovement : MonoBehaviour
     }
 
     // returns true if tandem leader must wait for follower, or false if they can move
-    private bool shouldTandemLeaderWait()
+    private bool ShouldTandemLeaderWait()
     {
         // if leader is waiting for follower ensure follower is allowed to move //? not sure about this, maybe a bugfix
         if (ant.leaderWaits == true)
@@ -489,7 +480,7 @@ public class AntMovement : MonoBehaviour
         }
 
         // If the leader is greater than the stopping distance from the follower, they stop to wait.
-        if (Vector3.Distance(ant.follower.transform.position, transform.position) > stoppingDistance())
+        if (Vector3.Distance(ant.follower.transform.position, transform.position) > StoppingDistance())
         {
             // Leader must wait for follower
             ant.leaderWaits = true;
@@ -508,17 +499,17 @@ public class AntMovement : MonoBehaviour
 
     //? Not happy with the size/complexity of this function. A lot could be replaced with a function in Manager that ahs a single call here
     // Returns true if the follower is in contact with the leader and therefore needs to wait.is a tandem follower has 
-    private bool shouldTandemFollowerWait()
+    private bool ShouldTandemFollowerWait()
     {
         // If the follower is waiting for the leader to move, return true (follower should wait)
         if (ant.followerWait == true)
         {
             // If follower has lost contact with the leader, the follower will move again
-            if (Vector3.Distance(transform.position, ant.leader.transform.position) > antennaeRayLength()) //? AvAntenna -> LeaderStopping
+            if (Vector3.Distance(transform.position, ant.leader.transform.position) > AntennaeRayLength()) //? AvAntenna -> LeaderStopping
             {
                 ant.followerWait = false;
                 // When contact is lost the follower must estimate the position the leader will next stop at
-                estimateNextLeaderPosition();
+                EstimateNextLeaderPosition();
             }
             return true;
         }
@@ -533,7 +524,7 @@ public class AntMovement : MonoBehaviour
 
         
         // If the follower has regained contact with the leader, reset the tandem variables
-        if (Vector3.Distance(transform.position, ant.leader.transform.position) < antennaeRayLength())
+        if (Vector3.Distance(transform.position, ant.leader.transform.position) < AntennaeRayLength())
         {
             // Follower must now wait, leader must start to move again.
             ant.followerWait = true;
@@ -551,28 +542,28 @@ public class AntMovement : MonoBehaviour
     }
 
     // Calculates the follower's estimate of where the leader will next stop to wait.
-    public void estimateNextLeaderPosition()
+    public void EstimateNextLeaderPosition()
     {
         Vector3 leaderPos = ant.leader.transform.position;
         ant.estimateNewLeaderPos = leaderPos + (ant.leader.transform.forward * AntScales.Distances.LeaderStopping);
     }
 
     // Turn ant to face directly at the other GameObject
-    private void faceObject(GameObject other)
+    private void FaceObject(GameObject other)
     {
-        float newAngle = angleToFacePosition(other.transform.position);
-        turnAnt(newAngle);
+        float newAngle = AngleToFacePosition(other.transform.position);
+        TurnAnt(newAngle);
     }
 
     // turn ant to this face the new direction (around y axis)
-    private void turnAnt(float newDirection)
+    private void TurnAnt(float newDirection)
     {
         newDirection = newDirection % 360;
         transform.rotation = Quaternion.Euler(0, newDirection, 0);
     }
 
     // Returns the angle required to face this ant towards the given position
-    private float angleToFacePosition(Vector3 pos2) 
+    private float AngleToFacePosition(Vector3 pos2) 
     {
         Vector3 pos1 = transform.position;
 
@@ -593,9 +584,9 @@ public class AntMovement : MonoBehaviour
     //? Andy added an option to walk without variance here. may be useful?
     //? I have simplified some stuff - need to check if the multiple mod360s from the original are useful
     //? Andy did this function differently.. did normalrandom on goalAngle, not the midpoint.
-    private void walkToGameObject(GameObject obj, bool withVariance)
+    private void WalkToGameObject(GameObject obj, bool withVariance)
     {
-        float goalAngle = angleToFacePosition(obj.transform.position);
+        float goalAngle = AngleToFacePosition(obj.transform.position);
 
         // If walking with variance, calculate a random normally distributed angle around the midpoint of the current 
         // angle and the goal angle
@@ -610,16 +601,16 @@ public class AntMovement : MonoBehaviour
             }
 
             float newDirection = RandomGenerator.Instance.NormalRandom(midPoint, maxVarBase);
-            turnAnt(newDirection);
+            TurnAnt(newDirection);
         }
         else // If walking without variance, head directly towards the goal
         {
-            turnAnt(goalAngle);
+            TurnAnt(goalAngle);
         }
     }
 
     // Resets next turn time and last turn position
-    private void resetTurnParameters(bool moreFrequentTurns)
+    private void ResetTurnParameters(bool moreFrequentTurns)
     {
         float maxTime = maxTimeBetweenTurns;
 
@@ -636,12 +627,12 @@ public class AntMovement : MonoBehaviour
         }
         
         //? originally assessing turn frequency was halved - Andy removed, seems sensible (assessing state was changed to encompass more behaviours, return trips etc.
-        nextTurnTime = simulation.totalElapsedSimulatedTime("s") + (RandomGenerator.Instance.Range(0, 1f) * maxTime);
+        nextTurnTime = simulation.TotalElapsedSimulatedTime("s") + (RandomGenerator.Instance.Range(0, 1f) * maxTime);
         lastTurn = transform.position;
     }
 
     // Searches around the ant in the given sensing range for any nest doors, if one is found returns the door object
-    private GameObject doorSearch(float senseRange)
+    private GameObject DoorSearch(float senseRange)
     {
         foreach (GameObject door in simulation.doors)
         {   //? doorSenseRange should be 15 not 5. Also seems odd its the same as Greg's - all other parameters have changed
@@ -658,7 +649,7 @@ public class AntMovement : MonoBehaviour
     }
 
     // The ant follows a random path. If the ant is following a wall, check to see if they stop following and if they do turn the ant away from the wall.
-    private void randomWalk(float maxVar)
+    private void RandomWalk(float maxVar)
     {
         float angleChange;
 
@@ -670,7 +661,7 @@ public class AntMovement : MonoBehaviour
         else
         {
             // If the ant is currently following a wall, check to see if the ant will turn away from the wall. 
-            updateWallFollow();
+            UpdateWallFollow();
             // If the ant is still following the wall, don't change direction.
             if (followingWall == true)
             {
@@ -680,18 +671,18 @@ public class AntMovement : MonoBehaviour
             {
                 // Calculate the direction to turn so the ant moves away from the wall. If there is a wall to the right, turn left (negative rotation)
                 int turnDirection = 1; 
-                if (Physics.Raycast(transform.position, transform.right, antennaeRayLength() * 1.1f) == true) turnDirection = -1; //? check this is still working
+                if (Physics.Raycast(transform.position, transform.right, AntennaeRayLength() * 1.1f) == true) turnDirection = -1; //? check this is still working
 
                 // calculate the angle change as usual, but only turn in the direction away from the wall (not into it)
                 angleChange = Mathf.Abs(RandomGenerator.Instance.NormalRandom(0, maxVar)) * turnDirection;
             }
         }
         
-        turnAnt(currentRotation() + angleChange);
+        TurnAnt(CurrentRotation() + angleChange);
     }
 
     // Random chance the ant will stop following the wall (biased by the wallFollowBias)
-    private void updateWallFollow()
+    private void UpdateWallFollow()
     {
         // If a random number between 0-1 is greater than the wallFollowBias, stop following the wall
         if (RandomGenerator.Instance.NextDouble() > wallFollowBias)
@@ -703,7 +694,7 @@ public class AntMovement : MonoBehaviour
     // Based on the ant's current location, return the next waypoint to walk to in order to reach the desired nest.
     // Order of waypoints starting from a different nest is as follows: 
     // current nest door -> desired nest door -> desired nest centre
-    private void walkToNest(NestManager desiredNestManager)
+    private void WalkToNest(NestManager desiredNestManager)
     {
         GameObject desiredNest = desiredNestManager.gameObject;
         GameObject desiredNestDoor = desiredNestManager.door;
@@ -719,60 +710,60 @@ public class AntMovement : MonoBehaviour
                 if (currentNest != desiredNest) //? need to check this equality works properly
                 {
                     // If the ant is not close to the door they must walk towards it (prevents getting stuck on walls)
-                    if (doorSearch(AntScales.Distances.DoorSenseRange) == null)
+                    if (DoorSearch(AntScales.Distances.DoorSenseRange) == null)
                     {
-                        walkToGameObject(currentNestDoor, false);
+                        WalkToGameObject(currentNestDoor, false);
                     }
                     // else the ant is close to the door, so they can walk directly out towards their desired nest
                     else
                     {
-                        walkToGameObject(desiredNestDoor, true);
+                        WalkToGameObject(desiredNestDoor, true);
                     }
                 }
             }
             // Else the ant is already in the desired nest, so move towards the nest centre
             else
             {
-                walkToGameObject(desiredNest, true);
+                WalkToGameObject(desiredNest, true);
             }
         }
         // If the ant is not in a nest, walk towards the desired nest. 
         else
         {
             //If the ant is close to the desired nest door, walk directly into the nest.
-            if (doorSearch(AntScales.Distances.DoorSenseRange) == desiredNestDoor)
+            if (DoorSearch(AntScales.Distances.DoorSenseRange) == desiredNestDoor)
             {
-                walkToGameObject(desiredNest, false);
+                WalkToGameObject(desiredNest, false);
             }
             // Otherwise move towards the desired nest door.
             else
             {
-                walkToGameObject(desiredNestDoor, true);
+                WalkToGameObject(desiredNestDoor, true);
             }
         }
     }
 
     // Returns the current rotation of the ant in degrees (in the y axis)
-    private float currentRotation()
+    private float CurrentRotation()
     {
         return transform.rotation.eulerAngles.y;
     }
 
     // Raycasts start from the centre of the ant's body (this helps improve collision avoidance), so the correct distance needs half the body length added
-    private float antennaeRayLength()
+    private float AntennaeRayLength()
     {
         return AntScales.Distances.AntennaeLength + (AntScales.Distances.BodyLength / 2);
     }
 
     // since the distance is calculated from the center of each ant, half the body length must be added twice
-    private float stoppingDistance()
+    private float StoppingDistance()
     {
         return AntScales.Distances.AntennaeLength + AntScales.Distances.BodyLength;
     }
 
     // Rounds the current ant position to 5 decimal places
     // This is required to keep the simulations deterministic across different platforms/builds
-    private void roundPosition()
+    private void RoundPosition()
     {
         int digits = 4;
         Vector3 pos = transform.position;
@@ -782,16 +773,22 @@ public class AntMovement : MonoBehaviour
 
     // Bug test to see if ants leave the arena at any point
     private Transform wall;
-    private void checkIfInArenaBounds()
+    private void CheckIfInArenaBounds()
     {
+        if (!(transform.position.y == 0.1f && !isBeingCarried || transform.position.y == 0.2f && isBeingCarried))
+        {
+            Debug.Log("Ant " + ant.AntId + " has changed z value at position: " + transform.position);
+            Time.timeScale = 0;
+        }
+
         if (wall == null) wall = GameObject.Find("Wall(Clone)").transform;
 
         float arenaSize = (wall.localScale.x > wall.localScale.y) ? wall.localScale.x : wall.localScale.y;
 
         if (transform.position.x < 0 || transform.position.x > arenaSize ||
-            transform.position.y < 0 || transform.position.y > arenaSize)
+            transform.position.z < 0 || transform.position.z > arenaSize)
         {
-            Debug.Log("Ant " + ant.AntId + " has left the arena area.");
+            Debug.Log("Ant " + ant.AntId + " has left the arena area at position " + transform.position);
             Time.timeScale = 0;
         }
     }

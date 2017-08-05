@@ -33,7 +33,7 @@ namespace Assets.Scripts.Output
             var end = DateTime.Now;
             var duration = end - _start;
             
-            TimeSpan simDuration = System.TimeSpan.FromSeconds(Simulation.totalElapsedSimulatedTime("s"));
+            TimeSpan simDuration = System.TimeSpan.FromSeconds(Simulation.TotalElapsedSimulatedTime("s"));
             WriteLine("End: " + end.ToString("dd/MM/yyyy HH:mm:ss"));
             WriteLine("Execution Duration: " + duration.ToOutputString());
             WriteLine("Simulation Duration: " + simDuration.ToOutputString());

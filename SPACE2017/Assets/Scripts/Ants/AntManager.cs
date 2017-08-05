@@ -4,94 +4,58 @@ using Assets.Scripts.Extensions;
 using Assets.Scripts.Ants;
 using System;
 
-// Selection Base means clicking on an ant in the Unity scene view selects the Ant parent object rather than the child mesh
-[SelectionBase]
 public class AntManager : MonoBehaviour
 {
-    public int AntId { get; set; }
-
-    //Individuals properties
+    // Unity Object and Script References
     public SimulationManager simulation;    // The simulation manager for the current simulation
-    private AntMovement move;               // Controls movement
-    private Collider sensesCol;             // The collider used to sense ants and doors
-    private Transform carryPosition;        // Where to carry ant 
-    public BehaviourState state;            // Which state the ant is currently in
-    private BehaviourState previousState;   // The state which the ant was in prior to assessing
-    public NestManager myNest;              // Recruit to this nest
-    public NestManager oldNest;             // Recruit from this nest
-    public NestManager nestToAssess;        // Nest that the ant is currently assessing
-    public NestManager currentNest;         // Nest that the ant is inside
-    public AntManager leader, follower;     // The ants that are leading or following this ant
-    public bool inNest;                     // True when this ant is in a nest (needed for direction
-    public bool newToOld;                   // True when the ant is head from their new nest (recruiting TO) to the old nest (recruiting FROM)
-    private bool finishedRecruiting;        // True when this ant has finished recruiting and is returning to its nest
-    public float nextAssessment;            // When the next assessment of the nest that this ant is will be carried out
-    private float perceivedQuality;         // The quality that this ant perceives this.myNest to be
-    private float perceivedQuorum;          // The quorum that this ant perceives this.myNest to have
-    private float nestThreshold;            // This individual's threshold for nest quality
-    public int quorumThreshold;             // Quorum threshold where recruiting ant carries rather than tandem runs
-    private int revTime;                    // The countdown for recruiters attempting to find a tandem run
-    public int recTime;
-    private int assessTime;
+    private AntMovement move;               // Movement controller for this ant.
+    private Collider sensesCol;             // The sphere collider used to sense other ants.
+    private Transform carryPosition;        // The child object of this ant that is used to carry another ant.
 
-    // tandem run variables
-    //private int tandemTimeSteps;        //? seems to be redundant
-    //private bool forwardTandemRun;      //? Think this was just used for history, so probably redundant
-    //private bool reverseTandemRun;      //? Think this was just used for history, so probably redundant
-    //private Vector3 startPos;           // Used to record the starting position of tandem runs or social carries (for data output)
-    //private int carryingTimeSteps;      //? seems to be redundant
-    //private bool socialCarrying;        //? redundant?
+    // General Ant Variables
+    public int AntId { get; set; }          // The unique ID number of this ant.
+    public BehaviourState state;            // Which state this ant is currently in.
+    private BehaviourState previousState;   // The state which this ant was in prior to assessing
+    public bool passive;                    // If this ant is passive or not (passive ants do not perform any actions and can only be carried between nests).
+    public NestManager myNest;              // The nest this ant currently has allegiance to.
+    public NestManager oldNest;             // The nest this ant previously has allegiance to.
+    public NestManager nestToAssess;        // Nest that this ant is currently assessing.
+    public NestManager currentNest;         // Nest that this ant is currently inside.
+    public AntManager leader, follower;     // The ants that are leading or following this ant
+    public bool inNest;                     // True when this ant is inside a nest.
+    public bool isSocialCarrying;           // True if this ant is currently carrying another ant.
+    public bool isBeingCarried;             // True if this ant is currently being carried by another ant.
+    public int droppedRecently;             // Timer to show if this ant has been recently dropped or not. -1 = never been carried, 0 = was dropped > 5sec ago.
+    public int PerceivedTicks { get; set; } // Used for the Debug Results Output 
+
+    // Assessment Variables
+    public float nextAssessment;                // When the next assessment of the nest that this ant is will be carried out
+    private float perceivedQuality;             // The quality that this ant perceives this.myNest to be
+    private float nestThreshold;                // This individual's threshold for nest quality
+    private int assessTime;                     // The time remaining for this ants current assessment of a nest.
+    public NestAssessmentStage assessmentStage; // The stage of the assessment process this ant is currently in.
+    public int nestAssessmentVisitNumber;       //? ideally add one more nestassessmentstage and do away with this // 1 or 2 depending on how many times the ant has visited the nest to assess it
+    private bool comparisonAssess = true;       //? This should probably be a setting instead // When true this allows the ant to compare new nests it encounters to the nest it currently has allegiance to.
+
+    // Recruitment and Tandem Run Variables
+    public bool newToOld;                   //? ideally do away with this and have RecruitmentStage enum // True when the ant is head from their new nest (recruiting TO) to the old nest (recruiting FROM)
+    private bool finishedRecruiting;        // True when this ant has finished recruiting and is returning to its nest
+    private float perceivedQuorum;          // The quorum that this ant perceives this.myNest to have
+    public int quorumThreshold;             // Quorum threshold where recruiting ant carries rather than tandem runs
+    private int reverseTime;                // The countdown for recruiters waiting in their home nest attempting to start a reverse tandem run.
+    public int recruitTime;                // The countdown for recruiters waiting in their old nest trying to start a forward tandem run.
     public bool followerWait = true;
     public bool leaderWaits = false;
-    private float startTandemRunSeconds = 0f;
     private float timeWhenTandemLostContact = 0f;
     private float leaderGiveUpTime;
-
     public Vector3 estimateNewLeaderPos = Vector3.zero;
-    public Vector3 estimateNewLeaderPos2 = Vector3.zero;
-    //private bool failedTandemLeader = false;        //? this seems redundant
-    //public Vector3 leaderPositionContact;        //? redundant
 
-    // buffon needle
-    public int nestAssessmentVisitNumber = 0;
-    //private float assessmentFirstLengthHistory = 0f;  //? buffon needle not implemented
-    //private float assessmentSecondLengthHistory = 0f; //? buffon needle not implemented
-    //private int assessmentFirstTimeHistory = 0;       //? buffon needle not implemented
-    //private int assessmentSecondTimeHistory = 0;      //? buffon needle not implemented
-    public NestAssessmentStage assessmentStage;
-    //private float currentNestArea = 0f;               //? buffon needle not implemented
-
-    //Parameters
-    public bool passive = true;                 //is this a passive ant or not
-    private bool comparisonAssess = true;       //when true this allows the ant to compare new nests it encounters to the nest it currently has allegiance to
-    private float quorumAssessNoise = 1f;     //stdev of normal distribution with mean equal to the nests actual qourum from which percieved qourum is drawn
-    private float assessmentNoise = 0.1f;       //stdev of normal distribution with mean equal to the nests actual quality from which percieved quality is drawn
-    private float maxAssessmentWait = 45f;      //maximum wait between asseesments of a nest when a !passive ant is in the Inactive state in a nest
-    private float qualityThreshNoise = 0.2f;    //the stdev of the normal distibution from which this ants quality threshold for nests is picked
-    private float qualityThreshMean = 0.5f;     //the mean of the normal distibution from which this ants quality threshold for nests is picked
-    public float tandRecSwitchProb = 0.3f;      //the probability that an ant that is recruiting via tandem (though not leading at this time) can be recruited by another ant
-    public float carryRecSwitchProb = 0.1f;     //the probability that an ant that is recruiting via transports (though not at this time) can be recruited by another ant
-    private float pRecAssessOld = 0.05f;         //the probability that a recruiter assesses its old nest when it enters it
-    private float pRecAssessNew = 0.2f;         //? was 0.5 in greg's but probably for testing? //the probability that a recruiter assesses its new nest when it enters it
-    private int revTryTime = 5;                 //No. of seconds an ant spends trying to RTR.
-
-    public int droppedRecently;                 //Flag to show if an ant has been recently dropped or not. //? i changed this to -1 to prevent reversers leading ants currently carried
-    private int droppedWait = 5;
-    private int recTryTime = 40;                //No. of collisions with passive ants before a recruiter gives up. //? not sure if this is the best method, makes waiting time dependent on total colony size
-
-    public int PerceivedTicks { get; set; }
-
+    // Other
     //?private bool _wasColourOn = false;
     //?private float _colourFlashTime = 0;
     private Color? _temporaryColour;
     private Color _primaryColour;
-
-    private float _elapsed;
-    private float _recruitmentWaitStartSeconds;
-    private bool _recruitingGivingUp;
-    private RecruitmentStage recruitmentStage;
-
-    public bool DEBUG_ANT = false;
+    public bool DEBUG_ANT = false; // Used for debugging
 
     // Use this for initialization
     void Start()
@@ -100,7 +64,7 @@ public class AntManager : MonoBehaviour
         carryPosition = transform.Find(Naming.Ants.CarryPosition);
         sensesCol = transform.Find(Naming.Ants.SensesArea).GetComponent<Collider>();
         move = gameObject.AntMovement();
-        nestThreshold = RandomGenerator.Instance.NormalRandom(qualityThreshMean, qualityThreshNoise);
+        nestThreshold = RandomGenerator.Instance.NormalRandom(AntScales.Other.qualityThreshMean, AntScales.Other.qualityThreshNoise);
         perceivedQuality = float.MinValue;
         finishedRecruiting = false;
         //make sure the value is within contraints
@@ -114,12 +78,11 @@ public class AntManager : MonoBehaviour
     {
         PerceivedTicks++;
 
-        _elapsed += Time.fixedDeltaTime;
         // Decrement Counters only if 1 second of simulated time has elapsed
-        if (_elapsed >= 1)
+        if (Mathf.Approximately(simulation.TotalElapsedSimulatedTime("ms") % 1000, 0))
         {
-            _elapsed = 0;
-            DecrementCounters();    //? May be better to call every tick instead, but decrement 50ms instead of 1s (current method lines up everything to 1s intervals)
+            if (DEBUG_ANT == true) Debug.Log(Mathf.RoundToInt(simulation.TotalElapsedSimulatedTime("s")));
+            DecrementCounters();
         }
 
         /* //? This part has been added new. Some may be useful (recruitmentStage)
@@ -147,10 +110,10 @@ public class AntManager : MonoBehaviour
             EnteredNest(LeadersNest().NestManager());
 
         //makes Inactive and !passive ants assess nest that they are in every so often
-        if (!passive && state == BehaviourState.Inactive && nextAssessment > 0 && simulation.totalElapsedSimulatedTime("s") >= nextAssessment)
+        if (!passive && state == BehaviourState.Inactive && nextAssessment > 0 && simulation.TotalElapsedSimulatedTime("s") >= nextAssessment)
         {
             AssessNest(myNest);
-            nextAssessment = simulation.totalElapsedSimulatedTime("s") + RandomGenerator.Instance.Range(0.5f, 1f) * maxAssessmentWait;
+            nextAssessment = simulation.TotalElapsedSimulatedTime("s") + RandomGenerator.Instance.Range(0.5f, 1f) * AntScales.Times.maxAssessmentWait;
         }
 
         //if an ant is carrying another and is within x distance of their nest's centre then drop the ant
@@ -198,13 +161,13 @@ public class AntManager : MonoBehaviour
         //Only try reverse tandem runs for a certain amount of time
         if (state == BehaviourState.Reversing && inNest && !NearerOld() && follower == null)
         {
-            if (revTime < 1)
+            if (reverseTime < 1)
             {
                 RecruitToNest(myNest);
             }
             else
             {
-                revTime -= 1;
+                reverseTime -= 1;
             }
         }
 
@@ -309,9 +272,6 @@ public class AntManager : MonoBehaviour
             failedTandemLeader = false;
         }*/
 
-        // set variables for start of forward tandem run (log start position and timestep)
-        startTandemRunSeconds = simulation.totalElapsedSimulatedTime("s");
-
         // Reset the leader giving up time
         leaderGiveUpTime = AntScales.Times.startingLeaderGiveUpTime;
 
@@ -320,23 +280,14 @@ public class AntManager : MonoBehaviour
         tandemTimeSteps = timeStep;
         leaderPositionContact = transform.position;*/
 
-        // allow FTR leader to lay pheromones at rate 1.85 per sec (Basari, Trail Laying During Tandem Running)
-        move.usePheromones = true;
-
         //let following ant know that you're leading it
         this.follower = follower;
         this.follower.Follow(this);
         newToOld = false;
-
-        //turn this ant around to face towards chosen nest
-        transform.LookAt(myNest.transform);
     }
 
     public void ReverseLead(AntManager follower)
     {
-        // set start of reverse tandem run (log start position and timestep)
-        startTandemRunSeconds = simulation.totalElapsedSimulatedTime("s");
-
         // Reset the leader giving up time
         leaderGiveUpTime = AntScales.Times.startingLeaderGiveUpTime;
 
@@ -345,21 +296,14 @@ public class AntManager : MonoBehaviour
         tandemTimeSteps = timeStep;
         leaderPositionContact = transform.position;*/
 
-        // allow FTR leader to lay pheromones at rate 1.85 per sec (Basari, Trail Laying During Tandem Running)
-        move.usePheromones = true;  //? pheromones currently not implemented
-
         //let following ant know that you're leading it
         this.follower = follower;
         this.follower.Follow(this);
         newToOld = true;
-
-        //turn this ant around to face towards chosen nest
-        transform.LookAt(oldNest.transform);
     }
 
     public void StopLeading()
     {
-        startTandemRunSeconds = 0;
         followerWait = true;
         leaderWaits = false;
 
@@ -385,10 +329,6 @@ public class AntManager : MonoBehaviour
 
         if (follower.currentNest == myNest) simulation.simData.successFTR++;    //? ftr failure data collection
         else simulation.simData.successRTR++;
-
-        // leader has stopped leader => does not lay pheromones [as frequently]
-        // (Basari, Trail Laying During Tandem Running)
-        move.usePheromones = false; //? pheromones not in use currently
          
         follower = null;
         RecruitToNest(myNest);
@@ -416,16 +356,10 @@ public class AntManager : MonoBehaviour
     //follow the leader ant 
     public void Follow(AntManager leader)
     {
-        startTandemRunSeconds = simulation.totalElapsedSimulatedTime("s");
-
         //start following leader towards nest
         ChangeState(BehaviourState.Following);
         newToOld = false;
         this.leader = leader;
-
-        //we want to turn to follow the leader now
-        //? move.ChangeDirection();
-        transform.LookAt(leader.transform);
 
         followerWait = true;
     }
@@ -434,7 +368,6 @@ public class AntManager : MonoBehaviour
     {
         followerWait = true;
         leaderWaits = false;
-        startTandemRunSeconds = 0;
         estimateNewLeaderPos = Vector3.zero;
         leader = null;
     }
@@ -448,7 +381,6 @@ public class AntManager : MonoBehaviour
 
         otherAnt.PickedUp(transform);
         newToOld = false;
-        transform.LookAt(myNest.transform);
     }
 
     //lets this ant know that it has been picked up by carrier
@@ -472,7 +404,7 @@ public class AntManager : MonoBehaviour
     {
         //turn the right way up 
         transform.rotation = Quaternion.identity;
-        transform.position = new Vector3(transform.position.x, 0.15f, transform.position.z);
+        transform.position = new Vector3(transform.position.x, GetComponent<CapsuleCollider>().radius * 2, transform.position.z);
         move.isBeingCarried = false;        //? could consider moving isBeingCarried into antmanager
 
         if (transform.parent.tag == Naming.Ants.CarryPosition)
@@ -484,9 +416,9 @@ public class AntManager : MonoBehaviour
         //make ant inactive in this nest
         // oldNest = nest; //? This is commented out in Gregs version
         myNest = nest;
-        droppedRecently = droppedWait;
+        droppedRecently = AntScales.Times.droppedWait;
         //? commented out in both versions?
-        nextAssessment = simulation.totalElapsedSimulatedTime("s") + RandomGenerator.Instance.Range(0.5f, 1f) * maxAssessmentWait;
+        nextAssessment = simulation.TotalElapsedSimulatedTime("s") + RandomGenerator.Instance.Range(0.5f, 1f) * AntScales.Times.maxAssessmentWait;
         ChangeState(BehaviourState.Inactive);
 
         //turns senses on if non passive ant
@@ -593,7 +525,7 @@ public class AntManager : MonoBehaviour
             else
             {
                 // If the quorum is not yet reached, there 
-                if (follower == null && RandomGenerator.Instance.Range(0f, 1f) < pRecAssessNew && !IsQuorumReached())
+                if (follower == null && RandomGenerator.Instance.Range(0f, 1f) < AntScales.Other.pRecAssessNew && !IsQuorumReached())
                 {
                     nestToAssess = nest;
                     ChangeState(BehaviourState.Assessing);
@@ -616,7 +548,7 @@ public class AntManager : MonoBehaviour
                 return;
             }
             //if recruiting and this is old nest then assess with probability pRecAssessOld
-            else if (follower == null && RandomGenerator.Instance.Range(0f, 1f) < pRecAssessOld)
+            else if (follower == null && RandomGenerator.Instance.Range(0f, 1f) < AntScales.Other.pRecAssessOld)
             {
                 nestToAssess = nest;
                 ChangeState(BehaviourState.Assessing);
@@ -701,7 +633,6 @@ public class AntManager : MonoBehaviour
         assessmentStage = 0;
         nestAssessmentVisitNumber = 2;
         assessTime = GetAssessTime();
-        move.usePheromones = false;
     }
 
     /*//?private void StoreAssessmentHistory()
@@ -729,13 +660,12 @@ public class AntManager : MonoBehaviour
     //assesses nest and takes appropriate action
     private void AssessNest(NestManager nest)
     {
-        move.usePheromones = false;
 
         //reset current nest area
         //?currentNestArea = 0f;
 
         // Nest quality measurement (not buffon's needle, random value from normal distribution, constrained between 0-1)
-        float q = RandomGenerator.Instance.NormalRandom(nest.quality, assessmentNoise);
+        float q = RandomGenerator.Instance.NormalRandom(nest.quality, AntScales.Other.assessmentNoise);
         if (q < 0f)
             q = 0f;
         else if (q > 1f)
@@ -772,7 +702,6 @@ public class AntManager : MonoBehaviour
             //if using comparison then check if this reaches threshold and is better than previous nest
             else if (comparisonAssess == true && q >= nestThreshold && (myNest == null || q > perceivedQuality))
             {
-                if (DEBUG_ANT == true) Debug.Log("comparison assess successful: " + q + "/" + nestThreshold);
                 if (nest != myNest)
                 {
                     oldNest = myNest; //? this is commented in greg's version
@@ -789,7 +718,6 @@ public class AntManager : MonoBehaviour
             }
             else // The new nest failed the assessment, so resume the previous state
             {
-                if (DEBUG_ANT == true) Debug.Log("comparison assess failed: " + q + "/" + nestThreshold);
                 if (previousState == BehaviourState.Scouting)
                     ChangeState(BehaviourState.Scouting);
                 else if (previousState == BehaviourState.Recruiting)
@@ -809,7 +737,6 @@ public class AntManager : MonoBehaviour
     {
         currentNest = null;
         inNest = false;
-        if (DEBUG_ANT == true) Debug.Log("Left nest");
         //when an assessor leaves the nest then make decision about wether to recruit TO that nest
         if (state == BehaviourState.Assessing && assessTime == 0)
         {
@@ -847,9 +774,6 @@ public class AntManager : MonoBehaviour
         // make this nest assessment their first visit
         nestAssessmentVisitNumber = 1;
         assessTime = GetAssessTime();
-        // get start position of assessor ant
-        move.lastPosition = move.transform.position;
-        move.usePheromones = true;
     }
 
     private int GetAssessTime()
@@ -890,7 +814,7 @@ public class AntManager : MonoBehaviour
         myNest = nest;
         CheckQuorum(nest);
 
-        recTime = recTryTime;
+        recruitTime = AntScales.Times.recTryTime;
 
         leader = null; //? BUGFIX == random case where an assessor -> recruiter but still had leader set to something, so caused a null exception
 
@@ -906,14 +830,14 @@ public class AntManager : MonoBehaviour
         }
         else
         {
-            perceivedQuorum = RandomGenerator.Instance.NormalRandom(nest.GetQuorum(), quorumAssessNoise);
+            perceivedQuorum = RandomGenerator.Instance.NormalRandom(nest.GetQuorum(), AntScales.Other.quorumAssessNoise);
         }
     }
 
     private void Reverse(NestManager nest)
     {
         ChangeState(BehaviourState.Reversing);
-        revTime = revTryTime;
+        reverseTime = AntScales.Times.reverseTryTime;
     }
 
     //? Can probably remove this, its used to check of the ant is in a certain nest, which can now be done with currentNest
@@ -926,13 +850,8 @@ public class AntManager : MonoBehaviour
     // called once leader is 2*antennaReach away from follower
     public void TandemContactLost()
     {
-        if (startTandemRunSeconds == 0)
-        {
-            return;
-        }
-
         // log the time that the tandem run was lost
-        timeWhenTandemLostContact = simulation.totalElapsedSimulatedTime("s");
+        timeWhenTandemLostContact = simulation.TotalElapsedSimulatedTime("s");
         // calculate the Leader Give-Up Time (LGUT)
         CalculateLGUT();
     }
@@ -971,7 +890,7 @@ public class AntManager : MonoBehaviour
     {
         if (leaderGiveUpTime == 0.0 || timeWhenTandemLostContact == 0) return false;
 
-        float durationLostContact = (simulation.totalElapsedSimulatedTime("s") - timeWhenTandemLostContact);
+        float durationLostContact = (simulation.TotalElapsedSimulatedTime("s") - timeWhenTandemLostContact);
 
         // if duration since lost contact is longer than LGUT then tandem run has failed  
         return durationLostContact > leaderGiveUpTime;
@@ -985,7 +904,7 @@ public class AntManager : MonoBehaviour
             if (leader.state == BehaviourState.Recruiting || leader.state == BehaviourState.Reversing)
             {
                 // failed tandem leader behaviour
-                leader.FailedTandemLeaderBehvaiour();
+                leader.FailedTandemLeaderBehaviour();
                 // failed tandem follower behaviour
                 FailedTandemFollowerBehaviour();
             }
@@ -993,40 +912,23 @@ public class AntManager : MonoBehaviour
     }
 
     // failed tandem leader behaviour
-    private void FailedTandemLeaderBehvaiour()
+    private void FailedTandemLeaderBehaviour()
     {
-        startTandemRunSeconds = 0;
-        
-        /*//?// log failed tandem run in history
-        if (forwardTandemRun == true)
-        {
-            forwardTandemRun = false;
-        }
-        else if (reverseTandemRun)
-        {
-            reverseTandemRun = false;
-        }*/
-
         // reset tandem variables
         leaderWaits = false;
         followerWait = true;
-        // turn off pheromones
-        move.usePheromones = false; //? 
         follower = null;
-
 
         // behaviour after failed tandem run
         ChangeState(BehaviourState.Recruiting);
-        //?failedTandemLeader = true;
 
-
-        //? Not sure if this is necessary? can probably just set both failures to go to the new nest or smthn (i guess maybe it stops reverse runs being tryed over and over)
-        if (previousState == BehaviourState.Reversing)
+        //? After a failed run the leader continues in the same direction
+        if (previousState == BehaviourState.Reversing) // failed reverse run - head to old nest
         {
             simulation.simData.failRTR++; //? tandem run success counters
             newToOld = true;
         }
-        else
+        else // failed forward run - head to new nest
         {
             simulation.simData.failFTR++; //? tandem run success counters
             newToOld = false;
@@ -1050,12 +952,6 @@ public class AntManager : MonoBehaviour
         {
             ChangeState(BehaviourState.Inactive);
         }*/
-    }
-
-    // Returns the position of this ant's antennae (the front of the 'capsule')
-    public Vector3 antennaePosition()
-    {
-        return transform.position + transform.forward * (GetComponent<CapsuleCollider>().height / 2);
     }
 
     public void SetPrimaryColour(Color primary)

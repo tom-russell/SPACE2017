@@ -37,7 +37,6 @@ public class AntSenses : MonoBehaviour
 				return;
 			}
 			*/
-
         }
 
         //? This bit was slightly different
@@ -61,9 +60,9 @@ public class AntSenses : MonoBehaviour
         {
             if (ant.inNest && ant.NearerOld())
             {
-                if (ant.recTime > 0)
+                if (ant.recruitTime > 0)
                 {
-                    ant.recTime -= 1;
+                    ant.recruitTime -= 1;
                 }
                 else
                 {
@@ -79,24 +78,27 @@ public class AntSenses : MonoBehaviour
             float r = RandomGenerator.Instance.Range(0f, 1f);
             if (otherAnt.IsQuorumReached())
             {
-                if (r > otherAnt.carryRecSwitchProb)
-                    if (ant.recTime > 0)
+                if (r > AntScales.Other.carryRecSwitchProb)
+                {
+                    if (ant.recruitTime > 0)
                     {
-                        ant.recTime -= 1;
+                        ant.recruitTime -= 1;
                     }
                     else
                     {
                         ant.newToOld = false;
                     }
+                }
+
                 return;
             }
             else
             {
-                if (r > otherAnt.tandRecSwitchProb)
+                if (r > AntScales.Other.tandRecSwitchProb)
                 {
-                    if (ant.recTime > 0)
+                    if (ant.recruitTime > 0)
                     {
-                        ant.recTime -= 1;
+                        ant.recruitTime -= 1;
                     }
                     else
                     {
@@ -107,7 +109,6 @@ public class AntSenses : MonoBehaviour
 
             }
         }
-        if (ant.DEBUG_ANT == true && otherAnt.state == BehaviourState.Scouting) Debug.Log("Made it to the bottom");
 
         //if quorum reached then carry the other ant, otherwise lead them
         if (ant.IsQuorumReached())
@@ -120,9 +121,9 @@ public class AntSenses : MonoBehaviour
         }
         else
         {
-            if (ant.recTime > 0)
+            if (ant.recruitTime > 0)
             {
-                ant.recTime -= 1;
+                ant.recruitTime -= 1;
             }
             else
             {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace Assets.Scripts.Config
@@ -103,6 +104,21 @@ namespace Assets.Scripts.Config
                 Value = MaxValue.Value;
                 return MaxValue.Value.ToString();
             }
+
+            Value = v;
+            return v.ToString();
+        }
+    }
+    
+    public abstract class SimulationListProperty : SimulationProperty<int>
+    {
+        public List<string> Options { get; set; }
+
+        public override string SetValue(string newValue)
+        {
+            int v;
+            if (!int.TryParse(newValue, out v))
+                return newValue;
 
             Value = v;
             return v.ToString();

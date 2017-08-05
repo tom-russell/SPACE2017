@@ -62,7 +62,6 @@ public class TimeControl : MonoBehaviour
 
     private void btnTime_Click()
     {
-        Debug.Log("Time clicked");
         _drawTime = !_drawTime;
     }
 
@@ -105,7 +104,7 @@ public class TimeControl : MonoBehaviour
     {
         if (_drawTime)
         {
-            var time = SimulationManager.Instance.totalElapsedSimulatedTime("s");
+            var time = SimulationManager.Instance.TotalElapsedSimulatedTime("s");
             btnTime.SetText(System.TimeSpan.FromSeconds(time).ToOutputString());
         }
         else

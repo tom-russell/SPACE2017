@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Assets.Scripts;
 
 namespace Assets.Scripts.Config
 {
@@ -21,6 +23,19 @@ namespace Assets.Scripts.Config
 
         public RandomSeed()
         {
+            Value = 0;
+        }
+    }
+
+    public class SimulationEndPoint : SimulationListProperty
+    {
+        public override string Name { get { return "Simulation End Point"; } }
+
+        public override string Description { get { return "The point at which the simulation will finish and no longer continue."; } }
+
+        public SimulationEndPoint()
+        {
+            Options = new List<string>(Naming.SimulationEndPoints.points);
             Value = 0;
         }
     }

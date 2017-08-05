@@ -65,8 +65,6 @@ namespace Assets
                 _results.Add(new AntDeltaResults(Simulation, experimentPath));
             if (Simulation.Settings.OutputAntDetail.Value)
                 _results.Add(new AntDetailedResults(Simulation, experimentPath));
-            if (Simulation.Settings.OutputLegacyData.Value)
-                _results.Add(new LegacyResults(Simulation, experimentPath));
             if (Simulation.Settings.OutputAntDebug.Value)
                 _results.Add(new AntDebugResults(Simulation, experimentPath));
             if (Simulation.Settings.OutputAntStateDistribution.Value)

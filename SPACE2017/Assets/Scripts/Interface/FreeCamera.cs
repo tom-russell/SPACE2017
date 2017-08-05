@@ -126,11 +126,11 @@ public class FreeCamera : MonoBehaviour
         }
 
 
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetAxisRaw("Up") != 0)
         {
             transform.Translate(Vector3.up * flySpeed);
         }
-        else if (Input.GetKey(KeyCode.Q))
+        else if (Input.GetAxisRaw("Down") != 0)
         {
             transform.Translate(Vector3.down * flySpeed);
         }

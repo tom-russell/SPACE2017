@@ -27,9 +27,8 @@ public class ConfigMenu : MonoBehaviour, IDisposable
     {
         _btnStart = this.ButtonByName("btnStart");
         _btnStart.onClick.AddListener(Start_Clicked);
-
-        var batchPath = @"C:\Users\andos\git\space\Batches\Test";
-        batchPath = null;
+        
+        string batchPath = null;
 
         if (string.IsNullOrEmpty(batchPath))
         {
@@ -244,10 +243,12 @@ public class ConfigMenu : MonoBehaviour, IDisposable
     {
         Transform content = GetPropertiesContentArea();
 
-        GameObject inputControl = (property is SimulationBoolProperty ? Resources.Load("InputBool") : Resources.Load("InputText")) as GameObject;
+        GameObject inputControl;
+        if (property is SimulationBoolProperty) inputControl = Resources.Load("InputBool") as GameObject;
+        else if (property is SimulationListProperty) inputControl = Resources.Load("InputList") as GameObject;
+        else inputControl = Resources.Load("InputText") as GameObject;
 
         GameObject a = Instantiate(inputControl);
-
         a.transform.SetParent(content.transform);
 
         //a.transform.position = new Vector3(-240, 45 + -(0 + (num * 35)), 0);
@@ -265,6 +266,20 @@ public class ConfigMenu : MonoBehaviour, IDisposable
             toggle.GetComponentInChildren<Text>().text = string.Empty;
             toggle.onValueChanged.AddListener((v) => ((SimulationBoolProperty)property).Value = v);
         }
+        else if (property is SimulationListProperty)
+        {
+            var dropdown = a.GetComponentInChildren<Dropdown>();
+
+            dropdown.ClearOptions();
+            foreach (string option in ((SimulationListProperty)property).Options)
+            {
+                dropdown.options.Add(new Dropdown.OptionData(option));
+            }
+            
+            dropdown.value = ((SimulationListProperty)property).Value;
+            dropdown.RefreshShownValue();
+            dropdown.onValueChanged.AddListener((v) => ((SimulationListProperty)property).Value = v);
+        }
         else
         {
             var input = a.GetComponentInChildren<InputField>();
@@ -278,6 +293,7 @@ public class ConfigMenu : MonoBehaviour, IDisposable
     {
         var properties = GameObject.Find("Properties");
         var content = properties.transform.Find("Viewport").Find("Content");
+        content.transform.position = Vector3.zero; //? BUGFIX - content x value kept being set to -780 so fields weren't visible?
         return content;
     }
 

@@ -40,8 +40,9 @@ public class SimulationManager : MonoBehaviour
         if (Settings == null)
             Settings = new SimulationSettings();
 
-        RandomGenerator.Init(Settings.RandomSeed.Value);
+        Debug.Log(Naming.SimulationEndPoints.points[Settings.SimulationEndPoint.Value]);
 
+        RandomGenerator.Init(Settings.RandomSeed.Value);
 
         Time.timeScale = settings.StartingTimeScale.Value;
         
@@ -201,12 +202,13 @@ public class SimulationManager : MonoBehaviour
                 ant.Tick();
             }
             ResultsManager.Tick();
+            EmigrationInformation.Tick();
         }
         else
             return;
 
         // Check if time is expired
-        if (Settings.MaximumSimulationRunTime.Value > 0 && totalElapsedSimulatedTime("m") >= Settings.MaximumSimulationRunTime.Value)
+        if (Settings.MaximumSimulationRunTime.Value > 0 && TotalElapsedSimulatedTime("m") >= Settings.MaximumSimulationRunTime.Value)
         {
             SimulationRunning = false;
         }
@@ -242,7 +244,7 @@ public class SimulationManager : MonoBehaviour
         return nests.IndexOf(nest.transform);
     }
 
-    public float totalElapsedSimulatedTime(string unit)
+    public float TotalElapsedSimulatedTime(string unit)
     {
         if (unit == "s")
         {

@@ -8,9 +8,6 @@
         Recruiting,
         Following,
         Reversing,
-        ReversingLeading,
-        Leading,
-        Carrying,
     };
 
     public enum NestAssessmentStage
@@ -20,7 +17,7 @@
         ReturningToPotentialNest
     }
 
-    public enum RecruitmentStage
+    public enum RecruitmentStage //? not currently used
     {
         GoingToOldNest,
         GoingToNewNest,

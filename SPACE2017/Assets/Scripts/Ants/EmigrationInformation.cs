@@ -51,7 +51,7 @@ namespace Assets.Scripts.Ants
             });
         }
 
-        public void Tick(float elapsedSimulationMS)
+        public void Tick()
         {
             _data.ReloadValue = true;
         }

@@ -64,5 +64,20 @@
             // Can't change the ant prefix because each ant needs to be called "Ant"
             public const string AntPrefix = "";
         }
+
+        public static class SimulationEndPoints
+        {
+            public static readonly string[] points = new string[] {
+                "End of Emigration",
+                "First Nest Discovery",
+                "First Recruiter" ,
+                "First Social Carry"
+            };
+
+            public static int MaxArrayIndex()
+            {
+                return points.Length - 1;
+            }
+        }
     }
 }

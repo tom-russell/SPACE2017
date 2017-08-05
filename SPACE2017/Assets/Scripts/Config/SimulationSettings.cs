@@ -20,6 +20,9 @@ namespace Assets.Scripts.Config
         public RandomSeed RandomSeed { get; set; }
 
         [SerializeField]
+        public SimulationEndPoint SimulationEndPoint { get; set; }
+
+        [SerializeField]
         public ColonySize ColonySize { get; set; }
 
         [SerializeField]
@@ -95,6 +98,7 @@ namespace Assets.Scripts.Config
             ExperimentName = new ExperimentName();
 
             RandomSeed = new RandomSeed();
+            SimulationEndPoint = new SimulationEndPoint();
             StartingTimeScale = new StartingTimeScale();
             RandomiseTimeScale = new RandomiseTimeScale();
             MaximumSimulationRunTime = new MaximumSimulationRunTime();
@@ -125,8 +129,9 @@ namespace Assets.Scripts.Config
                  return new List<SimulationPropertyBase>
                 {
                     ExperimentName,
-                    RandomSeed,
 
+                    RandomSeed,
+                    SimulationEndPoint,
                     StartingTimeScale,
                     RandomiseTimeScale,
                     MaximumSimulationRunTime,

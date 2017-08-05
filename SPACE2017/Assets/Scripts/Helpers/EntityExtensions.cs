@@ -19,11 +19,6 @@ namespace Assets.Scripts.Extensions
             return Component<AntMovement>(gameObject);
         }
 
-        public static SimData AntData(this GameObject gameObject)
-        {
-            return Component<SimData>(gameObject);
-        }
-
         public static T Component<T>(this GameObject gameObject) where T : Component
         {
             if (gameObject == null)
