@@ -94,6 +94,7 @@ public class SimulationData {
                 if (ant.state == BehaviourState.Assessing)
                 {
                     discoveryTime = (int)simulation.TotalElapsedSimulatedTime("s");
+                    return;
                 }
             }
             else if (firstRecruiter == 0)
@@ -101,20 +102,23 @@ public class SimulationData {
                 if (ant.state == BehaviourState.Recruiting)
                 {
                     firstRecruiter = (int)simulation.TotalElapsedSimulatedTime("s");
+                    return;
                 }
             }
             else if (firstTandem == 0)
             {
-                if (ant.follower != null)
+                if (ant.IsTandemRunning())
                 {
                     firstTandem = (int)simulation.TotalElapsedSimulatedTime("s");
+                    return;
                 }
             }
             else if (firstCarry == 0)
             {
-                if (ant.isBeingCarried == true)
+                if (ant.IsTransporting())
                 {
                     firstCarry = (int)simulation.TotalElapsedSimulatedTime("s");
+                    return;
                 }
             }
             else if (firstReverse == 0)
@@ -122,6 +126,7 @@ public class SimulationData {
                 if (ant.state == BehaviourState.Reversing && ant.follower != null)
                 {
                     firstReverse = (int)simulation.TotalElapsedSimulatedTime("s");
+                    return;
                 }
             }
         }

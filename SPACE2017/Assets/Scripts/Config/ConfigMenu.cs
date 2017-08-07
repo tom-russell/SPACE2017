@@ -116,11 +116,6 @@ public class ConfigMenu : MonoBehaviour, IDisposable
         
         Settings = settings;
 
-        foreach (string point in Assets.Scripts.Naming.SimulationEndPoints.points)
-        {
-            //Debug.Log(point);
-        }
-
         try //? This doesnt seem to do anything, LevelSelect doesnt exist
         {
             var dropDown = GameObject.Find("LevelSelect").GetComponent<Dropdown>();
@@ -222,7 +217,6 @@ public class ConfigMenu : MonoBehaviour, IDisposable
         using (var sr = new StreamWriter(_experimentFileInput.text))
         {
             var xml = new XmlSerializer(typeof(SimulationSettings));
-            Debug.Log(xml);
             xml.Serialize(sr, Settings);
         }
 #endif

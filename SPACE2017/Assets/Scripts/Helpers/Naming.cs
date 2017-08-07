@@ -1,4 +1,6 @@
-﻿namespace Assets.Scripts
+﻿using System.Collections.Generic;
+
+namespace Assets.Scripts
 {
     public static class Naming
     {
@@ -65,14 +67,11 @@
             public const string AntPrefix = "";
         }
 
-        public static class SimulationEndPoints
-        {
-            public static readonly string[] points = new string[] {
-                "End of Emigration",
-                "First Nest Discovery",
-                "First Recruiter",
-                "First Social Carry"
-            };
-        }
+        public static readonly List<string> SimulationEndPoints = new List<string>() {
+            "End of Emigration",
+            "First Nest Discovery",
+            "First Recruiter",
+            "First Social Carry"
+        };
     }
 }

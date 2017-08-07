@@ -43,7 +43,7 @@ public class AntManager : MonoBehaviour
     private float perceivedQuorum;          // The quorum that this ant perceives this.myNest to have
     public int quorumThreshold;             // Quorum threshold where recruiting ant carries rather than tandem runs
     private int reverseTime;                // The countdown for recruiters waiting in their home nest attempting to start a reverse tandem run.
-    public int recruitTime;                // The countdown for recruiters waiting in their old nest trying to start a forward tandem run.
+    public int recruitTime;                 // The countdown for recruiters waiting in their old nest trying to start a forward tandem run.
     public bool followerWait = true;
     public bool leaderWaits = false;
     private float timeWhenTandemLostContact = 0f;

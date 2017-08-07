@@ -19,8 +19,6 @@ public class SimulationManager : MonoBehaviour
     public ResultsManager resultsManager { get; private set; }
     public List<AntManager> Ants { get; private set; }
     public SimulationSettings Settings { get; private set; }
-    //?public EmigrationInformation EmigrationInformation { get; private set; }
-    int _sinceEmigrationCheck = 5;
     public int currentTick { get; private set; }
 
     //Parameters
@@ -37,10 +35,10 @@ public class SimulationManager : MonoBehaviour
 
         Settings = settings;
         if (Settings == null)
+        {
             Settings = new SimulationSettings();
-
-        Debug.Log(Naming.SimulationEndPoints.points[Settings.SimulationEndPoint.Value]);
-
+        }
+        
         RandomGenerator.Init(Settings.RandomSeed.Value);
 
         Time.timeScale = settings.StartingTimeScale.Value;
@@ -159,7 +157,7 @@ public class SimulationManager : MonoBehaviour
 
                     if (spawnedAntScouts < InitialScouts || Settings.ColonySize.Value <= 1 || _spawnOnlyScouts)
                     {
-                        newAM.nextAssessment = 1;
+                        newAM.nextAssessment = TotalElapsedSimulatedTime("s") + RandomGenerator.Instance.Range(0.5f, 1f) * AntScales.Times.maxAssessmentWait;
                         spawnedAntScouts++;
                     }
                     else
@@ -206,22 +204,20 @@ public class SimulationManager : MonoBehaviour
             resultsManager.Tick();
         }
         else
+        {
             return;
+        }
 
         // Check if time is expired
-        if (Settings.MaximumSimulationRunTime.Value > 0 && TotalElapsedSimulatedTime("m") >= Settings.MaximumSimulationRunTime.Value)
+        if (TotalElapsedSimulatedTime("m") >= Settings.MaximumSimulationRunTime.Value && Settings.MaximumSimulationRunTime.Value != 0)
         {
             SimulationRunning = false;
         }
-        // Check if emigration complete
-        _sinceEmigrationCheck--;
-        if (_sinceEmigrationCheck <= 0)
+        
+        // Check if the emigration is complete up to the required point
+        if (FullSecondPassed() && CheckIfEndPointReached())
         {
-            _sinceEmigrationCheck = 5;
-            if (simulationData.passivesInOldNest == 0)
-            {
-                SimulationRunning = false;
-            }
+            SimulationRunning = false;
         }
 
         // If we are no longer running this update then notify the simulation has stopped
@@ -266,11 +262,8 @@ public class SimulationManager : MonoBehaviour
     // Returns true during ticks where the current simulation time is a full second. Used for 
     public bool FullSecondPassed()
     {
-        Debug.Log(TotalElapsedSimulatedTime("ms") + "ms\t" + TotalElapsedSimulatedTime("s") + "s\t" + TotalElapsedSimulatedTime("m") + "m\t");
-
         if (Mathf.Approximately(TotalElapsedSimulatedTime("ms") % 1000, 0))
         {
-            Debug.Log(TotalElapsedSimulatedTime("s") + "s has passed");
             return true;
         }
         else
@@ -279,7 +272,31 @@ public class SimulationManager : MonoBehaviour
         }
     }
 
-    void OnDestroy()
+    private bool CheckIfEndPointReached()
+    {
+        string endPoint = Naming.SimulationEndPoints[Settings.SimulationEndPoint.Value];
+
+        if (endPoint == "First Nest Discovery" && simulationData.discoveryTime != 0)
+        {
+            return true;
+        }
+        else if (endPoint == "First Recruiter" && simulationData.firstRecruiter != 0)
+        {
+            return true;
+        }
+        else if (endPoint == "First Social Carry" && simulationData.firstCarry != 0)
+        {
+            return true;
+        }
+        else if (simulationData.passivesInOldNest == 0) // Emigration has completed
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+void OnDestroy()
     {
         resultsManager.Dispose();
     }

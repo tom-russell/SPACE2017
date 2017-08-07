@@ -9,45 +9,7 @@
     <Value>345345</Value>
   </RandomSeed>
   <SimulationEndPoint>
-    <Value>0</Value>
-    <Options>
-      <string>End of Emigration</string>
-      <string>First Nest Discovery</string>
-      <string>First Recruiter</string>
-      <string>First Social Carry</string>
-      <string>End of Emigration</string>
-      <string>First Nest Discovery</string>
-      <string>First Recruiter</string>
-      <string>First Social Carry</string>
-      <string>End of Emigration</string>
-      <string>First Nest Discovery</string>
-      <string>First Recruiter</string>
-      <string>First Social Carry</string>
-      <string>End of Emigration</string>
-      <string>First Nest Discovery</string>
-      <string>First Recruiter</string>
-      <string>First Social Carry</string>
-      <string>End of Emigration</string>
-      <string>First Nest Discovery</string>
-      <string>First Recruiter</string>
-      <string>First Social Carry</string>
-      <string>End of Emigration</string>
-      <string>First Nest Discovery</string>
-      <string>First Recruiter</string>
-      <string>First Social Carry</string>
-      <string>End of Emigration</string>
-      <string>First Nest Discovery</string>
-      <string>First Recruiter</string>
-      <string>First Social Carry</string>
-      <string>End of Emigration</string>
-      <string>First Nest Discovery</string>
-      <string>First Recruiter</string>
-      <string>First Social Carry</string>
-      <string>End of Emigration</string>
-      <string>First Nest Discovery</string>
-      <string>First Recruiter</string>
-      <string>First Social Carry</string>
-    </Options>
+    <Value>2</Value>
   </SimulationEndPoint>
   <ColonySize>
     <Value>200</Value>

@@ -49,8 +49,17 @@ namespace Assets.Scripts.Output
             }
 
             WriteLine(nestNumbersOutput.Substring(1));
+            WriteLine("Absolute Emigration Accuracy: " + Simulation.simulationData.emigrationAbsoluteAccuracy);
+            WriteLine("Relative Emigration Accuracy: " + Simulation.simulationData.emigrationRelativeAccuracy);
+            WriteLine("Emigration Completion: " + Simulation.simulationData.emigrationAbsoluteAccuracy);
             WriteLine("FTRs: " + (Simulation.simulationData.successFTR));
             WriteLine("RTRs: " + (Simulation.simulationData.successRTR));
+            WriteLine("Discovery Time: " + Simulation.simulationData.discoveryTime);
+            WriteLine("First Recruiter Time: " + Simulation.simulationData.firstRecruiter);
+            WriteLine("First Tandem Time: " + Simulation.simulationData.firstTandem);
+            WriteLine("First Carry Time: " + Simulation.simulationData. firstCarry);
+            WriteLine("First Reverse Time: " + Simulation.simulationData.firstReverse);
+            WriteLine("End of Emigration Time: " + Simulation.simulationData.endOfEmigration);
 
             _cleanedUp = true;
         }

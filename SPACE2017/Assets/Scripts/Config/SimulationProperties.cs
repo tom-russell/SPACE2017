@@ -35,13 +35,7 @@ namespace Assets.Scripts.Config
 
         public SimulationEndPoint()
         {
-            Options = new List<string>();
-            Options.Clear();
-            foreach (string point in Naming.SimulationEndPoints.points)
-            {
-                Options.Add(point);
-            }
-
+            Options = new List<string>(Naming.SimulationEndPoints);
             Value = 0;
         }
     }
