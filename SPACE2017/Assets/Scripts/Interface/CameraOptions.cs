@@ -2,45 +2,38 @@
 using Assets.Scripts.Extensions;
 using UnityEngine.UI;
 
-public class CameraControl : MonoBehaviour
+public class CameraOptions : MonoBehaviour
 {
-    private Button btnToggle;
-
-    private bool _isFreeCamera = false;
-
-    private Camera _freeCamera;
-    private Camera _mainCamera;
+    private Camera mainCamera;
+    private Button faceAngled;
+    private Button faceX;
+    private Button faceY;
+    private Button faceZ;
+    private Button centreArena;
+    private Button centreOldNest;
+    private Button[] centreNewNest;
 
     void Start()
     {
-        btnToggle = this.ButtonByName("btnChangeCamera");
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
-        btnToggle.onClick.AddListener(btnToggle_Click);
-
-        _freeCamera = GameObject.FindGameObjectWithTag("FreeCamera").GetComponent<Camera>();
-        _mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-
-        UpdateCamera();
+        faceAngled = this.ButtonByName("FaceAngled");
+        faceAngled.onClick.AddListener(() => changeAngle(Vector3.zero));
+        faceX = this.ButtonByName("FaceX");
+        faceX.onClick.AddListener(() => changeAngle(Vector3.right));
+        faceY = this.ButtonByName("FaceY");
+        faceY.onClick.AddListener(() => changeAngle(-Vector3.up));
+        faceZ = this.ButtonByName("FaceZ");
+        faceZ.onClick.AddListener(() => changeAngle(Vector3.forward));
     }
 
-    private void UpdateCamera()
+    private void changeAngle(Vector3 axis)
     {
-        _freeCamera.enabled = _isFreeCamera;
-        _mainCamera.enabled = !_isFreeCamera;
-
-        if (_isFreeCamera)
-        {
-            btnToggle.SetText("Free Cam");
-        }
-        else
-        {
-            btnToggle.SetText("Fixed Cam");
-        }
+        mainCamera.transform.rotation = Quaternion.LookRotation(axis);
     }
 
-    private void btnToggle_Click()
+    private void changePosition()
     {
-        _isFreeCamera = !_isFreeCamera;
-        UpdateCamera();
+
     }
 }

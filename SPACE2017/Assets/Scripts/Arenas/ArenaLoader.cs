@@ -85,7 +85,7 @@ namespace Assets.Scripts.Arenas
             CreateTerrain();
             CreateWalls();
             CreateNests();
-            MoveCameras();
+            MoveCamera();
             StartSimulation();
             Loading = false;
         }
@@ -172,27 +172,11 @@ namespace Assets.Scripts.Arenas
             nestGO.NestManager().quality = nest.Quality;
         }
 
-        private void MoveCameras()
+        private void MoveCamera()
         {
-            var freeCamera = GameObject.FindGameObjectWithTag("FreeCamera").GetComponent<Camera>();
             var mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-
-            MoveCamera(mainCamera);
-            MoveCamera(freeCamera);
-        }
-
-        private void MoveCamera(Camera camera)
-        {
-            camera.transform.position = new Vector3(0, (_worldSize.x + _worldSize.z) / 8, 0);
-            camera.transform.LookAt(new Vector3(_worldSize.x / 4.5f, 0, _worldSize.z / 4.5f));
-
-            try
-            {
-                var freeCamera = camera.GetComponent<FreeCamera>();
-                freeCamera.ResetView();
-            }
-            catch { }
-            
+            mainCamera.transform.position = new Vector3(0, (_worldSize.x + _worldSize.z) / 8, 0);
+            mainCamera.transform.LookAt(new Vector3(_worldSize.x / 4.5f, 0, _worldSize.z / 4.5f));
         }
 
         private void MoveLight()

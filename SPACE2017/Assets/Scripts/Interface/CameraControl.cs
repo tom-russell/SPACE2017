@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class FreeCamera : MonoBehaviour
+public class CameraControl : MonoBehaviour
 {
     private Camera _camera;
     private bool _readInput;

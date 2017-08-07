@@ -6,10 +6,10 @@
     <Value>AntScales1</Value>
   </ExperimentName>
   <RandomSeed>
-    <Value>345345</Value>
+    <Value>4324</Value>
   </RandomSeed>
   <SimulationEndPoint>
-    <Value>2</Value>
+    <Value>0</Value>
   </SimulationEndPoint>
   <ColonySize>
     <Value>200</Value>
@@ -30,7 +30,7 @@
     <Value>0.7</Value>
   </SecondNewNestQuality>
   <StartingTimeScale>
-    <Value>10</Value>
+    <Value>20</Value>
   </StartingTimeScale>
   <RandomiseTimeScale>
     <Value>false</Value>
