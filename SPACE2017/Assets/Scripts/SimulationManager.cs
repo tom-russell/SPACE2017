@@ -15,7 +15,7 @@ public class SimulationManager : MonoBehaviour
     public List<Transform> nests = new List<Transform>();
     public List<NestInfo> NestInfo { get; private set; }
     public GameObject[] doors;
-    public SimulationData simData; //?
+    public SimulationData simData { get; private set; }
     public ResultsManager ResultsManager { get; private set; }
     public List<AntManager> Ants { get; private set; }
     public SimulationSettings Settings { get; private set; }
@@ -34,7 +34,7 @@ public class SimulationManager : MonoBehaviour
 
         Ants = new List<AntManager>();
         NestInfo = new List<NestInfo>();
-        simData = new SimulationData(); //?
+        simData = new SimulationData();
 
         Settings = settings;
         if (Settings == null)
