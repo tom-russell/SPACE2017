@@ -6,7 +6,7 @@ using System.Linq;
 
 public class SimulationData {
 
-    private SimulationManager sim;
+    private SimulationManager simulation;
     NestInfo bestNest;
 
     // Emigration progress counters
@@ -30,17 +30,25 @@ public class SimulationData {
     public int firstReverse { get; private set; }
     public int endOfEmigration { get; private set; }
 
-    public void SimulationStart(SimulationManager simulationManager)
+    public SimulationData(SimulationManager simulationManager)
     {
-        sim = simulationManager;
+        simulation = simulationManager;
+    }
+
+    public void SimulationStarted()
+    {
         passivesInNewNests = new Dictionary<int, int>();
 
         // Find and keep a reference to the best nest option 
-        foreach (NestInfo nest in sim.NestInfo)
+        foreach (NestInfo nest in simulation.NestInfo)
         {
             if (bestNest == null || nest.Nest.quality > bestNest.Nest.quality)
             {
                 bestNest = nest;
+            }
+            if (nest.IsStartingNest != true)
+            {
+                passivesInNewNests.Add(nest.NestId, 0);
             }
         }
 
@@ -49,7 +57,7 @@ public class SimulationData {
 
     private void updateNestNumbers()
     {
-        foreach (NestInfo nest in sim.NestInfo)
+        foreach (NestInfo nest in simulation.NestInfo)
         {
             if (nest.IsStartingNest)
             {
@@ -57,7 +65,7 @@ public class SimulationData {
             }
             else
             {
-                passivesInNewNests.Add(nest.NestId, nest.AntsPassive.transform.childCount);
+                passivesInNewNests[nest.NestId] = nest.AntsPassive.transform.childCount;
             }
         }
     }
@@ -66,61 +74,61 @@ public class SimulationData {
     {
         updateEmigrationTimes();
         updateNestNumbers();
-        int totalAnts = sim.Ants.Count;
+        int totalAnts = simulation.Ants.Count;
         int emigratedAnts = passivesInNewNests.Sum(p => p.Value);
-        int antsInBestNest = passivesInNewNests[sim.GetNestID(bestNest.Nest)];
+        int antsInBestNest = passivesInNewNests[simulation.GetNestID(bestNest.Nest)];
 
-        emigrationCompletion = (float)((totalAnts - passivesInOldNest) / totalAnts);
-        emigrationRelativeAccuracy = antsInBestNest / emigratedAnts;
-        emigrationAbsoluteAccuracy = antsInBestNest / totalAnts;
+        emigrationCompletion = (totalAnts - passivesInOldNest) / (float)totalAnts;
+        emigrationRelativeAccuracy = antsInBestNest / (float)emigratedAnts;
+        emigrationAbsoluteAccuracy = antsInBestNest / (float)totalAnts;
     }
 
     // Check if any new emigration time checkpoints have been reached
     private void updateEmigrationTimes()
     {
-        foreach (AntManager ant in sim.Ants)
+        foreach (AntManager ant in simulation.Ants)
         {
             // Times are checked in the order they must occur in (e.g. recruiting cannot start until a nest is discovered
             if (discoveryTime == 0)
             {
                 if (ant.state == BehaviourState.Assessing)
                 {
-                    discoveryTime = (int)sim.TotalElapsedSimulatedTime("s");
+                    discoveryTime = (int)simulation.TotalElapsedSimulatedTime("s");
                 }
             }
             else if (firstRecruiter == 0)
             {
                 if (ant.state == BehaviourState.Recruiting)
                 {
-                    firstRecruiter = (int)sim.TotalElapsedSimulatedTime("s");
+                    firstRecruiter = (int)simulation.TotalElapsedSimulatedTime("s");
                 }
             }
             else if (firstTandem == 0)
             {
                 if (ant.follower != null)
                 {
-                    firstTandem = (int)sim.TotalElapsedSimulatedTime("s");
+                    firstTandem = (int)simulation.TotalElapsedSimulatedTime("s");
                 }
             }
             else if (firstCarry == 0)
             {
                 if (ant.isBeingCarried == true)
                 {
-                    firstCarry = (int)sim.TotalElapsedSimulatedTime("s");
+                    firstCarry = (int)simulation.TotalElapsedSimulatedTime("s");
                 }
             }
             else if (firstReverse == 0)
             {
                 if (ant.state == BehaviourState.Reversing && ant.follower != null)
                 {
-                    firstReverse = (int)sim.TotalElapsedSimulatedTime("s");
+                    firstReverse = (int)simulation.TotalElapsedSimulatedTime("s");
                 }
             }
         }
     }
 
-    public void SimulationFinish()
+    public void SimulationStopped()
     {
-        endOfEmigration = (int)sim.TotalElapsedSimulatedTime("s");
+        endOfEmigration = (int)simulation.TotalElapsedSimulatedTime("s");
     }
 }

@@ -59,6 +59,7 @@ public class ConfigMenu : MonoBehaviour, IDisposable
 
     private void RunInRegularMode()
     {
+
         #if !UNITY_WEBGL
             _experimentFileInput = GameObject.Find("pnlSaveLoad").gameObject.InputByName("txtFile");
             _arenaFileInput = GameObject.Find("pnlArena").gameObject.InputByName("txtFile");
@@ -67,7 +68,7 @@ public class ConfigMenu : MonoBehaviour, IDisposable
             _arenaFileInput.onValueChanged.AddListener(s => ValidateFile(s, _arenaFileInput));
 
             var file = PlayerPrefs.GetString("ExperimentFile");
-
+            
             if (!string.IsNullOrEmpty(file))
             {
                 try
@@ -76,11 +77,12 @@ public class ConfigMenu : MonoBehaviour, IDisposable
                 }
                 catch { }
             }
+            
             if (Settings == null)
             {
                 LoadSimulationSettings(new SimulationSettings());
             }
-
+            
             var saveExperiment = GameObject.Find("pnlSaveLoad").ButtonByName("Save");
             saveExperiment.onClick.AddListener(SaveExperiment_Clicked);
             var loadExperiment = GameObject.Find("pnlSaveLoad").ButtonByName("Load");
@@ -111,9 +113,15 @@ public class ConfigMenu : MonoBehaviour, IDisposable
 
     private void LoadSimulationSettings(SimulationSettings settings)
     {
+        
         Settings = settings;
 
-        try
+        foreach (string point in Assets.Scripts.Naming.SimulationEndPoints.points)
+        {
+            //Debug.Log(point);
+        }
+
+        try //? This doesnt seem to do anything, LevelSelect doesnt exist
         {
             var dropDown = GameObject.Find("LevelSelect").GetComponent<Dropdown>();
             foreach (var option in dropDown.options)
@@ -214,7 +222,7 @@ public class ConfigMenu : MonoBehaviour, IDisposable
         using (var sr = new StreamWriter(_experimentFileInput.text))
         {
             var xml = new XmlSerializer(typeof(SimulationSettings));
-
+            Debug.Log(xml);
             xml.Serialize(sr, Settings);
         }
 #endif
@@ -269,8 +277,8 @@ public class ConfigMenu : MonoBehaviour, IDisposable
         else if (property is SimulationListProperty)
         {
             var dropdown = a.GetComponentInChildren<Dropdown>();
-
             dropdown.ClearOptions();
+
             foreach (string option in ((SimulationListProperty)property).Options)
             {
                 dropdown.options.Add(new Dropdown.OptionData(option));

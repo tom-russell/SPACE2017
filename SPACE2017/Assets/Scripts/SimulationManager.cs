@@ -15,11 +15,11 @@ public class SimulationManager : MonoBehaviour
     public List<Transform> nests = new List<Transform>();
     public List<NestInfo> NestInfo { get; private set; }
     public GameObject[] doors;
-    public SimulationData simData { get; private set; }
-    public ResultsManager ResultsManager { get; private set; }
+    public SimulationData simulationData { get; private set; }
+    public ResultsManager resultsManager { get; private set; }
     public List<AntManager> Ants { get; private set; }
     public SimulationSettings Settings { get; private set; }
-    public EmigrationInformation EmigrationInformation { get; private set; }
+    //?public EmigrationInformation EmigrationInformation { get; private set; }
     int _sinceEmigrationCheck = 5;
     public int currentTick { get; private set; }
 
@@ -34,7 +34,6 @@ public class SimulationManager : MonoBehaviour
 
         Ants = new List<AntManager>();
         NestInfo = new List<NestInfo>();
-        simData = new SimulationData();
 
         Settings = settings;
         if (Settings == null)
@@ -89,9 +88,11 @@ public class SimulationManager : MonoBehaviour
                 ));
         }
 
-        ResultsManager = new ResultsManager(this);
-        EmigrationInformation = new EmigrationInformation(this);
-        ResultsManager.SimulationStarted();
+        simulationData = new SimulationData(this);
+        resultsManager = new ResultsManager(this);
+        //?EmigrationInformation = new EmigrationInformation(this);
+        simulationData.SimulationStarted();
+        resultsManager.SimulationStarted();
 
         SimulationRunning = true;
     }
@@ -190,7 +191,7 @@ public class SimulationManager : MonoBehaviour
         if (SimulationRunning)
         {
             currentTick++;
-
+            FullSecondPassed();
             // (this is used for testing determinism)
             if (Settings.RandomiseTimeScale.Value == true && currentTick % 500 == 0)
             {
@@ -201,8 +202,8 @@ public class SimulationManager : MonoBehaviour
             {
                 ant.Tick();
             }
-            ResultsManager.Tick();
-            EmigrationInformation.Tick();
+            simulationData.Tick();
+            resultsManager.Tick();
         }
         else
             return;
@@ -217,7 +218,7 @@ public class SimulationManager : MonoBehaviour
         if (_sinceEmigrationCheck <= 0)
         {
             _sinceEmigrationCheck = 5;
-            if (EmigrationInformation.Data.PassivesInOldNest == 0)
+            if (simulationData.passivesInOldNest == 0)
             {
                 SimulationRunning = false;
             }
@@ -226,7 +227,8 @@ public class SimulationManager : MonoBehaviour
         // If we are no longer running this update then notify the simulation has stopped
         if (SimulationRunning == false)
         {
-            ResultsManager.SimulationStopped();
+            simulationData.SimulationStopped();
+            resultsManager.SimulationStopped();
         }
     }
 
@@ -261,8 +263,24 @@ public class SimulationManager : MonoBehaviour
         else throw new System.Exception("Invalid function input: " + unit + ", s/m/ms expected.");
     }
 
+    // Returns true during ticks where the current simulation time is a full second. Used for 
+    public bool FullSecondPassed()
+    {
+        Debug.Log(TotalElapsedSimulatedTime("ms") + "ms\t" + TotalElapsedSimulatedTime("s") + "s\t" + TotalElapsedSimulatedTime("m") + "m\t");
+
+        if (Mathf.Approximately(TotalElapsedSimulatedTime("ms") % 1000, 0))
+        {
+            Debug.Log(TotalElapsedSimulatedTime("s") + "s has passed");
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     void OnDestroy()
     {
-        ResultsManager.Dispose();
+        resultsManager.Dispose();
     }
 }

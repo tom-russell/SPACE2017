@@ -49,8 +49,8 @@ namespace Assets.Scripts.Output
             }
 
             WriteLine(nestNumbersOutput.Substring(1));
-            WriteLine("FTRs: " + (Simulation.simData.successFTR));
-            WriteLine("RTRs: " + (Simulation.simData.successRTR));
+            WriteLine("FTRs: " + (Simulation.simulationData.successFTR));
+            WriteLine("RTRs: " + (Simulation.simulationData.successRTR));
 
             _cleanedUp = true;
         }

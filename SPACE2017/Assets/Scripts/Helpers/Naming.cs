@@ -70,7 +70,7 @@
             public static readonly string[] points = new string[] {
                 "End of Emigration",
                 "First Nest Discovery",
-                "First Recruiter" ,
+                "First Recruiter",
                 "First Social Carry"
             };
         }

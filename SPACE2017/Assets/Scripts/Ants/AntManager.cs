@@ -81,7 +81,6 @@ public class AntManager : MonoBehaviour
         // Decrement Counters only if 1 second of simulated time has elapsed
         if (Mathf.Approximately(simulation.TotalElapsedSimulatedTime("ms") % 1000, 0))
         {
-            if (DEBUG_ANT == true) Debug.Log(Mathf.RoundToInt(simulation.TotalElapsedSimulatedTime("s")));
             DecrementCounters();
         }
 
@@ -343,8 +342,8 @@ public class AntManager : MonoBehaviour
             reverseTandemRun = false;
         }*/
 
-        if (follower.currentNest == myNest) simulation.simData.successFTR++;    //? ftr failure data collection
-        else simulation.simData.successRTR++;
+        if (follower.currentNest == myNest) simulation.simulationData.successFTR++;    //? ftr failure data collection
+        else simulation.simulationData.successRTR++;
          
         follower = null;
         RecruitToNest(myNest);
@@ -941,12 +940,12 @@ public class AntManager : MonoBehaviour
         //? After a failed run the leader continues in the same direction
         if (previousState == BehaviourState.Reversing) // failed reverse run - head to old nest
         {
-            simulation.simData.failRTR++; //? tandem run success counters
+            simulation.simulationData.failRTR++; //? tandem run success counters
             newToOld = true;
         }
         else // failed forward run - head to new nest
         {
-            simulation.simData.failFTR++; //? tandem run success counters
+            simulation.simulationData.failFTR++; //? tandem run success counters
             newToOld = false;
         }
     }

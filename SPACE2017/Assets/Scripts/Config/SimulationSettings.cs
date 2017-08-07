@@ -99,6 +99,7 @@ namespace Assets.Scripts.Config
 
             RandomSeed = new RandomSeed();
             SimulationEndPoint = new SimulationEndPoint();
+            
             StartingTimeScale = new StartingTimeScale();
             RandomiseTimeScale = new RandomiseTimeScale();
             MaximumSimulationRunTime = new MaximumSimulationRunTime();

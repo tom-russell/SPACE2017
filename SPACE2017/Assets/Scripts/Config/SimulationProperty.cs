@@ -112,7 +112,8 @@ namespace Assets.Scripts.Config
     
     public abstract class SimulationListProperty : SimulationProperty<int>
     {
-        public List<string> Options { get; set; }
+        [XmlIgnore]
+        public List<string> Options { get; protected set; }
 
         public override string SetValue(string newValue)
         {

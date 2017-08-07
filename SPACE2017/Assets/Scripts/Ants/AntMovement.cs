@@ -45,7 +45,7 @@ public class AntMovement : MonoBehaviour
         // Ants that are being socially carried cannot move
         if (isBeingCarried == true) return;
         
-        // Debug option - keeps passive ants still for easier nest viewing
+        // Keeps passive ants still for much faster (~2.5x) max simulation speed and easier debugging
         if (this.ant.passive && passiveMove == false) return;
 
         // Call the correct movement function based on this ant's current state
@@ -102,7 +102,6 @@ public class AntMovement : MonoBehaviour
             GameObject door = DoorSearch(AntScales.Distances.DoorSenseRange);
             if (door != null)
             {
-                Debug.DrawLine(transform.position, door.transform.position, Color.red);
                 WalkToGameObject(door, false);
                 ResetTurnParameters(false);
             }
@@ -289,8 +288,6 @@ public class AntMovement : MonoBehaviour
     {
         // If follower is waiting (tactile contact with tandem leader) do not update movement
         if (ShouldTandemFollowerWait() == true) return;
-
-        Debug.DrawLine(transform.position, ant.estimateNewLeaderPos, Color.red);
 
         // If the follower has line of sight of the leader (within antennal contact range) then turn to face them
         if (ant.LineOfSight(ant.leader) == true)
