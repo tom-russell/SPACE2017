@@ -92,7 +92,6 @@ public class AntManager : MonoBehaviour
             // Check if ant is giving up recruiting
             if (simulation.TickManager.TotalElapsedSimulatedSeconds - _recruitmentWaitStartSeconds >= AntScales.Times.RecruiterWaitSeconds)
             {
-                Debug.Log("Function called");
                 recruitmentStage = RecruitmentStage.GoingToOldNest;
             }
         }*/

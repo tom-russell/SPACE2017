@@ -58,7 +58,7 @@ namespace Assets
             _results.Add(new ExecutionResults(Simulation, experimentPath));
 
             if (Simulation.Settings.OutputEmigrationData.Value)
-                _results.Add(new EmigrationResults(Simulation, experimentPath));
+                _results.Add(new EmigrationProgressResults(Simulation, experimentPath));
             if (Simulation.Settings.OutputColonyData.Value)
                 _results.Add(new ColonyResults(Simulation, experimentPath));
             if (Simulation.Settings.OutputAntDelta.Value)
@@ -70,7 +70,7 @@ namespace Assets
             if (Simulation.Settings.OutputAntStateDistribution.Value)
                 _results.Add(new AntStateDistributionResults(Simulation, experimentPath));
             if (Simulation.Settings.OutputEndSimData.Value)
-                _results.Add(new EndSimDataResults(Simulation, experimentPath));
+                _results.Add(new EmigrationEndResults(Simulation, experimentPath));
         }
 
         public void Dispose()

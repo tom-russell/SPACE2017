@@ -2,9 +2,9 @@
 
 namespace Assets.Scripts.Output
 {
-    public class EmigrationResults : FixedTickResults
+    public class EmigrationProgressResults : FixedTickResults
     {
-        public EmigrationResults(SimulationManager simulation, string basePath)
+        public EmigrationProgressResults(SimulationManager simulation, string basePath)
             : base(simulation, Path.Combine(basePath, "emigration"))
         {
             WriteLine("Tick,Property,Value");

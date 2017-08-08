@@ -4,11 +4,11 @@ using System.IO;
 
 namespace Assets.Scripts.Output
 {
-    public class EndSimDataResults : DeltaResults
+    public class EmigrationEndResults : DeltaResults
     {
         private bool _cleanedUp = false;
 
-        public EndSimDataResults(SimulationManager simulation, string basePath)
+        public EmigrationEndResults(SimulationManager simulation, string basePath)
             : base(simulation, Path.Combine(basePath, "endSimData"))
         {
             //WriteLine("Start: " + _start.ToString("dd/MM/yyyy HH:mm:ss"));

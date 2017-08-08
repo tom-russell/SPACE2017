@@ -15,7 +15,7 @@ namespace Assets.Scripts.Arenas
         private bool _instantiated;
         private SimulationSettings _settings;
         private Arena _arena;
-        private Vector3 _worldSize;
+        public Vector3 worldSize { get; private set; }
 
         public ArenaLoader()
         {
@@ -85,8 +85,8 @@ namespace Assets.Scripts.Arenas
             CreateTerrain();
             CreateWalls();
             CreateNests();
-            MoveCamera();
             StartSimulation();
+            GameObject.Find("CameraOptions").GetComponent<CameraOptions>().SetUpCameras();
             Loading = false;
         }
 
@@ -117,7 +117,7 @@ namespace Assets.Scripts.Arenas
             collider.terrainData = data;
             terrain.terrainData = data;
 
-            _worldSize = data.size;
+            worldSize = data.size;
         }
 
         private void CreateWalls()
@@ -126,23 +126,23 @@ namespace Assets.Scripts.Arenas
 
             var a = GameObject.Instantiate(wallPrefab);
 
-            a.transform.position = new Vector3(_worldSize.x / 2, .5f, 0);
-            a.transform.localScale = new Vector3(_worldSize.x, 1, .5f);
+            a.transform.position = new Vector3(worldSize.x / 2, .5f, 0);
+            a.transform.localScale = new Vector3(worldSize.x, 1, .5f);
 
             var b = GameObject.Instantiate(wallPrefab);
 
-            b.transform.position = new Vector3(_worldSize.x / 2, .5f, _worldSize.z);
-            b.transform.localScale = new Vector3(_worldSize.x, 1, .5f);
+            b.transform.position = new Vector3(worldSize.x / 2, .5f, worldSize.z);
+            b.transform.localScale = new Vector3(worldSize.x, 1, .5f);
 
             var c = GameObject.Instantiate(wallPrefab);
 
-            c.transform.position = new Vector3(_worldSize.x, .5f, _worldSize.z / 2);
-            c.transform.localScale = new Vector3(.5f, 1, _worldSize.z);
+            c.transform.position = new Vector3(worldSize.x, .5f, worldSize.z / 2);
+            c.transform.localScale = new Vector3(.5f, 1, worldSize.z);
 
             var d = GameObject.Instantiate(wallPrefab);
 
-            d.transform.position = new Vector3(0, .5f, _worldSize.z / 2);
-            d.transform.localScale = new Vector3(.5f, 1, _worldSize.z);
+            d.transform.position = new Vector3(0, .5f, worldSize.z / 2);
+            d.transform.localScale = new Vector3(.5f, 1, worldSize.z);
         }
 
         private void CreateNests()
@@ -172,19 +172,12 @@ namespace Assets.Scripts.Arenas
             nestGO.NestManager().quality = nest.Quality;
         }
 
-        private void MoveCamera()
-        {
-            var mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-            mainCamera.transform.position = new Vector3(0, (_worldSize.x + _worldSize.z) / 8, 0);
-            mainCamera.transform.LookAt(new Vector3(_worldSize.x / 4.5f, 0, _worldSize.z / 4.5f));
-        }
-
         private void MoveLight()
         {
             var light = GameObject.Find("Directional Light");
 
-            light.transform.position = new Vector3(_worldSize.x / 2, _worldSize.x + _worldSize.z, _worldSize.z / 2);
-            light.transform.LookAt(new Vector3(_worldSize.x / 2, 0, _worldSize.z / 2));
+            light.transform.position = new Vector3(worldSize.x / 2, worldSize.x + worldSize.z, worldSize.z / 2);
+            light.transform.LookAt(new Vector3(worldSize.x / 2, 0, worldSize.z / 2));
         }
 
         private void StartSimulation()

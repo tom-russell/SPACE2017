@@ -17,7 +17,7 @@ public class AntMovement : MonoBehaviour
     private Vector3 lastTurn;                       // The position of the ant at the previous direction change
     public bool isBeingCarried = false;             // If true, this ant is being carried by another ant and therefore cannot move 
     public bool followingWall = false;              // When the ant is following/aligned with a wall this boolean is true.  
-    private bool passiveMove = true;               // If true passive ants will be able to move within their home nest.
+    private bool passiveMove = false;               // If true passive ants will be able to move within their home nest.
 
     private float maxTimeBetweenTurns = 1f;         // The maximum time allowed between direction changes
     private float maxVarBase = 20f;                 // The maximum angle (degrees) an ant can turn at one time

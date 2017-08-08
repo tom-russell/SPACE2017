@@ -4,7 +4,7 @@ using Assets.Scripts.Nests;
 using Assets.Scripts.Extensions;
 using System.Linq;
 
-public class SimulationData {
+public class EmigrationData {
 
     private SimulationManager simulation;
     NestInfo bestNest;
@@ -30,7 +30,7 @@ public class SimulationData {
     public int firstReverse { get; private set; }
     public int endOfEmigration { get; private set; }
 
-    public SimulationData(SimulationManager simulationManager)
+    public EmigrationData(SimulationManager simulationManager)
     {
         simulation = simulationManager;
     }
