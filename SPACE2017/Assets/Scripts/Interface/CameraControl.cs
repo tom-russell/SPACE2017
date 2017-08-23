@@ -1,14 +1,19 @@
 ﻿using UnityEngine;
+using Assets.Scripts;
 
 public class CameraControl : MonoBehaviour
 {
     private Camera _camera;
     private bool _readInput;
 
-    float flySpeed = 0.1f;
+    float flySpeed = 10f;
     
     float accelerationRatio = 3;
     float slowDownRatio = 0.2f;
+
+    // Variables for the ant following functionality
+    public bool followingAnt = false;
+    Transform targetAnt;
     
     // http://forum.unity3d.com/threads/a-free-simple-smooth-mouselook.73117/
     Vector2 _mouseAbsolute;
@@ -32,7 +37,6 @@ public class CameraControl : MonoBehaviour
 
         ResetView();
 
-
         // Set target direction for the character body to its inital state.
         if (characterBody) targetCharacterDirection = characterBody.transform.localRotation.eulerAngles;
     }
@@ -42,10 +46,18 @@ public class CameraControl : MonoBehaviour
         if (!_camera.enabled)
             return;
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(0))
         {
-            // Reset the target direction on the first frame the mouse is pressed
-           // targetDirection = transform.localRotation.eulerAngles;
+            RaycastHit hitInfo;
+            Ray clickRay = _camera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(clickRay, out hitInfo, 50f, PhysicsLayers.Ants))
+            { 
+                followingAnt = true;
+                targetAnt = hitInfo.transform;
+                FollowAntMovement();
+                _camera.transform.rotation = Quaternion.Euler(90, 0, 0);
+            }
         }
         else if (Input.GetMouseButton(1))
         {
@@ -113,31 +125,49 @@ public class CameraControl : MonoBehaviour
         {
             flySpeed /= slowDownRatio;
         }
+
         //
+        float adjustedSpeed = (flySpeed * Time.deltaTime) / Time.timeScale;
         if (Input.GetAxisRaw("Vertical") != 0)
         {
-            transform.Translate(Vector3.up * flySpeed * Input.GetAxisRaw("Vertical"));
+            transform.Translate(Vector3.up * Input.GetAxisRaw("Vertical") * adjustedSpeed);
+            followingAnt = false;
         }
-
-
         if (Input.GetAxisRaw("Horizontal") != 0)
         {
-            transform.Translate(Vector3.right * flySpeed * Input.GetAxisRaw("Horizontal"));
+            transform.Translate(Vector3.right * Input.GetAxisRaw("Horizontal") * adjustedSpeed);
+            followingAnt = false;
         }
-
-
         if (Input.GetAxisRaw("Up") != 0)
         {
-            transform.Translate(Vector3.forward * flySpeed);
+            transform.Translate(Vector3.forward * adjustedSpeed);
         }
         else if (Input.GetAxisRaw("Down") != 0)
         {
-            transform.Translate(-Vector3.forward * flySpeed);
+            transform.Translate(-Vector3.forward * adjustedSpeed);
+        }
+
+        if (followingAnt)
+        {
+            FollowAntMovement();
         }
     }
 
     public void ResetView()
     {
         targetDirection = transform.localRotation.eulerAngles;
+    }
+
+    public void FollowAntMovement()
+    {
+        /*Vector3 antPos = targetAnt.position;
+        Vector3 desiredPos = new Vector3(antPos.x, antPos.y + 1f, antPos.z) - (targetAnt.forward * 0.5f);
+        transform.position = Vector3.Lerp(transform.position, desiredPos, Time.deltaTime);
+
+        Vector3 antAngles = targetAnt.rotation.eulerAngles;
+        Quaternion desiredRotation = Quaternion.Euler(antAngles + new Vector3(45f, 0f, 0f));
+        transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, Time.deltaTime);*/
+        Vector3 requiredPosition = new Vector3(targetAnt.position.x, transform.position.y, targetAnt.position.z);
+        transform.position = Vector3.Lerp(transform.position, requiredPosition, Time.deltaTime);
     }
 }

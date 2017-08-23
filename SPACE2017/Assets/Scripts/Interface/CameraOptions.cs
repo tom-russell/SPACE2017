@@ -41,7 +41,7 @@ public class CameraOptions : MonoBehaviour
         }
     }
 
-    public void SetUpCameras()
+    public void SetUpCamera()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         worldSize = GameObject.Find("Arena Loader").GetComponent<ArenaLoader>().worldSize;
@@ -110,7 +110,7 @@ public class CameraOptions : MonoBehaviour
     {
         newRotation = Quaternion.LookRotation(axis);
         CancelInvoke("SmoothAngle");
-        InvokeRepeating("SmoothAngle", 0, cameraUpdateFrequency);
+        InvokeRepeating("SmoothAngle", 0, cameraUpdateFrequency * Time.timeScale);  // timescale is used to keep the camera speed consistent when the simulations are set to higher speeds
     }
 
     private void SmoothAngle()
@@ -128,9 +128,11 @@ public class CameraOptions : MonoBehaviour
 
     private void ChangePosition(Vector3 position)
     {
+        mainCamera.GetComponent<CameraControl>().followingAnt = false;
+        
         newPosition = position;
         CancelInvoke("SmoothPosition");
-        InvokeRepeating("SmoothPosition", 0, 0.005f);
+        InvokeRepeating("SmoothPosition", 0, cameraUpdateFrequency * Time.timeScale);
     }
 
     private void SmoothPosition()

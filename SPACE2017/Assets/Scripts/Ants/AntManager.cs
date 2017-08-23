@@ -38,12 +38,13 @@ public class AntManager : MonoBehaviour
     private bool comparisonAssess = true;       //? This should probably be a setting instead // When true this allows the ant to compare new nests it encounters to the nest it currently has allegiance to.
 
     // Recruitment and Tandem Run Variables
-    public bool newToOld;                   //? ideally do away with this and have RecruitmentStage enum // True when the ant is head from their new nest (recruiting TO) to the old nest (recruiting FROM)
-    private bool finishedRecruiting;        // True when this ant has finished recruiting and is returning to its nest
-    private float perceivedQuorum;          // The quorum that this ant perceives this.myNest to have
-    public int quorumThreshold;             // Quorum threshold where recruiting ant carries rather than tandem runs
-    private int reverseTime;                // The countdown for recruiters waiting in their home nest attempting to start a reverse tandem run.
-    public int recruitTime;                 // The countdown for recruiters waiting in their old nest trying to start a forward tandem run.
+    public RecruitmentStage recruitmentStage;   // The current direction of movement/waiting location of the recruiting ant
+    private bool finishedRecruiting;            // True when this ant has finished recruiting and is returning to its nest
+    private float perceivedQuorum;              // The quorum that this ant perceives this.myNest to have
+    public int quorumThreshold;                 // Quorum threshold where recruiting ant carries rather than tandem runs
+    private int reverseTime;                    // The countdown for recruiters waiting in their new home nest attempting to start a reverse tandem run (after quorum is reached).
+    public int waitOldNestTime;                 // The countdown for recruiters waiting in their old nest trying to start a forward tandem run/social carry.
+    private int waitNewNestTime;                // The countdown for recruiters waiting in their new home nest (before quorum is reached).
     public bool followerWait = true;
     public bool leaderWaits = false;
     private float timeWhenTandemLostContact = 0f;
@@ -152,7 +153,7 @@ public class AntManager : MonoBehaviour
         //BUGFIX: Sometimes new to old is incorrectly set for recruiters - unclear why as of yet.
         if (state == BehaviourState.Recruiting && follower != null && inNest && NearerOld())
         {
-            newToOld = false;
+            recruitmentStage = RecruitmentStage.GoingToNewNest;
         }
 
         move.Tick(); //? Moved this to the end
@@ -160,15 +161,29 @@ public class AntManager : MonoBehaviour
 
     private void DecrementCounters()
     {
-        if (state == BehaviourState.Recruiting && currentNest == oldNest && newToOld == true)
+        if (state == BehaviourState.Recruiting)
         {
-            if (recruitTime > 0)
+            if (currentNest == oldNest && recruitmentStage == RecruitmentStage.GoingToOldNest)
             {
-                recruitTime -= 1;
+                if (waitOldNestTime > 0)
+                {
+                    waitOldNestTime -= 1;
+                }
+                else
+                {
+                    recruitmentStage = RecruitmentStage.GoingToNewNest;
+                }
             }
-            else
+            else if (currentNest == myNest && recruitmentStage == RecruitmentStage.GoingToNewNest)
             {
-                newToOld = false;
+                if (waitNewNestTime > 0)
+                {
+                    waitNewNestTime -= 1;
+                }
+                else
+                {
+                    RecruitToNest(myNest);
+                }
             }
         }
 
@@ -241,10 +256,10 @@ public class AntManager : MonoBehaviour
         if (transform.parent.name != prefix)
         {
             transform.parent = GameObject.Find(prefix).transform;
-            if (colour.HasValue)
-            {
-                SetPrimaryColour(colour.Value);
-            }
+        }
+        if (colour.HasValue)
+        {
+            SetPrimaryColour(colour.Value);
         }
     }
 
@@ -297,7 +312,7 @@ public class AntManager : MonoBehaviour
         //let following ant know that you're leading it
         this.follower = follower;
         this.follower.Follow(this);
-        newToOld = false;
+        recruitmentStage = RecruitmentStage.GoingToNewNest;
     }
 
     public void ReverseLead(AntManager follower)
@@ -313,7 +328,7 @@ public class AntManager : MonoBehaviour
         //let following ant know that you're leading it
         this.follower = follower;
         this.follower.Follow(this);
-        newToOld = true;
+        recruitmentStage = RecruitmentStage.GoingToOldNest;
     }
 
     public void StopLeading()
@@ -372,7 +387,7 @@ public class AntManager : MonoBehaviour
     {
         //start following leader towards nest
         ChangeState(BehaviourState.Following);
-        newToOld = false;
+        //? This doesn't seem necessary // recruitmentStage = RecruitmentStage.GoingToNewNest;
         this.leader = leader;
 
         followerWait = true;
@@ -389,12 +404,8 @@ public class AntManager : MonoBehaviour
     //makes this ant pick up 'otherAnt' and carry them back to preffered nest
     public void PickUp(AntManager otherAnt)
     {
-        /*socialCarrying = true;
-        startPos = transform.position;
-        carryingTimeSteps = timeStep;*/
-
         otherAnt.PickedUp(transform);
-        newToOld = false;
+        recruitmentStage = RecruitmentStage.GoingToNewNest;
     }
 
     //lets this ant know that it has been picked up by carrier
@@ -441,7 +452,7 @@ public class AntManager : MonoBehaviour
             sensesCol.enabled = true;
         }
     }
-
+    /*
     //? very poorly named function. bit weird this is called from antmovement too. parts/all could be redundant
     //? function doesnt make much sense to me? why is newToOld set true if the oldnest is empty 
     //returns true if ant is within certain range of nest centre and there are no more passive ants ro recruit there
@@ -453,20 +464,15 @@ public class AntManager : MonoBehaviour
         if (GameObject.Find("P" + id).transform.childCount == 0 && Vector3.Distance(oldNest.transform.position, transform.position) < 1f)   //? changed range 10 to 1 here
         {
             //oldNest = null;
-            newToOld = true;
+            recruitmentStage = RecruitmentStage.GoingToOldNest;
             return false;
         }
         else return true;
-    }
+    }*/
 
     //this is called whenever an ant enters a nest
     public void EnteredNest(NestManager nest)
     {
-        /*if (failedTandemLeader == true && state == BehaviourState.Recruiting && nest != oldNest)
-        {
-            failedTandemLeader = false; //? this seems redundant
-        }*/
-
         currentNest = nest;
         inNest = true;
 
@@ -525,10 +531,9 @@ public class AntManager : MonoBehaviour
             }
         }
 
-        //if entering own nest and finished recruiting then become inactive
+        // Behaviour for recruiters entering their new nest
         if (state == BehaviourState.Recruiting && nest == myNest)
         {
-
             if (finishedRecruiting == true)
             {
                 ChangeState(BehaviourState.Inactive);
@@ -538,26 +543,25 @@ public class AntManager : MonoBehaviour
             }
             else
             {
-                // If the quorum is not yet reached, there 
+                // If the quorum is not yet reached, there is a chance that a recruiter will reassess their new nest
                 if (follower == null && RandomGenerator.Instance.Range(0f, 1f) < AntScales.Other.pRecAssessNew && !IsQuorumReached())
                 {
                     nestToAssess = nest;
                     ChangeState(BehaviourState.Assessing);
                 }
-                else
+                else if (waitNewNestTime == 0) // If the recruiter needs to now wait in the new nest, set the wait counter
                 {
-                    RecruitToNest(nest);
+                    waitNewNestTime = Mathf.RoundToInt(quorumThreshold * simulation.Settings.WaitNewNestFactor.Value);  // Recruiters wait in the new nest for time dependent on the quorum threshold
                 }
             }
         }
 
         if (state == BehaviourState.Recruiting && nest == oldNest)
         {
-
             //if no passive ants left in old nest then turn around and return home
             if (finishedRecruiting == true || nest.GetPassive() == 0)
             {
-                newToOld = false;
+                recruitmentStage = RecruitmentStage.GoingToNewNest;
                 finishedRecruiting = true;
                 return;
             }
@@ -574,7 +578,7 @@ public class AntManager : MonoBehaviour
         {
             if (nest.GetPassive() == 0)
             {
-                newToOld = false;
+                recruitmentStage = RecruitmentStage.GoingToNewNest;
                 ChangeState(BehaviourState.Recruiting);
                 finishedRecruiting = true;
                 return;
@@ -824,11 +828,11 @@ public class AntManager : MonoBehaviour
     //switches ants allegiance to this nest and sends them back to their old one to recruit some more
     private void RecruitToNest(NestManager nest)
     {
-        newToOld = true;
+        recruitmentStage = RecruitmentStage.GoingToOldNest;
         myNest = nest;
         CheckQuorum(nest);
 
-        recruitTime = AntScales.Times.recTryTime;
+        waitOldNestTime = AntScales.Times.recTryTime;
 
         leader = null; //? BUGFIX == random case where an assessor -> recruiter but still had leader set to something, so caused a null exception
 
@@ -939,13 +943,13 @@ public class AntManager : MonoBehaviour
         //? After a failed run the leader continues in the same direction
         if (previousState == BehaviourState.Reversing) // failed reverse run - head to old nest
         {
-            simulation.simulationData.failRTR++; //? tandem run success counters
-            newToOld = true;
+            simulation.simulationData.failRTR++; // tandem run counters
+            recruitmentStage = RecruitmentStage.GoingToOldNest;
         }
         else // failed forward run - head to new nest
         {
-            simulation.simulationData.failFTR++; //? tandem run success counters
-            newToOld = false;
+            simulation.simulationData.failFTR++; // tandem run counters
+            recruitmentStage = RecruitmentStage.GoingToNewNest;
         }
     }
 
@@ -954,25 +958,14 @@ public class AntManager : MonoBehaviour
     {
         StopFollowing();
         ChangeState(previousState);
-
-        //? changed this bit below, was caused weird behaviour
-        /*// greg edit
-        //TODO need to make accurate behaviour after
-        if (myNest == oldNest)
-        {
-            ChangeState(BehaviourState.Scouting);
-        }
-        else
-        {
-            ChangeState(BehaviourState.Inactive);
-        }*/
     }
 
     public void SetPrimaryColour(Color primary)
     {
+        if (DEBUG_ANT == true) Debug.Log("assigning parent: state = " + state + primary);
         _primaryColour = primary;
         if (!_temporaryColour.HasValue)
-            this.ChangeColour(_primaryColour);
+        { this.ChangeColour(_primaryColour); if (DEBUG_ANT == true)  Debug.Log("job dun"); }
     }
 
     public void ClearTemporaryColour()
@@ -989,6 +982,3 @@ public class AntManager : MonoBehaviour
         this.ChangeColour(_temporaryColour.Value);
     }
 }
-
-
-

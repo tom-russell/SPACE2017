@@ -86,7 +86,7 @@ namespace Assets.Scripts.Arenas
             CreateWalls();
             CreateNests();
             StartSimulation();
-            GameObject.Find("CameraOptions").GetComponent<CameraOptions>().SetUpCameras();
+            GameObject.Find("CameraOptions").GetComponent<CameraOptions>().SetUpCamera();
             Loading = false;
         }
 

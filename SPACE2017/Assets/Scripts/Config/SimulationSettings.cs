@@ -50,6 +50,9 @@ namespace Assets.Scripts.Config
         public MaximumSimulationRunTime MaximumSimulationRunTime { get; set; }
 
         [SerializeField]
+        public WaitNewNestFactor WaitNewNestFactor { get; set; }
+
+        [SerializeField]
         public AntsLayPheromones AntsLayPheromones { get; set; }
 
         [SerializeField]
@@ -108,6 +111,7 @@ namespace Assets.Scripts.Config
             QuorumThreshold = new QuorumThreshold();
             ProportionActive = new ProportionActive();
 
+            WaitNewNestFactor = new WaitNewNestFactor();
             AntsLayPheromones = new AntsLayPheromones();
             AntsReverseTandemRun = new AntsReverseTandemRun();
 
@@ -145,6 +149,7 @@ namespace Assets.Scripts.Config
                     FirstNewNestQuality,
                     SecondNewNestQuality,
 
+                    WaitNewNestFactor,
                     AntsLayPheromones,
                     AntsReverseTandemRun,
 

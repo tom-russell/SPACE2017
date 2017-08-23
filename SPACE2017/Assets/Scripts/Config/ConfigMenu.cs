@@ -125,9 +125,12 @@ public class ConfigMenu : MonoBehaviour, IDisposable
         }
         catch { }
 
-        int num = 0;
+        foreach(Transform previousInput in GetPropertiesContentArea().GetComponentsInChildren<Transform>())
+        {
+            if (previousInput.name != "Content") Destroy(previousInput.gameObject);
+        }
 
-        GetPropertiesContentArea().DetachChildren();
+        int num = 0;
         foreach (SimulationPropertyBase v in Settings.AllProperties)
         {
             CreateInput(v, num);
@@ -136,6 +139,7 @@ public class ConfigMenu : MonoBehaviour, IDisposable
 
         var rect = GetPropertiesContentArea().GetComponent<RectTransform>();
         rect.sizeDelta = new Vector2(rect.rect.width, 35 * Settings.AllProperties.Count);
+        rect.transform.localPosition = Vector3.zero + new Vector3(5, 5);
 
         Screen.SetResolution(Screen.width + 1, Screen.height, Screen.fullScreen, Screen.currentResolution.refreshRate);
 
@@ -295,7 +299,6 @@ public class ConfigMenu : MonoBehaviour, IDisposable
     {
         var properties = GameObject.Find("Properties");
         var content = properties.transform.Find("Viewport").Find("Content");
-        content.transform.position = Vector3.zero; //? BUGFIX - content x value kept being set to -780 so fields weren't visible?
         return content;
     }
 
@@ -328,7 +331,7 @@ public class ConfigMenu : MonoBehaviour, IDisposable
             {
                 if (SimulationManager.Instance != null)
                     WriteLine("Done");
-
+                
                 // Remove the last batch experiment from the list. If the list is now empty then exit - batch is complete
                 _batchExperimentPaths.RemoveAt(0);  
                 if (_batchExperimentPaths.Count == 0)
@@ -373,7 +376,7 @@ public class ConfigMenu : MonoBehaviour, IDisposable
                     {
                         WriteLine("Running " + experiment);
 
-                        var go = new GameObject("Arena Loader - " + Path.GetFileName(settings.ExperimentName.Value));
+                        var go = new GameObject("Arena Loader");//? - " + Path.GetFileName(settings.ExperimentName.Value));
                         GameObject.DontDestroyOnLoad(go);
                         go.AddComponent<ArenaLoader>();
                         go.GetComponent<ArenaLoader>().Load(settings);

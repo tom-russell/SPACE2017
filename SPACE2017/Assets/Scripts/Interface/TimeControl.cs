@@ -92,6 +92,14 @@ public class TimeControl : MonoBehaviour
         {
             UpdateFPS();
         }
+        if (Input.GetKeyDown(KeyCode.Plus) || Input.GetKeyDown(KeyCode.Equals))
+        {
+            ModifySpeed(1);
+        }
+        else if (Input.GetKeyDown(KeyCode.Minus))
+        {
+            ModifySpeed(-1);
+        }
     }
 
     void FixedUpdate()

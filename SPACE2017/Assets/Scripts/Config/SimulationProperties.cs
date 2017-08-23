@@ -182,6 +182,22 @@ namespace Assets.Scripts.Config
         }
     }
 
+    public class WaitNewNestFactor : SimulationFloatProperty
+    {
+        public override float? MaxValue { get { return null; } }
+
+        public override float? MinValue { get { return 0; } }
+
+        public override string Name { get { return "Recruiter Wait Time Factor"; } }
+
+        public override string Description { get { return "The quorum threshold is multiplied by this factor to determine the time a recruiter should wait in the new nest for."; } }
+
+        public WaitNewNestFactor()
+        {
+            Value = 0.0f;
+        }
+    }
+
     public class AntsLayPheromones : SimulationBoolProperty
     {
         public override string Name { get { return "Ants Lay Pheromones"; } }

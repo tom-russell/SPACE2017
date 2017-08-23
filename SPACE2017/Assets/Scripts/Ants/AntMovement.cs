@@ -204,21 +204,17 @@ public class AntMovement : MonoBehaviour
             // Recruiters not tandem running or carrying move back and forth between the new and old nests.
             else
             {
-                if (ant.newToOld == true && ant.OldNestOccupied()) 
+                // The target nest is either the old or new nest, depending on the current recruiter direction
+                NestManager targetNest = (ant.recruitmentStage == RecruitmentStage.GoingToOldNest) ? ant.oldNest : ant.myNest;
+
+                // If the recruiter has reached the target nest, then walk randomly inside while waiting/searching for recruits
+                if (ant.currentNest == targetNest)
                 {
-                    // If the ant is inside the old nest then walk randomly inside to search for recruits
-                    if (ant.currentNest == ant.oldNest)
-                    {
-                        RandomWalk(maxVarBase);
-                    }
-                    else // Else return to the old nest to search for a recruit
-                    {
-                        WalkToNest(ant.oldNest);
-                    }
+                    RandomWalk(maxVarBase);
                 }
-                else
+                else // Else walk towards the target nest
                 {
-                    WalkToNest(ant.myNest);
+                    WalkToNest(targetNest);
                 }
             }
 

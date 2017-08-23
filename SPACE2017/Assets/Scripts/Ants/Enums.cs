@@ -20,7 +20,6 @@
     public enum RecruitmentStage //? not currently used
     {
         GoingToOldNest,
-        GoingToNewNest,
-        WaitingInNewNest
+        GoingToNewNest
     }
 }

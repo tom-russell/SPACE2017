@@ -88,7 +88,7 @@ public class EmigrationData {
     {
         foreach (AntManager ant in simulation.Ants)
         {
-            // Times are checked in the order they must occur in (e.g. recruiting cannot start until a nest is discovered
+            // Times are set only once
             if (discoveryTime == 0)
             {
                 if (ant.state == BehaviourState.Assessing)
@@ -97,7 +97,7 @@ public class EmigrationData {
                     return;
                 }
             }
-            else if (firstRecruiter == 0)
+            if (firstRecruiter == 0)
             {
                 if (ant.state == BehaviourState.Recruiting)
                 {
@@ -105,15 +105,15 @@ public class EmigrationData {
                     return;
                 }
             }
-            else if (firstTandem == 0)
+            if (firstTandem == 0)
             {
-                if (ant.IsTandemRunning())
+                if (ant.state == BehaviourState.Recruiting && ant.follower != null)
                 {
                     firstTandem = (int)simulation.TotalElapsedSimulatedTime("s");
                     return;
                 }
             }
-            else if (firstCarry == 0)
+            if (firstCarry == 0)
             {
                 if (ant.IsTransporting())
                 {
@@ -121,7 +121,7 @@ public class EmigrationData {
                     return;
                 }
             }
-            else if (firstReverse == 0)
+            if (firstReverse == 0)
             {
                 if (ant.state == BehaviourState.Reversing && ant.follower != null)
                 {
