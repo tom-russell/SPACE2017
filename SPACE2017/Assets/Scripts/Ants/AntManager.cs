@@ -360,7 +360,7 @@ public class AntManager : MonoBehaviour
         else simulation.simulationData.successRTR++;
          
         follower = null;
-        RecruitToNest(myNest);
+        //? RecruitToNest(myNest);
     }
 
     //returns true if there is a line of sight between this ant and the given other ant
@@ -605,12 +605,12 @@ public class AntManager : MonoBehaviour
             if (nest == oldNest && GameObject.Find("P" + id).transform.childCount == 0)     //? could have a better way to check passive ants left in nest
                 //oldNest = null;    
                 */
-
+            /* //? Don't think this is needed
             //if recruiting and this is your nest then go back to looking around for ants to recruit 
             if (state == BehaviourState.Recruiting && nest == myNest && follower == null)
             {
                 RecruitToNest(myNest);
-            }
+            }*/
         }
 
         /* //? not sure what this is for
