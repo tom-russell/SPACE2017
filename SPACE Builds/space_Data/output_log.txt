@@ -23,55 +23,1472 @@ Platform assembly: D:\Libraries\Documents\Google Drive\Bristol Work\Research Ski
 Loading D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\SPACE Builds\space_Data\Managed\UnityEngine.Timeline.dll into Unity Child Domain
 Platform assembly: D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\SPACE Builds\space_Data\Managed\System.dll (this message is harmless)
 Platform assembly: D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\SPACE Builds\space_Data\Managed\System.Core.dll (this message is harmless)
-- Completed reload, in  0.167 seconds
+- Completed reload, in  0.017 seconds
 WARNING: Shader Unsupported: 'Hidden/VR/BlitCopyFromTexArray' - Pass '' has no vertex shader
 WARNING: Shader Unsupported: 'Hidden/VR/BlitCopyFromTexArray' - Setting to default shader.
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 0.766135 ms
+UnloadTime: 0.659391 ms
 Platform assembly: D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\SPACE Builds\space_Data\Managed\System.Xml.dll (this message is harmless)
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 5f44 -> priority: 1 
-  Thread -> id: 5904 -> priority: 1 
+  Thread -> id: 4658 -> priority: 1 
+  Thread -> id: 4dcc -> priority: 1 
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=00_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=00_arena=BigArenaFarNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=00_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=00_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=00_arena=SmallArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
 Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 4.305131 ms
+UnloadTime: 1.402564 ms
 
-Unloading 53 unused Assets to reduce memory usage. Loaded Objects now: 439.
-Total: 0.320231 ms (FindLiveObjects: 0.034133 ms CreateObjectMapping: 0.013032 ms MarkObjects: 0.248241 ms  DeleteObjects: 0.024513 ms)
+Unloading 106 unused Assets to reduce memory usage. Loaded Objects now: 1273.
+Total: 0.999172 ms (FindLiveObjects: 0.057716 ms CreateObjectMapping: 0.025134 ms MarkObjects: 0.889635 ms  DeleteObjects: 0.026065 ms)
 
-IndexOutOfRangeException: Array index is out of range.
-  at TimeControl.ModifySpeed (Int32 change) [0x00000] in <filename unknown>:0 
-  at TimeControl.btnUp_Click () [0x00000] in <filename unknown>:0 
-  at UnityEngine.Events.InvokableCall.Invoke (System.Object[] args) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Events.InvokableCallList.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Events.UnityEventBase.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Events.UnityEvent.Invoke () [0x00000] in <filename unknown>:0 
-  at UnityEngine.UI.Button.Press () [0x00000] in <filename unknown>:0 
-  at UnityEngine.UI.Button.OnPointerClick (UnityEngine.EventSystems.PointerEventData eventData) [0x00000] in <filename unknown>:0 
-  at UnityEngine.EventSystems.ExecuteEvents.Execute (IPointerClickHandler handler, UnityEngine.EventSystems.BaseEventData eventData) [0x00000] in <filename unknown>:0 
-  at UnityEngine.EventSystems.ExecuteEvents.Execute[IPointerClickHandler] (UnityEngine.GameObject target, UnityEngine.EventSystems.BaseEventData eventData, UnityEngine.EventSystems.EventFunction`1 functor) [0x00000] in <filename unknown>:0 
-UnityEngine.DebugLogHandler:Internal_LogException(Exception, Object)
-UnityEngine.DebugLogHandler:LogException(Exception, Object)
-UnityEngine.Logger:LogException(Exception, Object)
-UnityEngine.Debug:LogException(Exception)
-UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1)
-UnityEngine.EventSystems.StandaloneInputModule:ProcessMousePress(MouseButtonEventData)
-UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent(Int32)
-UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent()
-UnityEngine.EventSystems.StandaloneInputModule:Process()
-UnityEngine.EventSystems.EventSystem:Update()
+Done
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-NullReferenceException
-  at (wrapper managed-to-native) UnityEngine.Component:get_transform ()
-  at SimulationManager.GetNestID (.NestManager nest) [0x00000] in <filename unknown>:0 
-  at Assets.Scripts.Output.EndSimDataResults.CleanUp () [0x00000] in <filename unknown>:0 
-  at Assets.Scripts.Output.EndSimDataResults.BeforeDispose () [0x00000] in <filename unknown>:0 
-  at Assets.Scripts.Output.Results.Dispose () [0x00000] in <filename unknown>:0 
-  at Assets.ResultsManager.Dispose () [0x00000] in <filename unknown>:0 
-  at SimulationManager.OnDestroy () [0x00000] in <filename unknown>:0 
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=01_arena=BigArenaCloseNests.xml
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=01_arena=BigArenaFarNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=01_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=01_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=01_arena=SmallArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 29.151001 ms
+
+Unloading 341 unused Assets to reduce memory usage. Loaded Objects now: 1278.
+Total: 2.140462 ms (FindLiveObjects: 0.106433 ms CreateObjectMapping: 0.029168 ms MarkObjects: 0.929974 ms  DeleteObjects: 1.074265 ms)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=02_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=02_arena=BigArenaFarNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=02_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=02_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=02_arena=SmallArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 30.717095 ms
+
+Unloading 341 unused Assets to reduce memory usage. Loaded Objects now: 1281.
+Total: 2.664872 ms (FindLiveObjects: 0.107054 ms CreateObjectMapping: 0.066404 ms MarkObjects: 1.186594 ms  DeleteObjects: 1.304198 ms)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=03_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=03_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=03_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=04_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=04_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=04_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=05_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=05_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=05_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=00_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=00_arena=BigArenaFarNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=00_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=00_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=00_arena=SmallArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 30.150173 ms
+
+Unloading 341 unused Assets to reduce memory usage. Loaded Objects now: 1284.
+Total: 2.467831 ms (FindLiveObjects: 0.110157 ms CreateObjectMapping: 0.050889 ms MarkObjects: 1.161460 ms  DeleteObjects: 1.144703 ms)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=01_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=01_arena=BigArenaFarNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=01_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=01_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=01_arena=SmallArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 27.281742 ms
+
+Unloading 341 unused Assets to reduce memory usage. Loaded Objects now: 1287.
+Total: 2.703970 ms (FindLiveObjects: 0.105192 ms CreateObjectMapping: 0.044683 ms MarkObjects: 1.173251 ms  DeleteObjects: 1.379912 ms)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=02_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=02_arena=BigArenaFarNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=02_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=02_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=02_arena=SmallArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 30.693512 ms
+
+Unloading 341 unused Assets to reduce memory usage. Loaded Objects now: 1290.
+Total: 2.829332 ms (FindLiveObjects: 0.102709 ms CreateObjectMapping: 0.047786 ms MarkObjects: 1.275030 ms  DeleteObjects: 1.402564 ms)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=03_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=03_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=03_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=04_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=04_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=04_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=05_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=05_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=05_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=00_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=00_arena=BigArenaFarNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=00_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=00_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=00_arena=SmallArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 27.156070 ms
+
+Unloading 341 unused Assets to reduce memory usage. Loaded Objects now: 1293.
+Total: 2.140772 ms (FindLiveObjects: 0.108915 ms CreateObjectMapping: 0.029788 ms MarkObjects: 0.966590 ms  DeleteObjects: 1.034856 ms)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=01_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=01_arena=BigArenaFarNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=01_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=01_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=01_arena=SmallArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 30.313392 ms
+
+Unloading 341 unused Assets to reduce memory usage. Loaded Objects now: 1296.
+Total: 2.601571 ms (FindLiveObjects: 0.105192 ms CreateObjectMapping: 0.041270 ms MarkObjects: 1.171699 ms  DeleteObjects: 1.283098 ms)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=02_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=02_arena=BigArenaFarNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=02_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=02_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=02_arena=SmallArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 28.647381 ms
+
+Unloading 341 unused Assets to reduce memory usage. Loaded Objects now: 1299.
+Total: 2.596916 ms (FindLiveObjects: 0.108295 ms CreateObjectMapping: 0.043442 ms MarkObjects: 1.140669 ms  DeleteObjects: 1.303578 ms)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=03_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=03_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=03_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=04_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=04_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=04_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=05_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=05_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=05_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=00_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=00_arena=BigArenaFarNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=00_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=00_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=00_arena=SmallArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 29.660207 ms
+
+Unloading 341 unused Assets to reduce memory usage. Loaded Objects now: 1302.
+Total: 2.735000 ms (FindLiveObjects: 0.100848 ms CreateObjectMapping: 0.045304 ms MarkObjects: 1.259205 ms  DeleteObjects: 1.329023 ms)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=01_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=01_arena=BigArenaFarNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=01_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=01_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=01_arena=SmallArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 26.872765 ms
+
+Unloading 341 unused Assets to reduce memory usage. Loaded Objects now: 1305.
+Total: 2.366362 ms (FindLiveObjects: 0.100227 ms CreateObjectMapping: 0.030719 ms MarkObjects: 1.149668 ms  DeleteObjects: 1.084815 ms)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=02_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=02_arena=BigArenaFarNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=02_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=02_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=02_arena=SmallArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 29.591009 ms
+
+Unloading 341 unused Assets to reduce memory usage. Loaded Objects now: 1308.
+Total: 2.741206 ms (FindLiveObjects: 0.094331 ms CreateObjectMapping: 0.043442 ms MarkObjects: 1.324058 ms  DeleteObjects: 1.278133 ms)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=03_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=03_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=03_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=04_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=04_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=04_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=05_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=05_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=05_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=00_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=00_arena=BigArenaFarNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=00_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=00_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=00_arena=SmallArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 28.433583 ms
+
+Unloading 341 unused Assets to reduce memory usage. Loaded Objects now: 1311.
+Total: 2.271720 ms (FindLiveObjects: 0.109536 ms CreateObjectMapping: 0.030099 ms MarkObjects: 1.069920 ms  DeleteObjects: 1.061542 ms)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=01_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=01_arena=BigArenaFarNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=01_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=01_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=01_arena=SmallArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 36.577456 ms
+
+Unloading 341 unused Assets to reduce memory usage. Loaded Objects now: 1314.
+Total: 2.762928 ms (FindLiveObjects: 0.127223 ms CreateObjectMapping: 0.069197 ms MarkObjects: 1.301406 ms  DeleteObjects: 1.263859 ms)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=02_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=02_arena=BigArenaFarNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=02_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=02_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=02_arena=SmallArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 27.565048 ms
+
+Unloading 341 unused Assets to reduce memory usage. Loaded Objects now: 1317.
+Total: 2.494516 ms (FindLiveObjects: 0.111708 ms CreateObjectMapping: 0.045924 ms MarkObjects: 1.127016 ms  DeleteObjects: 1.209556 ms)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=03_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=03_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=03_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=04_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=04_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=04_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=05_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=05_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=05_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=00_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=00_arena=BigArenaFarNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=00_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=00_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=00_arena=SmallArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 31.170446 ms
+
+Unloading 341 unused Assets to reduce memory usage. Loaded Objects now: 1320.
+Total: 2.746171 ms (FindLiveObjects: 0.104571 ms CreateObjectMapping: 0.046855 ms MarkObjects: 1.284960 ms  DeleteObjects: 1.309474 ms)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=01_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=01_arena=BigArenaFarNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=01_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=01_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=01_arena=SmallArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 27.708097 ms
+
+Unloading 341 unused Assets to reduce memory usage. Loaded Objects now: 1323.
+Total: 2.491103 ms (FindLiveObjects: 0.091228 ms CreateObjectMapping: 0.042821 ms MarkObjects: 1.124223 ms  DeleteObjects: 1.231898 ms)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=02_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=02_arena=BigArenaFarNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=02_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=02_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=02_arena=SmallArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 29.302118 ms
+
+Unloading 341 unused Assets to reduce memory usage. Loaded Objects now: 1326.
+Total: 2.752377 ms (FindLiveObjects: 0.118845 ms CreateObjectMapping: 0.041580 ms MarkObjects: 1.398840 ms  DeleteObjects: 1.192490 ms)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=03_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=03_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=03_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=04_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=04_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=04_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=05_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=05_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=05_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=00_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=00_arena=BigArenaFarNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=00_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=00_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=00_arena=SmallArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 29.238817 ms
+
+Unloading 341 unused Assets to reduce memory usage. Loaded Objects now: 1329.
+Total: 2.148220 ms (FindLiveObjects: 0.093711 ms CreateObjectMapping: 0.030719 ms MarkObjects: 0.951695 ms  DeleteObjects: 1.071162 ms)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=01_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=01_arena=BigArenaFarNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=01_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=01_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=01_arena=SmallArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 30.337906 ms
+
+Unloading 341 unused Assets to reduce memory usage. Loaded Objects now: 1332.
+Total: 2.829022 ms (FindLiveObjects: 0.109846 ms CreateObjectMapping: 0.056164 ms MarkObjects: 1.477657 ms  DeleteObjects: 1.185042 ms)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=02_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=02_arena=BigArenaFarNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=02_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=02_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=02_arena=SmallArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 32.797669 ms
+
+Unloading 341 unused Assets to reduce memory usage. Loaded Objects now: 1335.
+Total: 2.197247 ms (FindLiveObjects: 0.058647 ms CreateObjectMapping: 0.028237 ms MarkObjects: 0.933698 ms  DeleteObjects: 1.176044 ms)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=03_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=03_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=03_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=04_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=04_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=04_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=05_arena=BigArenaCloseNests.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=05_arena=Equidistant.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=05_arena=MediumArena.xml
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Done
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Finished batch
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 

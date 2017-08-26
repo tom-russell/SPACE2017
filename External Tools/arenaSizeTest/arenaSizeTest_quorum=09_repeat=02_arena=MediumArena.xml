@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SimulationSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<ArenaName>MediumArena</ArenaName>
+	<ArenaFilename>D:/Libraries/Documents/Google Drive/Bristol Work/Research Skills/Project Unity Files/My Files/SPACE2017/Arenas/MediumArena.xml</ArenaFilename>
+	<ExperimentName>
+		<Value>arenaSizeTest_quorum=09_repeat=02_arena=MediumArena</Value>
+	</ExperimentName>
+	<RandomSeed>
+		<Value>1799524952</Value>
+	</RandomSeed>
+	<QuorumThreshold>
+		<Value>9</Value>
+	</QuorumThreshold>
+	<StartingTimeScale>
+		<Value>50</Value>
+	</StartingTimeScale>
+	<MaximumSimulationRunTime>
+		<Value>150</Value>
+	</MaximumSimulationRunTime>
+	<WaitNewNestFactor>
+		<Value>1</Value>
+	</WaitNewNestFactor>
+	<OutputEndSimData>
+		<Value>true</Value>
+	</OutputEndSimData>
+	<OutputColonyData>
+		<Value>true</Value>
+	</OutputColonyData>
+	<OutputAntStateDistribution>
+		<Value>true</Value>
+	</OutputAntStateDistribution>
+</SimulationSettings>

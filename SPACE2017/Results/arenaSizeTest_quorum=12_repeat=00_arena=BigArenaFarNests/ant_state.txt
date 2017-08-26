@@ -1,0 +1,8 @@
+Tick,State,Ants
+1,Inactive,200
+501,Inactive,200
+1001,Inactive,200
+1501,Inactive,189
+1501,Scouting,11
+2001,Scouting,27
+2001,Inactive,173

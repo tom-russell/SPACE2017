@@ -1,0 +1,334 @@
+Found 168 experiments
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=00_arena=BigArenaCloseNests.xml
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=00_arena=BigArenaFarNests.xml
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=00_arena=Equidistant.xml
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=00_arena=MediumArena.xml
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=00_arena=SmallArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=01_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=01_arena=BigArenaFarNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=01_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=01_arena=MediumArena.xml
+Done
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=01_arena=SmallArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=02_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=02_arena=BigArenaFarNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=02_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=02_arena=MediumArena.xml
+Done
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=02_arena=SmallArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=03_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=03_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=03_arena=MediumArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=04_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=04_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=04_arena=MediumArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=05_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=05_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=00_repeat=05_arena=MediumArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=00_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=00_arena=BigArenaFarNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=00_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=00_arena=MediumArena.xml
+Done
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=00_arena=SmallArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=01_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=01_arena=BigArenaFarNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=01_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=01_arena=MediumArena.xml
+Done
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=01_arena=SmallArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=02_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=02_arena=BigArenaFarNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=02_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=02_arena=MediumArena.xml
+Done
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=02_arena=SmallArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=03_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=03_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=03_arena=MediumArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=04_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=04_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=04_arena=MediumArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=05_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=05_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=03_repeat=05_arena=MediumArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=00_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=00_arena=BigArenaFarNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=00_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=00_arena=MediumArena.xml
+Done
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=00_arena=SmallArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=01_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=01_arena=BigArenaFarNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=01_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=01_arena=MediumArena.xml
+Done
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=01_arena=SmallArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=02_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=02_arena=BigArenaFarNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=02_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=02_arena=MediumArena.xml
+Done
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=02_arena=SmallArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=03_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=03_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=03_arena=MediumArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=04_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=04_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=04_arena=MediumArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=05_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=05_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=06_repeat=05_arena=MediumArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=00_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=00_arena=BigArenaFarNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=00_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=00_arena=MediumArena.xml
+Done
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=00_arena=SmallArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=01_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=01_arena=BigArenaFarNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=01_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=01_arena=MediumArena.xml
+Done
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=01_arena=SmallArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=02_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=02_arena=BigArenaFarNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=02_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=02_arena=MediumArena.xml
+Done
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=02_arena=SmallArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=03_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=03_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=03_arena=MediumArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=04_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=04_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=04_arena=MediumArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=05_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=05_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=09_repeat=05_arena=MediumArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=00_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=00_arena=BigArenaFarNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=00_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=00_arena=MediumArena.xml
+Done
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=00_arena=SmallArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=01_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=01_arena=BigArenaFarNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=01_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=01_arena=MediumArena.xml
+Done
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=01_arena=SmallArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=02_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=02_arena=BigArenaFarNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=02_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=02_arena=MediumArena.xml
+Done
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=02_arena=SmallArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=03_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=03_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=03_arena=MediumArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=04_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=04_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=04_arena=MediumArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=05_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=05_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=12_repeat=05_arena=MediumArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=00_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=00_arena=BigArenaFarNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=00_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=00_arena=MediumArena.xml
+Done
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=00_arena=SmallArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=01_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=01_arena=BigArenaFarNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=01_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=01_arena=MediumArena.xml
+Done
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=01_arena=SmallArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=02_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=02_arena=BigArenaFarNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=02_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=02_arena=MediumArena.xml
+Done
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=02_arena=SmallArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=03_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=03_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=03_arena=MediumArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=04_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=04_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=04_arena=MediumArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=05_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=05_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=16_repeat=05_arena=MediumArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=00_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=00_arena=BigArenaFarNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=00_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=00_arena=MediumArena.xml
+Done
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=00_arena=SmallArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=01_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=01_arena=BigArenaFarNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=01_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=01_arena=MediumArena.xml
+Done
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=01_arena=SmallArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=02_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=02_arena=BigArenaFarNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=02_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=02_arena=MediumArena.xml
+Done
+Running D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=02_arena=SmallArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=03_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=03_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=03_arena=MediumArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=04_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=04_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=04_arena=MediumArena.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=05_arena=BigArenaCloseNests.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=05_arena=Equidistant.xml
+Done
+SkippingD:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\External Tools\arenaSizeTest\arenaSizeTest_quorum=20_repeat=05_arena=MediumArena.xml
+Done
+Finished batch

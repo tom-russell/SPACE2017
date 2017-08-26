@@ -23,8 +23,6 @@ public class AntManager : MonoBehaviour
     public NestManager currentNest;         // Nest that this ant is currently inside.
     public AntManager leader, follower;     // The ants that are leading or following this ant
     public bool inNest;                     // True when this ant is inside a nest.
-    public bool isSocialCarrying;           // True if this ant is currently carrying another ant.
-    public bool isBeingCarried;             // True if this ant is currently being carried by another ant.
     public int droppedRecently;             // Timer to show if this ant has been recently dropped or not. -1 = never been carried, 0 = was dropped > 5sec ago.
     public int PerceivedTicks { get; set; } // Used for the Debug Results Output 
 
@@ -50,6 +48,11 @@ public class AntManager : MonoBehaviour
     private float timeWhenTandemLostContact = 0f;
     private float leaderGiveUpTime;
     public Vector3 estimateNewLeaderPos = Vector3.zero;
+    // Tandem Run Output Variables
+    private float tandemStartTime;              // The start time (in ms) of the tandem run
+    public float tandemDistance;                // The distance moved by the leader during the tandem run
+    private bool forwardRun;                    // True if the current tandem run is forward, and false if reverse
+    public Vector3 prevLeaderPosition;          // The location of the leader during the previous timestep. Used to calculate tandem run distance.
 
     // Other
     //?private bool _wasColourOn = false;
@@ -102,11 +105,12 @@ public class AntManager : MonoBehaviour
         if (state == BehaviourState.Assessing && Vector3.Distance(nestToAssess.transform.position, transform.position) >
            Mathf.Sqrt(Mathf.Pow(nestToAssess.transform.localScale.x, 2) + Mathf.Pow(nestToAssess.transform.localScale.z, 2)))
             LeftNest();*/
-
-        //? Again test this, this is a workaround not a bug fix
+        
         //BUGFIX: occasionally when followers enter a nest there EnteredNest function doesn't get called, this forces that
         if (state == BehaviourState.Following && Vector3.Distance(LeadersNest().transform.position, transform.position) < LeadersNest().transform.localScale.x / 2f)
+        {
             EnteredNest(LeadersNest().NestManager());
+        }
 
         //makes Inactive and !passive ants assess nest that they are in every so often
         if (!passive && state == BehaviourState.Inactive && nextAssessment > 0 && simulation.TotalElapsedSimulatedTime("s") >= nextAssessment)
@@ -151,7 +155,7 @@ public class AntManager : MonoBehaviour
         }
 
         //BUGFIX: Sometimes new to old is incorrectly set for recruiters - unclear why as of yet.
-        if (state == BehaviourState.Recruiting && follower != null && inNest && NearerOld())
+        if (state == BehaviourState.Recruiting && follower != null && currentNest == oldNest)
         {
             recruitmentStage = RecruitmentStage.GoingToNewNest;
         }
@@ -188,7 +192,7 @@ public class AntManager : MonoBehaviour
         }
 
         //Only try reverse tandem runs for a certain amount of time
-        if (state == BehaviourState.Reversing && inNest && !NearerOld() && follower == null)
+        if (state == BehaviourState.Reversing && currentNest == myNest && follower == null)
         {
             if (reverseTime < 1)
             {
@@ -292,22 +296,17 @@ public class AntManager : MonoBehaviour
         return leader.myNest.gameObject;
     }
 
-    // Tell this ant to lead 'follower' to preferred nest //? This could probably be merged with the reverseLead function below
+    // Tell this ant to lead 'follower' to preferred nest
     public void Lead(AntManager follower)
     {
-        /*//? Reset the failedTandemLeader boolean (could be done elsewhere perhaps)
-        if (failedTandemLeader == true && state == BehaviourState.Recruiting)
-        {
-            failedTandemLeader = false;
-        }*/
-
         // Reset the leader giving up time
         leaderGiveUpTime = AntScales.Times.startingLeaderGiveUpTime;
 
-        /*forwardTandemRun = true;
-        startPos = transform.position;
-        tandemTimeSteps = timeStep;
-        leaderPositionContact = transform.position;*/
+        // Set the tandem variables (for recording tandem run data) 
+        tandemStartTime = simulation.TotalElapsedSimulatedTime("s");
+        tandemDistance = 0f;
+        forwardRun = true;
+        prevLeaderPosition = transform.position;
 
         //let following ant know that you're leading it
         this.follower = follower;
@@ -320,10 +319,11 @@ public class AntManager : MonoBehaviour
         // Reset the leader giving up time
         leaderGiveUpTime = AntScales.Times.startingLeaderGiveUpTime;
 
-        /*reverseTandemRun = true;
-        startPos = transform.position;
-        tandemTimeSteps = timeStep;
-        leaderPositionContact = transform.position;*/
+        // Set the tandem variables (for recording tandem run data) 
+        tandemStartTime = simulation.TotalElapsedSimulatedTime("s");
+        tandemDistance = 0f;
+        forwardRun = false; // Reverse run
+        prevLeaderPosition = transform.position;
 
         //let following ant know that you're leading it
         this.follower = follower;
@@ -335,32 +335,24 @@ public class AntManager : MonoBehaviour
     {
         followerWait = true;
         leaderWaits = false;
-
-        /*// get total time steps taken for tandem run
-        tandemTimeSteps = -1 * (tandemTimeSteps - timeStep);
-
-        // get end poistion of tandem run
-        Vector3 endPos = transform.position;
-        // calculate distance covered for tandem run
-        float TRDistance = Vector3.Distance(endPos, startPos);      //? no longer used anywhere
-        // calculate the speed of tandem run (Unity Distance / Unity timesteps) 
-        float TRSpeed = TRDistance / tandemTimeSteps;
-
-        // update forward / reverse tandem run speed and successful tandem run
-        if (forwardTandemRun == true)
-        {
-            forwardTandemRun = false;
-        }
-        else if (reverseTandemRun ==true)
-        {
-            reverseTandemRun = false;
-        }*/
-
-        if (follower.currentNest == myNest) simulation.simulationData.successFTR++;    //? ftr failure data collection
-        else simulation.simulationData.successRTR++;
-         
         follower = null;
-        //? RecruitToNest(myNest);
+
+        AddTandemRunRecord(success : true);
+        
+        // Reversing Leaders must return to the recruiting state after the reverse run is completed
+        if (state == BehaviourState.Reversing) 
+        {
+            RecruitToNest(myNest);
+        }
+    }
+
+    // Add the record of this tandem run to the emigration data
+    private void AddTandemRunRecord(bool success)
+    {
+        float runDuration = simulation.TotalElapsedSimulatedTime("s") - tandemStartTime;
+        EmigrationData.TandemRunData runData = new EmigrationData.TandemRunData(forwardRun, success, runDuration, tandemDistance);
+        simulation.emigrationData.tandemRunData.Add(runData);
+        if (DEBUG_ANT == true) Debug.Log("duration=" + runDuration + "  distance=" + tandemDistance); //?
     }
 
     //returns true if there is a line of sight between this ant and the given other ant
@@ -387,7 +379,6 @@ public class AntManager : MonoBehaviour
     {
         //start following leader towards nest
         ChangeState(BehaviourState.Following);
-        //? This doesn't seem necessary // recruitmentStage = RecruitmentStage.GoingToNewNest;
         this.leader = leader;
 
         followerWait = true;
@@ -430,7 +421,7 @@ public class AntManager : MonoBehaviour
         //turn the right way up 
         transform.rotation = Quaternion.identity;
         transform.position = new Vector3(transform.position.x, GetComponent<CapsuleCollider>().radius * 2, transform.position.z);
-        move.isBeingCarried = false;        //? could consider moving isBeingCarried into antmanager
+        move.isBeingCarried = false;
 
         if (transform.parent.tag == Naming.Ants.CarryPosition)
         {
@@ -452,23 +443,6 @@ public class AntManager : MonoBehaviour
             sensesCol.enabled = true;
         }
     }
-    /*
-    //? very poorly named function. bit weird this is called from antmovement too. parts/all could be redundant
-    //? function doesnt make much sense to me? why is newToOld set true if the oldnest is empty 
-    //returns true if ant is within certain range of nest centre and there are no more passive ants ro recruit there
-    public bool OldNestOccupied()
-    {
-        if (oldNest == null) return false;
-
-        int id = simulation.GetNestID(oldNest);
-        if (GameObject.Find("P" + id).transform.childCount == 0 && Vector3.Distance(oldNest.transform.position, transform.position) < 1f)   //? changed range 10 to 1 here
-        {
-            //oldNest = null;
-            recruitmentStage = RecruitmentStage.GoingToOldNest;
-            return false;
-        }
-        else return true;
-    }*/
 
     //this is called whenever an ant enters a nest
     public void EnteredNest(NestManager nest)
@@ -678,7 +652,6 @@ public class AntManager : MonoBehaviour
     //assesses nest and takes appropriate action
     private void AssessNest(NestManager nest)
     {
-
         //reset current nest area
         //?currentNestArea = 0f;
 
@@ -858,13 +831,6 @@ public class AntManager : MonoBehaviour
         reverseTime = AntScales.Times.reverseTryTime;
     }
 
-    //? Can probably remove this, its used to check of the ant is in a certain nest, which can now be done with currentNest
-    //returns true if this ant is nearer it's old nest than new
-    public bool NearerOld()
-    {
-        return Vector3.Distance(transform.position, oldNest.transform.position) < Vector3.Distance(transform.position, myNest.transform.position);
-    }
-
     // called once leader is 2*antennaReach away from follower
     public void TandemContactLost()
     {
@@ -877,38 +843,26 @@ public class AntManager : MonoBehaviour
     // calculate the LGUT that the leader and follower will wait for a re-connection
     private void CalculateLGUT()
     {
-        /* //? Greg commented out this block and used a simpler method (added in below)
-        float tandemDuration = (simulation.TickManager.TotalElapsedSimulatedSeconds - startTandemRunSeconds);
+        float tandemDuration = simulation.TotalElapsedSimulatedTime("s") - tandemStartTime;
         double exponent = 0.9651 + 0.3895 * Mathf.Log10(tandemDuration);
-        tandemLeaderGiveUpTime = Mathf.Pow(10, (float)exponent);*/
+        leaderGiveUpTime = Mathf.Pow(10, (float)exponent);
 
-        /*if (this.inNest)
-        {
-            this.leaderGiveUpTime = this.prevLeaderGiveUpTime - .1f;
-        }
-        else
-        {
-            this.leaderGiveUpTime = this.prevLeaderGiveUpTime + 0.1f;
-        }*/
-        leaderGiveUpTime += AntScales.Times.leaderGiveUpTimeIncrement;
-
-        leaderGiveUpTime = Mathf.Min(leaderGiveUpTime, AntScales.Times.maxLeaderGiveUpTime);
+        /*leaderGiveUpTime += AntScales.Times.leaderGiveUpTimeIncrement;
+        leaderGiveUpTime = Mathf.Min(leaderGiveUpTime, AntScales.Times.maxLeaderGiveUpTime);*/
     }
 
     // called once a follower has re-connected with the tandem leader (re-sets values)
     public void TandemContactRegained()
     {
-        /*(prevLeaderGiveUpTime = leaderGiveUpTime;
-        leaderGiveUpTime = 0.0f;*/ //?
         timeWhenTandemLostContact = 0;
     }
 
     // every time step this function is called from a searching follower
     public bool HasLGUTExpired()
     {
-        if (leaderGiveUpTime == 0.0 || timeWhenTandemLostContact == 0) return false;
+        if (timeWhenTandemLostContact == 0) return false;
 
-        float durationLostContact = (simulation.TotalElapsedSimulatedTime("s") - timeWhenTandemLostContact);
+        float durationLostContact = simulation.TotalElapsedSimulatedTime("s") - timeWhenTandemLostContact;
 
         // if duration since lost contact is longer than LGUT then tandem run has failed  
         return durationLostContact > leaderGiveUpTime;
@@ -943,12 +897,12 @@ public class AntManager : MonoBehaviour
         //? After a failed run the leader continues in the same direction
         if (previousState == BehaviourState.Reversing) // failed reverse run - head to old nest
         {
-            simulation.simulationData.failRTR++; // tandem run counters
+            AddTandemRunRecord(success: false);
             recruitmentStage = RecruitmentStage.GoingToOldNest;
         }
         else // failed forward run - head to new nest
         {
-            simulation.simulationData.failFTR++; // tandem run counters
+            AddTandemRunRecord(success: false);
             recruitmentStage = RecruitmentStage.GoingToNewNest;
         }
     }
@@ -962,10 +916,11 @@ public class AntManager : MonoBehaviour
 
     public void SetPrimaryColour(Color primary)
     {
-        if (DEBUG_ANT == true) Debug.Log("assigning parent: state = " + state + primary);
         _primaryColour = primary;
         if (!_temporaryColour.HasValue)
-        { this.ChangeColour(_primaryColour); if (DEBUG_ANT == true)  Debug.Log("job dun"); }
+        {
+            this.ChangeColour(_primaryColour);
+        }
     }
 
     public void ClearTemporaryColour()

@@ -12,14 +12,14 @@ namespace Assets.Scripts.Output
 
         protected override void OutputData(long step)
         {
-            WriteLine(string.Format("{0},{1},{2}", step, "PassivesInOldNest", Simulation.simulationData.passivesInOldNest));
-            foreach (var o in Simulation.simulationData.passivesInNewNests)
+            WriteLine(string.Format("{0},{1},{2}", step, "PassivesInOldNest", Simulation.emigrationData.passivesInOldNest));
+            foreach (var o in Simulation.emigrationData.passivesInNewNests)
             {
                 WriteLine(string.Format("{0},{1},{2}", step, "PassivesInNewNest_" + o.Key, o.Value));
             }
-            WriteLine(string.Format("{0},{1},{2}", step, "Completion", Simulation.simulationData.emigrationCompletion));
-            WriteLine(string.Format("{0},{1},{2}", step, "RelativeAccuracy", Simulation.simulationData.emigrationRelativeAccuracy));
-            WriteLine(string.Format("{0},{1},{2}", step, "AbsoluteAccuracy", Simulation.simulationData.emigrationAbsoluteAccuracy));
+            WriteLine(string.Format("{0},{1},{2}", step, "Completion", Simulation.emigrationData.emigrationCompletion));
+            WriteLine(string.Format("{0},{1},{2}", step, "RelativeAccuracy", Simulation.emigrationData.emigrationRelativeAccuracy));
+            WriteLine(string.Format("{0},{1},{2}", step, "AbsoluteAccuracy", Simulation.emigrationData.emigrationAbsoluteAccuracy));
         }
     }
 }

@@ -3,6 +3,7 @@ Speeds (mm/s)(rounded to 2 s.f.)
 	Scouting 		= 8.4mm/s. Paragraph 4. Teaching in Tandem-Running Ants (N.R. Franks, T. Richardson)
 	TandemRunLead 		= 7.5mm/s. Paragraph 4. Teaching in Tandem-Running Ants (N.R. Franks, T. Richardson)
 	TandemRunFollow 	= 5.0mm/s. (arbitrarily set slower than Tandem leader to allow a gap to form. Simulates the followers tendency to 'scan' the surrounding area)
+	TandemRunACTUALSpeed should be 1/3 of Carrying Speed = 1.8mm/s.
 	Carrying		= 5.4mm/s. Paragraph 8. Teaching in Tandem-Running Ants (N.R. Franks, T. Richardson)
 	Inactive		= 2.0mm/s. (abitrarily set to create slow movement within the nests)
 	AssessingFirstVisit 	= 3.4mm/s. Results & Discussion Paragraph 12 (pg.768). Ants Estimate Area Using Buffon's Needle. (E. B. Mallon, N. R. Franks)

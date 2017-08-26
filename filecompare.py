@@ -1,15 +1,27 @@
-path1 = r"D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\SPACE2017\Results\AntScales1_1\ants_detail.txt"
-path2 = r"D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\SPACE2017\Results\AntScales2_1\ants_detail.txt"
+primaryFilePath = r"D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\SPACE2017\Results\EditorBuildDTest_1\ants_detail.txt"
+otherFilePaths = [
+    r"D:\Libraries\Documents\Google Drive\Bristol Work\Research Skills\Project Unity Files\My Files\SPACE Builds\Results\EditorBuildDTest_2\ants_detail.txt"
+]
+numFiles = len(otherFilePaths)
+fileErrors = []
 
-file1 = open(path1)
-file2 = open(path2)
-lines1 = file1.readlines()
-lines2 = file2.readlines()
-file1.close()
-file2.close()
+primaryFile = open(primaryFilePath)
+fileLines = primaryFile.readlines()
+primaryFile.close()
 
-for i in range(0, len(lines1)):
-    if (lines1[i] != lines2[i]):
-        print(lines1[i][:-1])
-        print(lines2[i])
-        break;
+otherFileLines = []
+for i in range(0, numFiles):
+    file = open(otherFilePaths[i])
+    otherFileLines.append(file.readlines())
+    fileErrors.append(0)
+    file.close()
+    
+    if len(otherFileLines[i]) > len(fileLines):
+        fileErrors[i] += abs(len(otherFileLines[i]) - len(fileLines))
+        
+for i in range(0, len(fileLines)):
+    
+    for j in range(0, numFiles):
+        if fileLines[i] != otherFileLines[j][i]:
+            fileErrors[i] += 1
+print(fileErrors)

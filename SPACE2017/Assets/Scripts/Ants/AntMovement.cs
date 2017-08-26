@@ -24,7 +24,10 @@ public class AntMovement : MonoBehaviour
     private float maxVarAssessing = 20f;            // The maxVar value while assessing a new nest
     private float maxVarFollower = 20f;
     private float maxVarCollision = 90f;            // The maxVar value when turning to avoid a collision with another ant
-    private float wallFollowBias = 0.5f;
+    private float wallFollowBias = 0.9f;
+
+    // Tandem running variables
+    private Vector3 lastContactPosition;            // The last position where the leader and follower were in contact
 
     // Initialisation of parameters 
     void Start () 
@@ -119,7 +122,6 @@ public class AntMovement : MonoBehaviour
     private void AssessingMovement()
     {
         // Ensures ants in the assessment process stay within the nest - if they leave they are turned to face the nest center
-        //? Greg had a more complex system here, where direction changes are made much more frequently. Is this needed?
         if (ant.assessmentStage == NestAssessmentStage.Assessing && ant.inNest == false)
         {
             FaceObject(ant.nestToAssess.gameObject);
@@ -162,8 +164,9 @@ public class AntMovement : MonoBehaviour
                 }
             }
 
-            if (ant.assessmentStage == NestAssessmentStage.Assessing) ResetTurnParameters(moreFrequentTurns : true);
-            else ResetTurnParameters(moreFrequentTurns : false);    //? Not sure if morefrequentturns actually achieves anything here
+            ResetTurnParameters(false);
+            //if (ant.assessmentStage == NestAssessmentStage.Assessing) ResetTurnParameters(moreFrequentTurns : true);
+            //else ResetTurnParameters(moreFrequentTurns : false);    //? Not sure if morefrequentturns actually achieves anything here
         }
 
         // Move the ant forward at the required speed (if there are no obstructions)
@@ -200,6 +203,7 @@ public class AntMovement : MonoBehaviour
             if (ant.IsTandemRunning() || ant.IsTransporting())
             {
                 WalkToNest(ant.myNest);
+                UpdateTandemDistance();
             }
             // Recruiters not tandem running or carrying move back and forth between the new and old nests.
             else
@@ -245,7 +249,6 @@ public class AntMovement : MonoBehaviour
             nextTurnTime += Time.fixedDeltaTime;
             return;
         }
-
         // Reversing ants still searching for a tandem follower must stay within their nest
         else if (ant.IsTandemRunning() == false && ant.currentNest != ant.myNest)
         {
@@ -260,6 +263,7 @@ public class AntMovement : MonoBehaviour
             if (ant.IsTandemRunning())
             {
                 WalkToNest(ant.oldNest);
+                UpdateTandemDistance();
             }
             else // Else the ant is waiting in the new nest for a potential follower, so randomly walk around nest
             {
@@ -462,44 +466,50 @@ public class AntMovement : MonoBehaviour
         }
     }
 
+    private void UpdateTandemDistance()
+    {
+        // Update the tandem run distance
+        ant.tandemDistance += Vector3.Distance(ant.prevLeaderPosition, transform.position);
+        ant.prevLeaderPosition = transform.position;
+    }
+
     // returns true if tandem leader must wait for follower, or false if they can move
     private bool ShouldTandemLeaderWait()
     {
-        // if leader is waiting for follower ensure follower is allowed to move //? not sure about this, maybe a bugfix
+        // if leader is waiting for follower ensure follower is allowed to move
         if (ant.leaderWaits == true)
         {
             ant.follower.followerWait = false;
             return true;
         }
 
-        // If the leader is greater than the stopping distance from the follower, they stop to wait.
-        if (Vector3.Distance(ant.follower.transform.position, transform.position) > StoppingDistance())
+        // If the leader is greater than the stopping distance from their last stop position, they stop to wait.
+        if (Vector3.Distance(lastContactPosition, transform.position) > StoppingDistance())
         {
             // Leader must wait for follower
             ant.leaderWaits = true;
 
-            // set parameters for lost tandem contact (leader give up time LGUT, time of lost contact)
-            ant.TandemContactLost();
-            ant.follower.TandemContactLost();
-
             return true;
         }
-        else // follower and leader are close so leader shouldn't wait
+        else // Leader should continue moving until they have moved the 'stopping distance' since the last follower contact
         {
             return false;
         }
     }
 
-    //? Not happy with the size/complexity of this function. A lot could be replaced with a function in Manager that ahs a single call here
-    // Returns true if the follower is in contact with the leader and therefore needs to wait.is a tandem follower has 
+    // Returns true if the follower is in contact with the leader and therefore needs to wait.
     private bool ShouldTandemFollowerWait()
     {
         // If the follower is waiting for the leader to move, return true (follower should wait)
         if (ant.followerWait == true)
         {
             // If follower has lost contact with the leader, the follower will move again
-            if (Vector3.Distance(transform.position, ant.leader.transform.position) > AntennaeRayLength()) //? AvAntenna -> LeaderStopping
+            if (AntSeparation(ant.leader) > AntScales.Distances.AntennaeLength)
             {
+                // set parameters for lost tandem contact (leader give up time LGUT, time of lost contact)
+                ant.leader.TandemContactLost();
+                ant.TandemContactLost();
+
                 ant.followerWait = false;
                 // When contact is lost the follower must estimate the position the leader will next stop at
                 EstimateNextLeaderPosition();
@@ -515,23 +525,26 @@ public class AntMovement : MonoBehaviour
             return true;
         }
 
-        
+        if (ant.DEBUG_ANT) Debug.Log(AntSeparation(ant.leader) + " < " + AntScales.Distances.AntennaeLength);
+
         // If the follower has regained contact with the leader, reset the tandem variables
-        if (Vector3.Distance(transform.position, ant.leader.transform.position) < AntennaeRayLength())
+        if (AntSeparation(ant.leader) < AntScales.Distances.AntennaeLength)
         {
             // Follower must now wait, leader must start to move again.
             ant.followerWait = true;
             ant.leader.leaderWaits = false;
+
             // Re-set the 'tandem failure' time for leader & follower
             ant.TandemContactRegained();
             ant.leader.TandemContactRegained();
-            // While the follower waits he will estimate the position that the leader will stop at
-            //estimateNextLeaderPosition();
-            //ant.leader.leaderPositionContact = ant.leader.transform.position;   //? this gets set but is never used
+
+            // While in contact with the leader update the leader's last contact position and estimated leader stopping location
+            ant.leader.GetComponent<AntMovement>().lastContactPosition = ant.leader.transform.position;
+            EstimateNextLeaderPosition();
 
             return true;
         }
-        return false;
+        return false;   // Else the follower continues to search for the leader
     }
 
     // Calculates the follower's estimate of where the leader will next stop to wait.
@@ -748,10 +761,16 @@ public class AntMovement : MonoBehaviour
         return AntScales.Distances.AntennaeLength + (AntScales.Distances.BodyLength / 2);
     }
 
-    // since the distance is calculated from the center of each ant, half the body length must be added twice
+    // Since distance is calculated from the centre of each ant, separation is the distance - half the body length of both ants (so - 1x bodylength)
+    private float AntSeparation(AntManager other)
+    {
+        return Vector3.Distance(transform.position, other.transform.position) - AntScales.Distances.BodyLength;
+    }
+
+    // Stopping distance is twice antennae length. Distance is calculated from the center of each ant, half the body length must be added twice
     private float StoppingDistance()
     {
-        return AntScales.Distances.AntennaeLength + AntScales.Distances.BodyLength;
+        return AntScales.Distances.LeaderStopping + AntScales.Distances.BodyLength;
     }
 
     // Rounds the current ant position to 5 decimal places

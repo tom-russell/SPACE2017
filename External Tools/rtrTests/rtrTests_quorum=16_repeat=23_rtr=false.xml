@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SimulationSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<ArenaName>Equidistant</ArenaName>
+	<ArenaFilename>D:/Libraries/Documents/Google Drive/Bristol Work/Research Skills/Project Unity Files/My Files/SPACE2017/Arenas/Equidistant.xml</ArenaFilename>
+	<ExperimentName>
+		<Value>rtrTests_quorum=16_repeat=23_rtr=false</Value>
+	</ExperimentName>
+	<RandomSeed>
+		<Value>484085073</Value>
+	</RandomSeed>
+	<QuorumThreshold>
+		<Value>16</Value>
+	</QuorumThreshold>
+	<StartingTimeScale>
+		<Value>50</Value>
+	</StartingTimeScale>
+	<MaximumSimulationRunTime>
+		<Value>120</Value>
+	</MaximumSimulationRunTime>
+	<AntsReverseTandemRun>
+		<Value>false</Value>
+	</AntsReverseTandemRun>
+	<OutputEndSimData>
+		<Value>true</Value>
+	</OutputEndSimData>
+	<OutputColonyData>
+		<Value>true</Value>
+	</OutputColonyData>
+	<OutputAntStateDistribution>
+		<Value>true</Value>
+	</OutputAntStateDistribution>
+</SimulationSettings>

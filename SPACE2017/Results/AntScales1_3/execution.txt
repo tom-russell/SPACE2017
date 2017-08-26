@@ -1,0 +1,4 @@
+Start: 10/08/2017 13:17:32
+End: 10/08/2017 13:18:32
+Execution Duration: 00:01:00
+Simulation Duration: 00:01:00

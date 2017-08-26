@@ -6,7 +6,7 @@
     <Value>AntScales1</Value>
   </ExperimentName>
   <RandomSeed>
-    <Value>4324</Value>
+    <Value>42352</Value>
   </RandomSeed>
   <SimulationEndPoint>
     <Value>0</Value>
@@ -15,7 +15,7 @@
     <Value>200</Value>
   </ColonySize>
   <QuorumThreshold>
-    <Value>10</Value>
+    <Value>1</Value>
   </QuorumThreshold>
   <ProportionActive>
     <Value>0.25</Value>
@@ -30,7 +30,7 @@
     <Value>0.7</Value>
   </SecondNewNestQuality>
   <StartingTimeScale>
-    <Value>20</Value>
+    <Value>5</Value>
   </StartingTimeScale>
   <RandomiseTimeScale>
     <Value>false</Value>

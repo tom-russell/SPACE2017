@@ -15,7 +15,7 @@ public class SimulationManager : MonoBehaviour
     public List<Transform> nests = new List<Transform>();
     public List<NestInfo> NestInfo { get; private set; }
     public GameObject[] doors;
-    public EmigrationData simulationData { get; private set; }
+    public EmigrationData emigrationData { get; private set; }
     public ResultsManager resultsManager { get; private set; }
     public List<AntManager> Ants { get; private set; }
     public SimulationSettings Settings { get; private set; }
@@ -86,10 +86,10 @@ public class SimulationManager : MonoBehaviour
                 ));
         }
 
-        simulationData = new EmigrationData(this);
+        emigrationData = new EmigrationData(this);
         resultsManager = new ResultsManager(this);
         //?EmigrationInformation = new EmigrationInformation(this);
-        simulationData.SimulationStarted();
+        emigrationData.SimulationStarted();
         resultsManager.SimulationStarted();
 
         SimulationRunning = true;
@@ -200,7 +200,7 @@ public class SimulationManager : MonoBehaviour
             {
                 ant.Tick();
             }
-            simulationData.Tick();
+            emigrationData.Tick();
             resultsManager.Tick();
         }
         else
@@ -223,7 +223,7 @@ public class SimulationManager : MonoBehaviour
         // If we are no longer running this update then notify the simulation has stopped
         if (SimulationRunning == false)
         {
-            simulationData.SimulationStopped();
+            emigrationData.SimulationStopped();
             resultsManager.SimulationStopped();
         }
     }
@@ -276,19 +276,19 @@ public class SimulationManager : MonoBehaviour
     {
         string endPoint = Naming.SimulationEndPoints[Settings.SimulationEndPoint.Value];
 
-        if (endPoint == "First Nest Discovery" && simulationData.discoveryTime != 0)
+        if (endPoint == "First Nest Discovery" && emigrationData.discoveryTime != 0)
         {
             return true;
         }
-        else if (endPoint == "First Recruiter" && simulationData.firstRecruiter != 0)
+        else if (endPoint == "First Recruiter" && emigrationData.firstRecruiter != 0)
         {
             return true;
         }
-        else if (endPoint == "First Social Carry" && simulationData.firstCarry != 0)
+        else if (endPoint == "First Social Carry" && emigrationData.firstCarry != 0)
         {
             return true;
         }
-        else if (simulationData.passivesInOldNest == 0) // Emigration has completed
+        else if (emigrationData.passivesInOldNest == 0) // Emigration has completed
         {
             return true;
         }

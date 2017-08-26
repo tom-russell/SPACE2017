@@ -115,11 +115,10 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.VR.WSA.Spa
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.VR.WSA.SpatialMappingRenderer
 55ea7c1576f22e4f807d180f6764aa80 Assembly-CSharp.dll:.NestManager
 05524b8f659e7bfe5756d1335fec24ba Assembly-UnityScript-firstpass.dll:.FPSInputController
-1e2b02da431839d2793e8e414dea8412 Assembly-CSharp.dll:.AntManager
+59729cf3b4835457727ef6125cd2ab29 Assembly-CSharp.dll:.CameraOptions
+811cd32be65e7b72f12168ecba634dde Assembly-CSharp.dll:.AntManager
 43c901f5733b48f61b53f52e6c2855dc Assembly-UnityScript-firstpass.dll:.PlatformInputController
-2bcd71eb6881409523d3934a6ef374c2 Assembly-CSharp.dll:.GregOutput
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:Assets.Scripts.Arenas.ArenaLoader
-784086c2be5f63718e684e1019b35c1c Assembly-CSharp.dll:.FreeCamera
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 60b2bb652410a5867a5ab9a01cd38461 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -138,7 +137,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
 5f2ad81aa8994e8fbe25d1e57afe6773 UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.PlaymodeTestsController
 64eb32cc721b1cc68a91ed57461e188c UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.RemoteTestResultSender
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.CameraControl
+4bf9f01c66eaf519f34eda8f25098857 Assembly-CSharp.dll:.CameraControl
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.NestCount
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
@@ -146,8 +145,6 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.VR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.VR.WSA.SpatialMappingRenderer
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ConfigMenu
-7636cf607df47d3f06412d0f8fc98941 Assembly-CSharp.dll:.BatchRunner
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.AntSenses
-67d07c3624ea2d9f6b30d4be8b919151 Assembly-CSharp.dll:.AntMovement
-ba0b035d559cbe31329bc3482e449822 Assembly-CSharp.dll:.SimData
+65c8ef9f72771ddea3d947dfc184a9ab Assembly-CSharp.dll:.AntMovement
 563daf171b5d1c7c75b1108951401223 Assembly-UnityScript-firstpass.dll:.CharacterMotor

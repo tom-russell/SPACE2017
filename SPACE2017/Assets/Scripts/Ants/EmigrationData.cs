@@ -17,10 +17,7 @@ public class EmigrationData {
     public float emigrationCompletion { get; private set; }
 
     // Tandem running counters (these are updated from AntManager when a tandem run terminates)
-    public int successFTR { get; set; }
-    public int successRTR { get; set; }
-    public int failFTR { get; set; }
-    public int failRTR { get; set; }
+    public List<TandemRunData> tandemRunData { get; set; }
 
     // Emigration Times points (s)
     public int discoveryTime { get; private set; } 
@@ -33,6 +30,7 @@ public class EmigrationData {
     public EmigrationData(SimulationManager simulationManager)
     {
         simulation = simulationManager;
+        tandemRunData = new List<TandemRunData>();
     }
 
     public void SimulationStarted()
@@ -135,5 +133,21 @@ public class EmigrationData {
     public void SimulationStopped()
     {
         endOfEmigration = (int)simulation.TotalElapsedSimulatedTime("s");
+    }
+
+    public class TandemRunData
+    {
+        public bool forwardRun { get; private set; }        // True if forward tandem run, else false
+        public bool success { get; private set; }           // True if the run completed, else false
+        public float duration { get; private set; }           // Tandem run duration in ms
+        public float distance { get; private set; }         // tandem run distance in mm?
+
+        public TandemRunData(bool forwardRun, bool success, float duration, float unityDistance)
+        {
+            this.forwardRun = forwardRun;
+            this.success = success;
+            this.duration = duration;
+            distance = unityDistance * 10; // conversion from cm to mm
+        }
     }
 }

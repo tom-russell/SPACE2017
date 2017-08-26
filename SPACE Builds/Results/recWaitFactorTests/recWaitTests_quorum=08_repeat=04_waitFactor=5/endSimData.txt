@@ -1,0 +1,12 @@
+1,1,198
+Absolute Emigration Accuracy: 0.675
+Relative Emigration Accuracy: 1
+Emigration Completion: 0.675
+FTRs: 20
+RTRs: 12
+Discovery Time: 115
+First Recruiter Time: 458
+First Tandem Time: 517
+First Carry Time: 974
+First Reverse Time: 1165
+End of Emigration Time: 2031
