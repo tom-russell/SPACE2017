@@ -38,11 +38,15 @@ public class SimulationManager : MonoBehaviour
         {
             Settings = new SimulationSettings();
         }
-        
-        RandomGenerator.Init(Settings.RandomSeed.Value);
 
+        RandomGenerator.Init(Settings.RandomSeed.Value);
+        SetModifiedParameters();
         Time.timeScale = settings.StartingTimeScale.Value;
-        
+
+        foreach (KeyValuePair<string, float> parameter in Speed.v) Debug.Log(parameter.Value + " = " + parameter.Key);
+        foreach (KeyValuePair<string, float> parameter in Length.v) Debug.Log(parameter.Value + " = " + parameter.Key);
+        foreach (KeyValuePair<string, float> parameter in Times.v) Debug.Log(parameter.Value + " = " + parameter.Key);
+        foreach (KeyValuePair<string, float> parameter in Other.v) Debug.Log(parameter.Value + " = " + parameter.Key);
 
         doors = GameObject.FindGameObjectsWithTag(Naming.World.Doors);
 
@@ -126,7 +130,7 @@ public class SimulationManager : MonoBehaviour
                 pos.x -= 1;
                 pos.z -= 1;
 
-                GameObject newAnt = Instantiate(antPrefab, pos + (new Vector3(row, 0, column) * AntScales.Distances.Spawning), Quaternion.identity);
+                GameObject newAnt = Instantiate(antPrefab, pos + (new Vector3(row, 0, column) * Length.v[Length.Spawning]), Quaternion.identity);
                 newAnt.transform.position += new Vector3(0, newAnt.GetComponent<CapsuleCollider>().radius * 2, 0);
                 newAnt.name = CreateAntId(Settings.ColonySize.Value, spawnedAnts);
                 newAnt.AntMovement().simulation = this;
@@ -152,12 +156,12 @@ public class SimulationManager : MonoBehaviour
 
                     Transform senses = newAnt.transform.Find(Naming.Ants.SensesArea);
                     (senses.GetComponent<SphereCollider>()).enabled = true;
-                    (senses.GetComponent<SphereCollider>()).radius = AntScales.Distances.SensesCollider;
+                    (senses.GetComponent<SphereCollider>()).radius = Length.v[Length.SensesCollider];
                     (senses.GetComponent<AntSenses>()).enabled = true;
 
                     if (spawnedAntScouts < InitialScouts || Settings.ColonySize.Value <= 1 || _spawnOnlyScouts)
                     {
-                        newAM.nextAssessment = TotalElapsedSimulatedTime("s") + RandomGenerator.Instance.Range(0.5f, 1f) * AntScales.Times.maxAssessmentWait;
+                        newAM.nextAssessment = TotalElapsedSimulatedTime("s") + RandomGenerator.Instance.Range(0.5f, 1f) * Times.v[Times.MaxAssessmentWait];
                         spawnedAntScouts++;
                     }
                     else
@@ -182,6 +186,25 @@ public class SimulationManager : MonoBehaviour
     {
         return Naming.Ants.Tag;
         //return string.Format("{0}{1}", Naming.Entities.AntPrefix, antNumber);
+    }
+
+    private void SetModifiedParameters()
+    {
+        Dictionary<string, float> parameterNames = new Dictionary<string, float> {
+            { Settings.ModifyParameter1Name.Value, Settings.ModifyParameter1Value.Value },
+            { Settings.ModifyParameter2Name.Value, Settings.ModifyParameter2Value.Value }
+        };
+
+        foreach (KeyValuePair<string, float> parameter in parameterNames)
+        {
+            if (parameter.Key == "") continue;
+
+            if (Speed.v.ContainsKey(parameter.Key)) Speed.v[parameter.Key] = parameter.Value;
+            else if (Length.v.ContainsKey(parameter.Key)) Length.v[parameter.Key] = parameter.Value;
+            else if (Times.v.ContainsKey(parameter.Key)) Times.v[parameter.Key] = parameter.Value;
+            else if (Other.v.ContainsKey(parameter.Key)) Other.v[parameter.Key] = parameter.Value;
+            else throw new System.Exception("Modified Parameter '" + parameter.Key + "' name was not found in AntScales.");
+        }
     }
 
     void FixedUpdate()

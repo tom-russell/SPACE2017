@@ -2,11 +2,9 @@
 <SimulationSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ArenaName>Equidistant</ArenaName>
   <ArenaFilename>D:/Libraries/Documents/Google Drive/Bristol Work/Research Skills/Project Unity Files/My Files/SPACE2017/Arenas/Equidistant.xml</ArenaFilename>
-  <ExperimentName>
-    <Value>testytesty</Value>
-  </ExperimentName>
+  <ExperimentName />
   <RandomSeed>
-    <Value>434225</Value>
+    <Value>423425</Value>
   </RandomSeed>
   <SimulationEndPoint>
     <Value>0</Value>
@@ -30,7 +28,7 @@
     <Value>0.7</Value>
   </SecondNewNestQuality>
   <StartingTimeScale>
-    <Value>5</Value>
+    <Value>1</Value>
   </StartingTimeScale>
   <RandomiseTimeScale>
     <Value>false</Value>
@@ -48,16 +46,16 @@
     <Value>true</Value>
   </AntsReverseTandemRun>
   <ModifyParameter1Name>
-    <Value>DroppedRecently</Value>
+    <Value>Scouting</Value>
   </ModifyParameter1Name>
   <ModifyParameter1Value>
-    <Value>0</Value>
+    <Value>5</Value>
   </ModifyParameter1Value>
   <ModifyParameter2Name>
-    <Value>maxVar</Value>
+    <Value />
   </ModifyParameter2Name>
   <ModifyParameter2Value>
-    <Value>90</Value>
+    <Value>0</Value>
   </ModifyParameter2Value>
   <OutputTickRate>
     <Value>500</Value>

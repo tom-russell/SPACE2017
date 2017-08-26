@@ -15,7 +15,7 @@
     <Value>200</Value>
   </ColonySize>
   <QuorumThreshold>
-    <Value>10</Value>
+    <Value>20</Value>
   </QuorumThreshold>
   <ProportionActive>
     <Value>0.25</Value>
@@ -30,7 +30,7 @@
     <Value>0.7</Value>
   </SecondNewNestQuality>
   <StartingTimeScale>
-    <Value>5</Value>
+    <Value>10</Value>
   </StartingTimeScale>
   <RandomiseTimeScale>
     <Value>false</Value>
@@ -47,18 +47,6 @@
   <AntsReverseTandemRun>
     <Value>true</Value>
   </AntsReverseTandemRun>
-  <ModifyParameter1Name>
-    <Value>DroppedRecently</Value>
-  </ModifyParameter1Name>
-  <ModifyParameter1Value>
-    <Value>0</Value>
-  </ModifyParameter1Value>
-  <ModifyParameter2Name>
-    <Value>maxVar</Value>
-  </ModifyParameter2Name>
-  <ModifyParameter2Value>
-    <Value>90</Value>
-  </ModifyParameter2Value>
   <OutputTickRate>
     <Value>500</Value>
   </OutputTickRate>

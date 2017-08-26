@@ -68,7 +68,7 @@ public class AntManager : MonoBehaviour
         carryPosition = transform.Find(Naming.Ants.CarryPosition);
         sensesCol = transform.Find(Naming.Ants.SensesArea).GetComponent<Collider>();
         move = gameObject.AntMovement();
-        nestThreshold = RandomGenerator.Instance.NormalRandom(AntScales.Other.qualityThreshMean, AntScales.Other.qualityThreshNoise);
+        nestThreshold = RandomGenerator.Instance.NormalRandom(Other.v[Other.QualityThreshMean], Other.v[Other.QualityThreshNoise]);
         perceivedQuality = float.MinValue;
         finishedRecruiting = false;
         //make sure the value is within contraints
@@ -116,11 +116,11 @@ public class AntManager : MonoBehaviour
         if (!passive && state == BehaviourState.Inactive && nextAssessment > 0 && simulation.TotalElapsedSimulatedTime("s") >= nextAssessment)
         {
             AssessNest(myNest);
-            nextAssessment = simulation.TotalElapsedSimulatedTime("s") + RandomGenerator.Instance.Range(0.5f, 1f) * AntScales.Times.maxAssessmentWait;
+            nextAssessment = simulation.TotalElapsedSimulatedTime("s") + RandomGenerator.Instance.Range(0.5f, 1f) * Times.v[Times.MaxAssessmentWait];
         }
 
         //if an ant is carrying another and is within x distance of their nest's centre then drop the ant
-        if (carryPosition.childCount > 0 && Vector3.Distance(myNest.transform.position, transform.position) < AntScales.Distances.RecruitingNestMiddle)
+        if (carryPosition.childCount > 0 && Vector3.Distance(myNest.transform.position, transform.position) < Length.v[Length.RecruitingNestMiddle])
         {
             AntManager carriedAnt = carryPosition.Find(Naming.Ants.Tag).GetComponent<AntManager>();
             carriedAnt.Dropped(myNest);
@@ -300,7 +300,7 @@ public class AntManager : MonoBehaviour
     public void Lead(AntManager follower)
     {
         // Reset the leader giving up time
-        leaderGiveUpTime = AntScales.Times.startingLeaderGiveUpTime;
+        leaderGiveUpTime = 2;   // 2 is roughly the lowest LGUT possible (LGUT when tandem duration is 0s cannot be calculated since Log(0) = -inf
 
         // Set the tandem variables (for recording tandem run data) 
         tandemStartTime = simulation.TotalElapsedSimulatedTime("s");
@@ -317,7 +317,7 @@ public class AntManager : MonoBehaviour
     public void ReverseLead(AntManager follower)
     {
         // Reset the leader giving up time
-        leaderGiveUpTime = AntScales.Times.startingLeaderGiveUpTime;
+        leaderGiveUpTime = 2;   // 2 is roughly the lowest LGUT possible (LGUT when tandem duration is 0s cannot be calculated since Log(0) = -inf
 
         // Set the tandem variables (for recording tandem run data) 
         tandemStartTime = simulation.TotalElapsedSimulatedTime("s");
@@ -432,9 +432,9 @@ public class AntManager : MonoBehaviour
         //make ant inactive in this nest
         // oldNest = nest; //? This is commented out in Gregs version
         myNest = nest;
-        droppedRecently = AntScales.Times.droppedWait;
+        droppedRecently = (int)Times.v[Times.DroppedWait];
         //? commented out in both versions?
-        nextAssessment = simulation.TotalElapsedSimulatedTime("s") + RandomGenerator.Instance.Range(0.5f, 1f) * AntScales.Times.maxAssessmentWait;
+        nextAssessment = simulation.TotalElapsedSimulatedTime("s") + RandomGenerator.Instance.Range(0.5f, 1f) * Times.v[Times.MaxAssessmentWait];
         ChangeState(BehaviourState.Inactive);
 
         //turns senses on if non passive ant
@@ -518,7 +518,7 @@ public class AntManager : MonoBehaviour
             else
             {
                 // If the quorum is not yet reached, there is a chance that a recruiter will reassess their new nest
-                if (follower == null && RandomGenerator.Instance.Range(0f, 1f) < AntScales.Other.pRecAssessNew && !IsQuorumReached())
+                if (follower == null && RandomGenerator.Instance.Range(0f, 1f) < Other.v[Other.RecAssessNewProb] && !IsQuorumReached())
                 {
                     nestToAssess = nest;
                     ChangeState(BehaviourState.Assessing);
@@ -540,7 +540,7 @@ public class AntManager : MonoBehaviour
                 return;
             }
             //if recruiting and this is old nest then assess with probability pRecAssessOld
-            else if (follower == null && RandomGenerator.Instance.Range(0f, 1f) < AntScales.Other.pRecAssessOld)
+            else if (follower == null && RandomGenerator.Instance.Range(0f, 1f) < Other.v[Other.RecAssessOldProb])
             {
                 nestToAssess = nest;
                 ChangeState(BehaviourState.Assessing);
@@ -656,7 +656,7 @@ public class AntManager : MonoBehaviour
         //?currentNestArea = 0f;
 
         // Nest quality measurement (not buffon's needle, random value from normal distribution, constrained between 0-1)
-        float q = RandomGenerator.Instance.NormalRandom(nest.quality, AntScales.Other.assessmentNoise);
+        float q = RandomGenerator.Instance.NormalRandom(nest.quality, Other.v[Other.AssessmentNoise]);
         if (q < 0f)
             q = 0f;
         else if (q > 1f)
@@ -776,15 +776,15 @@ public class AntManager : MonoBehaviour
         int averageAssessTime;
         if (nestAssessmentVisitNumber == 1)
         {
-            averageAssessTime = AntScales.Times.averageAssessTimeFirstVisit;
+            averageAssessTime = (int)Times.v[Times.AverageAssessTimeFirstVisit];
         }
         else
         {
-            averageAssessTime = AntScales.Times.averageAssessTimeSecondVisit;
+            averageAssessTime = (int)Times.v[Times.AverageAssessTimeSecondVisit];
         }
 
         float deviate = (float) RandomGenerator.Instance.UniformDeviate(-1, 1);
-        int duration = (averageAssessTime + (int)(AntScales.Times.halfIQRangeAssessTime * deviate));
+        int duration = (averageAssessTime + (int)(Times.v[Times.HalfIQRangeAssessTime] * deviate));
 
         /*if (nestAssessmentVisitNumber == 1)
         {
@@ -805,7 +805,7 @@ public class AntManager : MonoBehaviour
         myNest = nest;
         CheckQuorum(nest);
 
-        waitOldNestTime = AntScales.Times.recTryTime;
+        waitOldNestTime = (int)Times.v[Times.RecruitTryTime];
 
         leader = null; //? BUGFIX == random case where an assessor -> recruiter but still had leader set to something, so caused a null exception
 
@@ -821,14 +821,14 @@ public class AntManager : MonoBehaviour
         }
         else
         {
-            perceivedQuorum = RandomGenerator.Instance.NormalRandom(nest.GetQuorum(), AntScales.Other.quorumAssessNoise);
+            perceivedQuorum = RandomGenerator.Instance.NormalRandom(nest.GetQuorum(), Other.v[Other.QuorumAssessNoise]);
         }
     }
 
     private void Reverse(NestManager nest)
     {
         ChangeState(BehaviourState.Reversing);
-        reverseTime = AntScales.Times.reverseTryTime;
+        reverseTime = (int)Times.v[Times.ReverseTryTime];
     }
 
     // called once leader is 2*antennaReach away from follower

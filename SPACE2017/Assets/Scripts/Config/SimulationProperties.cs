@@ -222,6 +222,33 @@ namespace Assets.Scripts.Config
         }
     }
 
+    public class ModifyParameterName : SimulationStringProperty
+    {
+        public override string Name { get {return "Modified Parameter Name"; } }
+
+        public override string Description { get { return "The name of the parameter to be modified from the default value."; } }
+
+        public ModifyParameterName()
+        {
+            Value = "";
+        }
+    }
+
+    public class ModifyParameterValue : SimulationFloatProperty
+    {
+        public override string Name { get { return "Modified Parameter Value"; } }
+
+        public override string Description { get { return "The value to which the modified parameter will be set."; } }
+
+        public override float? MinValue { get { return null; } }
+        public override float? MaxValue { get { return null; } }
+
+        public ModifyParameterValue()
+        {
+            Value = 0f;
+        }
+    }
+
     public class OutputTickRate : SimulationIntProperty
     {
         public override int? MaxValue { get { return null; } }

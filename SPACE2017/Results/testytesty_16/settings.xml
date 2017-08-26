@@ -47,18 +47,6 @@
   <AntsReverseTandemRun>
     <Value>true</Value>
   </AntsReverseTandemRun>
-  <ModifyParameter1Name>
-    <Value>DroppedRecently</Value>
-  </ModifyParameter1Name>
-  <ModifyParameter1Value>
-    <Value>0</Value>
-  </ModifyParameter1Value>
-  <ModifyParameter2Name>
-    <Value>maxVar</Value>
-  </ModifyParameter2Name>
-  <ModifyParameter2Value>
-    <Value>90</Value>
-  </ModifyParameter2Value>
   <OutputTickRate>
     <Value>500</Value>
   </OutputTickRate>

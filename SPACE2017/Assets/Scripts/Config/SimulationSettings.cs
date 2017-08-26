@@ -59,6 +59,18 @@ namespace Assets.Scripts.Config
         public AntsReverseTandemRun AntsReverseTandemRun { get; set; }
 
         [SerializeField]
+        public ModifyParameterName ModifyParameter1Name { get; set; }
+
+        [SerializeField]
+        public ModifyParameterValue ModifyParameter1Value { get; set; }
+
+        [SerializeField]
+        public ModifyParameterName ModifyParameter2Name { get; set; }
+
+        [SerializeField]
+        public ModifyParameterValue ModifyParameter2Value { get; set; }
+
+        [SerializeField]
         public OutputTickRate OutputTickRate { get; set; }
 
         [SerializeField]
@@ -119,6 +131,11 @@ namespace Assets.Scripts.Config
             FirstNewNestQuality = new FirstNewNestQuality();
             SecondNewNestQuality = new SecondNewNestQuality();
 
+            ModifyParameter1Name = new ModifyParameterName();
+            ModifyParameter1Value = new ModifyParameterValue();
+            ModifyParameter2Name = new ModifyParameterName();
+            ModifyParameter2Value = new ModifyParameterValue();
+
             OutputTickRate = new OutputTickRate();
             OutputEmigrationData = new OutputEmigrationData();
             OutputColonyData = new OutputColonyData();
@@ -152,6 +169,11 @@ namespace Assets.Scripts.Config
                     WaitNewNestFactor,
                     AntsLayPheromones,
                     AntsReverseTandemRun,
+
+                    ModifyParameter1Name,
+                    ModifyParameter1Value,
+                    ModifyParameter2Name,
+                    ModifyParameter2Value,
 
                     OutputTickRate,
                     OutputEmigrationData,

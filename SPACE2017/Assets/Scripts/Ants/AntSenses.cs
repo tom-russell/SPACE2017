@@ -99,11 +99,11 @@ public class AntSenses : MonoBehaviour
         if (otherAnt.state == BehaviourState.Recruiting || otherAnt.state == BehaviourState.Reversing)
         {
             float r = RandomGenerator.Instance.Range(0f, 1f);
-            float probability = AntScales.Other.tandRecSwitchProb;
+            float probability = Other.v[Other.TandRecSwitchProb];
 
             if (otherAnt.IsQuorumReached())
             {
-                probability = AntScales.Other.carryRecSwitchProb;
+                probability = Other.v[Other.CarryRecSwitchProb];
             }
 
             if (r < probability)

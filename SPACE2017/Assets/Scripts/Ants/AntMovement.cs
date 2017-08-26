@@ -93,7 +93,7 @@ public class AntMovement : MonoBehaviour
         }
 
         // Move the ant forward at the required speed (if there are no obstructions)
-        MoveForward(AntScales.Speeds.Inactive, true);
+        MoveForward(Speed.v[Speed.Inactive], true);
     }
 
     private void ScoutingMovement()
@@ -102,7 +102,7 @@ public class AntMovement : MonoBehaviour
         if (simulation.TotalElapsedSimulatedTime("s") >= nextTurnTime)
         {
             // If a scouts senses a nest door they will walk through it (in/out the nest)
-            GameObject door = DoorSearch(AntScales.Distances.DoorSenseRange);
+            GameObject door = DoorSearch(Length.v[Length.DoorSenseRange]);
             if (door != null)
             {
                 WalkToGameObject(door, false);
@@ -116,7 +116,7 @@ public class AntMovement : MonoBehaviour
         }
 
         // Move the ant forward at the required speed (if there are no obstructions)
-        MoveForward(AntScales.Speeds.Scouting, true);
+        MoveForward(Speed.v[Speed.Scouting], true);
     }
 
     private void AssessingMovement()
@@ -147,7 +147,7 @@ public class AntMovement : MonoBehaviour
                 WalkToNest(returnNest);
 
                 // If the ant has reached the centre of the home nest, return to the nest being assessed
-                if (Vector3.Distance(transform.position, returnNest.transform.position) < AntScales.Distances.AssessingNestMiddle)
+                if (Vector3.Distance(transform.position, returnNest.transform.position) < Length.v[Length.AssessingNestMiddle])
                 {
                     ant.assessmentStage = NestAssessmentStage.ReturningToPotentialNest;
                     ant.SetPrimaryColour(AntColours.NestAssessment.ReturningToPotentialNest);
@@ -158,7 +158,7 @@ public class AntMovement : MonoBehaviour
                 WalkToNest(ant.nestToAssess);
 
                 // If the ant has reached the centre of the assessment nest, begin the second assessment
-                if (Vector3.Distance(transform.position, ant.nestToAssess.transform.position) < AntScales.Distances.AssessingNestMiddle)
+                if (Vector3.Distance(transform.position, ant.nestToAssess.transform.position) < Length.v[Length.AssessingNestMiddle])
                 {
                     ant.NestAssessmentSecondVisit();
                 }
@@ -173,17 +173,17 @@ public class AntMovement : MonoBehaviour
         // If the assessor is moving between the new and old nests, so moves at standard speed
         if (ant.assessmentStage != NestAssessmentStage.Assessing)
         {
-            MoveForward(AntScales.Speeds.Scouting, true);
+            MoveForward(Speed.v[Speed.Scouting], true);
         }
         // If this is the first assessment of a new nest, move at the first visit speed
         else if (ant.nestAssessmentVisitNumber == 1)
         {
-            MoveForward(AntScales.Speeds.AssessingFirstVisit, true);
+            MoveForward(Speed.v[Speed.AssessingFirstVisit], true);
         }
         // Else this is the second assessment of a new nest, move at the second visit speed 
         else
         {
-            MoveForward(AntScales.Speeds.AssessingSecondVisit, true);
+            MoveForward(Speed.v[Speed.AssessingSecondVisit], true);
         }
     }
 
@@ -228,15 +228,15 @@ public class AntMovement : MonoBehaviour
         // Move forward at the speed based on the ant's current behaviour/activity
         if (ant.IsTandemRunning())
         {
-            MoveForward(AntScales.Speeds.TandemRunLead, true);
+            MoveForward(Speed.v[Speed.TandemRunLead], true);
         }
         else if (ant.IsTransporting())
         {
-            MoveForward(AntScales.Speeds.Carrying, true);
+            MoveForward(Speed.v[Speed.Carrying], true);
         }
         else // If waiting or moving between nests then move at standard speed
         {
-            MoveForward(AntScales.Speeds.Scouting, true);
+            MoveForward(Speed.v[Speed.Scouting], true);
         }
     }
 
@@ -276,11 +276,11 @@ public class AntMovement : MonoBehaviour
         // Move forward at the required speed based on the reverser's current state
         if (ant.IsTandemRunning() == true)
         {
-            MoveForward(AntScales.Speeds.TandemRunLead, true);
+            MoveForward(Speed.v[Speed.TandemRunLead], true);
         }
         else
         {
-            MoveForward(AntScales.Speeds.ReverseWaiting, true);
+            MoveForward(Speed.v[Speed.ReverseWaiting], true);
         }
     }
 
@@ -315,7 +315,7 @@ public class AntMovement : MonoBehaviour
         }
 
         // Move forward at the required speed (if there are no obstructions)
-        MoveForward(AntScales.Speeds.TandemRunFollow, false);//?
+        MoveForward(Speed.v[Speed.TandemRunFollow], false);//?
     }
 
     // If no obstructions are detected ahead of the ant, move forward at the required speed
@@ -504,7 +504,7 @@ public class AntMovement : MonoBehaviour
         if (ant.followerWait == true)
         {
             // If follower has lost contact with the leader, the follower will move again
-            if (AntSeparation(ant.leader) > AntScales.Distances.AntennaeLength)
+            if (AntSeparation(ant.leader) > Length.v[Length.AntennaeLength])
             {
                 // set parameters for lost tandem contact (leader give up time LGUT, time of lost contact)
                 ant.leader.TandemContactLost();
@@ -525,10 +525,10 @@ public class AntMovement : MonoBehaviour
             return true;
         }
 
-        if (ant.DEBUG_ANT) Debug.Log(AntSeparation(ant.leader) + " < " + AntScales.Distances.AntennaeLength);
+        if (ant.DEBUG_ANT) Debug.Log(AntSeparation(ant.leader) + " < " + Length.v[Length.AntennaeLength]);
 
         // If the follower has regained contact with the leader, reset the tandem variables
-        if (AntSeparation(ant.leader) < AntScales.Distances.AntennaeLength)
+        if (AntSeparation(ant.leader) < Length.v[Length.AntennaeLength])
         {
             // Follower must now wait, leader must start to move again.
             ant.followerWait = true;
@@ -551,7 +551,7 @@ public class AntMovement : MonoBehaviour
     public void EstimateNextLeaderPosition()
     {
         Vector3 leaderPos = ant.leader.transform.position;
-        ant.estimateNewLeaderPos = leaderPos + (ant.leader.transform.forward * AntScales.Distances.LeaderStopping);
+        ant.estimateNewLeaderPos = leaderPos + (ant.leader.transform.forward * Length.v[Length.LeaderStopping]);
     }
 
     // Turn ant to face directly at the other GameObject
@@ -716,7 +716,7 @@ public class AntMovement : MonoBehaviour
                 if (currentNest != desiredNest) //? need to check this equality works properly
                 {
                     // If the ant is not close to the door they must walk towards it (prevents getting stuck on walls)
-                    if (DoorSearch(AntScales.Distances.DoorSenseRange) == null)
+                    if (DoorSearch(Length.v[Length.DoorSenseRange]) == null)
                     {
                         WalkToGameObject(currentNestDoor, false);
                     }
@@ -737,7 +737,7 @@ public class AntMovement : MonoBehaviour
         else
         {
             //If the ant is close to the desired nest door, walk directly into the nest.
-            if (DoorSearch(AntScales.Distances.DoorSenseRange) == desiredNestDoor)
+            if (DoorSearch(Length.v[Length.DoorSenseRange]) == desiredNestDoor)
             {
                 WalkToGameObject(desiredNest, false);
             }
@@ -758,19 +758,19 @@ public class AntMovement : MonoBehaviour
     // Raycasts start from the centre of the ant's body (this helps improve collision avoidance), so the correct distance needs half the body length added
     private float AntennaeRayLength()
     {
-        return AntScales.Distances.AntennaeLength + (AntScales.Distances.BodyLength / 2);
+        return Length.v[Length.AntennaeLength] + (Length.v[Length.BodyLength] / 2);
     }
 
     // Since distance is calculated from the centre of each ant, separation is the distance - half the body length of both ants (so - 1x bodylength)
     private float AntSeparation(AntManager other)
     {
-        return Vector3.Distance(transform.position, other.transform.position) - AntScales.Distances.BodyLength;
+        return Vector3.Distance(transform.position, other.transform.position) - Length.v[Length.BodyLength];
     }
 
     // Stopping distance is twice antennae length. Distance is calculated from the center of each ant, half the body length must be added twice
     private float StoppingDistance()
     {
-        return AntScales.Distances.LeaderStopping + AntScales.Distances.BodyLength;
+        return Length.v[Length.LeaderStopping] + Length.v[Length.BodyLength];
     }
 
     // Rounds the current ant position to 5 decimal places
