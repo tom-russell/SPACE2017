@@ -1,0 +1,22 @@
+3,1,196
+Absolute Emigration Accuracy: 1
+Relative Emigration Accuracy: 1
+Absolute Emigration Cohesion: 0.98
+Relative Emigration Cohesion: 0.9949238
+FTRs Completed: 32
+FTRs Failed: 5
+FTR Mean Duration: 101.3865
+FTR Mean Distance: 185.7285
+FTR Mean Speed: 1.64805
+RTRs Completed: 9
+RTRs Failed: 3
+RTR Mean Duration: 156.8033
+RTR Mean Distance: 278.068
+RTR Mean Speed: 1.870334
+Leader Stop Separation: 0.2041392
+Discovery Time: 78
+First Recruiter Time: 367
+First Tandem Time: 379
+First Carry Time: 1161
+First Reverse Time: 1269
+End of Emigration Time: 2264

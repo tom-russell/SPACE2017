@@ -1,0 +1,5 @@
+Ant Collisions: 59756
+Wall Collisions: 4396
+Ant Sense Calls: 56195
+Ant Full Interactions: 174
+Tandem Contacts: 3057
